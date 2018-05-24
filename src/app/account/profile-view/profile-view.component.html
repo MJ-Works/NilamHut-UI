@@ -3,84 +3,76 @@
   <br>
   <div class="row">
     <div class="col-sm-10 offset-sm-1">
-        <mat-card class="signin-card">
-            <mat-card-content>
-              <div class="card-basic-content">
-
-                <div class="container-fluid">
-                  <div class="row">
-                    <div class="col-sm-8">
-                        <h2 style="font-weight: bolder">Rakul Preet Sing</h2>
-                        <h6> <span> <strong>12</strong> Bids</span> <span> & </span>  <span> <strong>13</strong> Posts</span></h6>
-                        <h5>Jaggesher14@gmail.com</h5>
-                        <h5>01915770274</h5>
-
-                    </div>
-                    <div class="col-sm-4">
-                        <img class="rounded-circle" src="assets/RakulPreet.jpg" alt="image">
-                    </div>
-                  </div>
+          <div class="card-basic-content">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-8">
+                    <h2 style="font-weight: bolder">Rakul Preet Sing</h2>
+                    <h6> <span> <strong>12</strong> Bids</span> <span> & </span>  <span> <strong>13</strong> Posts</span></h6>
+                    <h5>Jaggesher14@gmail.com</h5>
+                    <h5>01915770274</h5>
+                </div>
+                <div class="col-sm-4" style="text-align: right">
+                    <img class="rounded-circle" src="assets/RakulPreet.jpg" alt="image">
                 </div>
               </div>
+            </div>
+          </div>
 
-              <div class="card-basic-content">
-                  <mat-tab-group>
-                    <mat-tab label="Info">
-                        <table class="table table-hover">
+          <div class="card-basic-content">
+              <mat-tab-group>
+                <mat-tab label="Info">
+                    <table class="table table-hover">
 
-                            <tbody>
-                              <tr>
-                                <td> <strong>City</strong> </td>
-                                <td>Rajshahi</td>
-                              </tr>
+                        <tbody>
+                          <tr>
+                            <td> <strong>City</strong> </td>
+                            <td>Rajshahi</td>
+                          </tr>
 
-                              <tr>
-                                <td> <strong>Country</strong></td>
-                                <td>Bangladesh</td>
-                              </tr>
+                          <tr>
+                            <td> <strong>Country</strong></td>
+                            <td>Bangladesh</td>
+                          </tr>
 
-                              <tr>
-                                <td><strong>Zip-Code</strong></td>
-                                <td>22313</td>
-                              </tr>
+                          <tr>
+                            <td><strong>Zip-Code</strong></td>
+                            <td>22313</td>
+                          </tr>
 
-                              <tr>
-                                <td><strong>Address</strong></td>
-                                <td>Golden Shaword, Binodpur</td>
-                              </tr>
+                          <tr>
+                            <td><strong>Address</strong></td>
+                            <td>Golden Shaword, Binodpur</td>
+                          </tr>
 
-                            </tbody>
-                          </table>
-                    </mat-tab>
+                        </tbody>
+                      </table>
+                </mat-tab>
 
-                    <mat-tab label="Posts">
+                <mat-tab label="Posts">
 
-                        <mat-list>
-                          <mat-list-item *ngFor="let post of posts">
-                            <h3 mat-line style="font-weight: bolder">{{post.name}}</h3>
-                            <p mat-line> {{post.Started | date}} <strong>to</strong>{{post.Ended | date}} </p>
-                            <a href="#"><mat-icon mat-list-icon>visibility</mat-icon></a>
-                          </mat-list-item>
-                        </mat-list>
+                    <mat-list>
+                      <mat-list-item *ngFor="let post of posts">
+                        <h3 mat-line style="font-weight: bolder">{{post.name}}</h3>
+                        <p mat-line> {{post.Started | date}} <strong>to</strong>{{post.Ended | date}} </p>
+                        <a href="#"><mat-icon mat-list-icon>visibility</mat-icon></a>
+                      </mat-list-item>
+                    </mat-list>
 
-                    </mat-tab>
+                </mat-tab>
 
-                    <mat-tab label="Bids">
-                        <mat-list>
-                            <mat-list-item *ngFor="let post of posts">
-                              <h3 mat-line style="font-weight: bolder">{{post.name}}</h3>
-                              <p mat-line> {{post.Started | date}} <strong>to</strong> {{post.Ended | date}} </p>
-                              <a href="#"><mat-icon mat-list-icon>visibility</mat-icon></a>
-                            </mat-list-item>
-                          </mat-list>
-                    </mat-tab>
+                <mat-tab label="Bids">
+                    <mat-list>
+                        <mat-list-item *ngFor="let post of posts">
+                          <h3 mat-line style="font-weight: bolder">{{post.name}}</h3>
+                          <p mat-line> {{post.Started | date}} <strong>to</strong> {{post.Ended | date}} </p>
+                          <a href="#"><mat-icon mat-list-icon>visibility</mat-icon></a>
+                        </mat-list-item>
+                      </mat-list>
+                </mat-tab>
 
-                  </mat-tab-group>
-              </div>
-
-            </mat-card-content>
-
-        </mat-card>
+              </mat-tab-group>
+          </div>
     </div>
   </div>
 </div>
