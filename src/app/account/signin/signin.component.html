@@ -14,7 +14,7 @@
 
           <form class="example-form" [formGroup]="signinForm" (ngSubmit)="onSubmit()" novalidate>
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Name" [formControl]="name" [errorStateMatcher]="matcher">
+              <input matInput placeholder="Name" [formControl]="name">
               <mat-hint>Enter user name!</mat-hint>
               <mat-error *ngIf="name.hasError('required')">Name fileld is required</mat-error>
               <mat-error *ngIf="name.hasError('maxlength')">name atmost 100 charactes long.</mat-error>
@@ -30,7 +30,7 @@
               <mat-error *ngIf="password.hasError('minlength')"> password needs minimum 6 charactes</mat-error>
             </mat-form-field>
 
-            <button type="submit" mat-raised-button color="accent" [disabled]='!signinForm.valid' class="form-button">SignIn</button>
+            <button type="submit" mat-raised-button color="accent" class="form-button">SignIn</button>
             
           </form>
         </mat-card-content>
