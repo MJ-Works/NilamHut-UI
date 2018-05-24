@@ -12,6 +12,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
 
 
 @NgModule({
@@ -26,6 +28,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatIconModule
   ],
-  declarations: [SigninComponent, SignupComponent]
+  declarations: [SigninComponent, SignupComponent, ProfileEditComponent, ProfileViewComponent]
 })
 export class AccountModule { }
