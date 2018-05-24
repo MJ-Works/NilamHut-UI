@@ -2,10 +2,59 @@
     <br>
     <br>
     <div class="row">
+      
       <div class="col-sm-10 offset-sm-1">
-          <mat-card class="signin-card">
-            
-          </mat-card>
+        <h3 style="font-weight: bolder"> <i>Edit Profile</i></h3>
+        <hr>
+        <br>
+        <div class="row">
+          <div class="col-sm-4 text-center">
+            <img class="rounded-circle" src="assets/RakulPreet.jpg" alt="image">
+            <hr>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile">
+              <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+            <button mat-raised-button color="primary" class="form-button">Save it As Avatar </button>
+          </div>
+          <div class="col-sm-8">
+            <form class="example-form" novalidate>
+                <mat-form-field class="example-full-width">
+                  <input matInput type="text" placeholder="Full Name" value="">
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-select placeholder="Country">
+                      <mat-option value="BD">Bangladesh</mat-option>
+                      <mat-option value="IND">India</mat-option>
+                      <mat-option value="NEPAL">Nepal</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-select placeholder="City">
+                      <mat-option value="BD">Khunla</mat-option>
+                      <mat-option value="IND">Rajshai</mat-option>
+                      <mat-option value="NEPAL">Dhaka</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input matInput type="text" placeholder="Post-Code" value="">
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                  <textarea matInput placeholder="Enter address"></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input matInput type="tel" placeholder="Phone" value="">
+                </mat-form-field>
+
+                <button type="submit" mat-raised-button color="warn">Save</button>
+              </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>

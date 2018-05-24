@@ -1,0 +1,18 @@
+.example-form {
+    width: 100%;
+  }
+  
+.example-full-width {
+    font-size: 18px;
+    width: 100%;
+}
+
+img{
+    width: 150px;
+    max-height: 150px;
+}
+
+.form-button{
+    margin-top: 4px;
+    width: 100%;
+}

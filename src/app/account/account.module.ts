@@ -13,6 +13,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatListModule} from '@angular/material/list';
+import {MatSelectModule} from '@angular/material/select';
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
@@ -31,7 +33,8 @@ import { ProfileViewComponent } from './profile-view/profile-view.component';
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule
   ],
   declarations: [SigninComponent, SignupComponent, ProfileEditComponent, ProfileViewComponent]
 })
