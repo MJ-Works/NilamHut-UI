@@ -1,0 +1,17 @@
+.signin-card{
+    width: 100%;
+    border-radius: 10px;
+}
+.card-basic-content{
+    padding: 10px 0px;
+    color: black;
+    /* background-color: blue; */
+}
+img{
+    width: 150px;
+    max-height: 150px;
+}
+a{
+    color: black;
+    font-size: 18px;
+}

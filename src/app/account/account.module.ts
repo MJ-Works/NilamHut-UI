@@ -10,6 +10,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatListModule} from '@angular/material/list';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
@@ -26,7 +29,9 @@ import { ProfileViewComponent } from './profile-view/profile-view.component';
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatTabsModule,
+    MatListModule
   ],
   declarations: [SigninComponent, SignupComponent, ProfileEditComponent, ProfileViewComponent]
 })
