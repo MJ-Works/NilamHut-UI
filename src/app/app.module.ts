@@ -7,6 +7,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { AccountModule } from './account/account.module';
 import { ProductModule } from './product/product.module';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ProductModule } from './product/product.module';
     BrowserModule,
     AppRoutingModule,
     AccountModule,
-    ProductModule
+    ProductModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

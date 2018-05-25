@@ -1,13 +1,33 @@
 .navbar {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    /*padding-top: 15px;
+    padding-bottom: 15px;*/
     border: 0;
     border-radius: 0;
     margin-bottom: 0;
-    font-size: 20px;
-    letter-spacing: 1px;
-    color: black;
+    /*font-size: 20px;
+    letter-spacing: 1px;*/
+    font-family: "DIN Medium",Arial,Helvetica,sans-serif;
+    font-size: 15px;
 }
+/* Basic design for all navbar links */
+.navbar-nav  li a
+{
+    color: #353332 ;
+    padding : 15px;
+    border-radius: 10px;
+}
+
+/* color when navbar item on hover */
 .navbar-nav  li a:hover {
-    color: #1abc9c !important;
+    color: #202020 !important;
+    text-shadow: 0px 1px 0px #202020;
+    transition: 0.3s;
 }
+
+/* color when navbar item active */
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link
+{
+    background: lightgray !important;
+    color: #202020 !important;
+    text-shadow: 0px 1px 0px #202020;
+} 
