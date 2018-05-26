@@ -6,6 +6,13 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
+
 
 @NgModule({
   imports: [
@@ -14,7 +21,13 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatSelectModule,
+    NgSelectModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    DlDateTimePickerDateModule
   ],
   declarations: [ViewProductComponent, AddProductComponent]
 })

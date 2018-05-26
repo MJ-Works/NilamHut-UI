@@ -1,3 +1,119 @@
-<p>
-  add-product works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3" style="padding: 0px;">
+        <mat-card class="productAdd-card">
+            <div class="card-basic-content">
+                <h2 class="font-weight-bold">Add Product</h2>
+            </div>
+            <mat-card-content>
+                <form class="example-form" [formGroup]="productForm" (ngSubmit)="onSubmit()" novalidate>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Product Name" formControlName="ProductName">
+                                <mat-error *ngIf="productForm.controls.ProductName.hasError('required')">Name field is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Product Quantity" formControlName="Quantity">
+                                <mat-error *ngIf="productForm.controls.Quantity.hasError('required')">Quantity field is required</mat-error>
+                                <mat-error *ngIf="productForm.controls.Quantity.hasError('min')">Quantity should be minimum 1</mat-error>
+                                <mat-error *ngIf="productForm.controls.Quantity.hasError('max')">Quantity should be maximum 100000</mat-error>
+                            </mat-form-field>
+                        </div>
+                        
+                        <div class="col-md-12">
+                            <mat-form-field class="example-full-width">
+                                <textarea matInput placeholder="Product Description" formControlName="ProductDescription"></textarea>
+                                <mat-error *ngIf="productForm.controls.ProductDescription.hasError('required')">Product Description field is required</mat-error>
+                                <mat-error *ngIf="productForm.controls.ProductDescription.hasError('maxlength')">Product Description should be atmost 1000 characteres long</mat-error>
+                            </mat-form-field>
+                        </div>
+                     
+                        <div class="col-md-12">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Base Price" formControlName="BasePrice">
+                                <mat-error *ngIf="productForm.controls.BasePrice.hasError('required')">Base Price field is required</mat-error>
+                                <mat-error *ngIf="productForm.controls.BasePrice.hasError('min')">Base Price should be minimum 1</mat-error>
+                                <mat-error *ngIf="productForm.controls.BasePrice.hasError('max')">Base Price should be maximum 10000000</mat-error>
+                            </mat-form-field>
+                        </div>
+                     
+                      <div class="col-md-12">
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Contact Info" formControlName="ContactInfo">
+                            <mat-error *ngIf="productForm.controls.ContactInfo.hasError('required')">Contact Info field is required</mat-error>
+                            <mat-error *ngIf="productForm.controls.ContactInfo.hasError('maxlength')">Contact Info should be atmost 1000 characteres long</mat-error>
+                        </mat-form-field>
+                      </div>
+
+                      
+                      <div class="col-md-6">
+                          <mat-form-field class="example-full-width" >
+                              <mat-select placeholder="Country" formControlName="CountryId">
+                                <mat-option value="option">Option 1</mat-option>
+                                <mat-option value="option">Option 2</mat-option>
+                                <mat-option value="option">Option 3</mat-option>
+                              </mat-select>
+                          </mat-form-field>       
+                      </div>
+
+                      <div class="col-md-6">
+                          <mat-form-field  class="example-full-width">
+                              <mat-select placeholder="City" formControlName="CityId">
+                                <mat-option value="option">Option 1</mat-option>
+                                <mat-option value="option">Option 2</mat-option>
+                                <mat-option value="option">Option 3</mat-option>
+                              </mat-select>
+                          </mat-form-field>       
+                        </div>
+                      
+                      <div class="col-md-6">
+                        <mat-form-field class="example-full-width">
+                            <input matInput disabled placeholder="Bid Start Time" value="{{this.productForm.controls.StartDateTime.value}}">
+                        </mat-form-field>
+                        <dl-date-time-picker formControlName="StartDateTime"></dl-date-time-picker>
+                      </div>
+                      <div class="col-md-6">
+                        <mat-form-field class="example-full-width">
+                                <input matInput disabled placeholder="Bid End Time" value="{{this.productForm.controls.EndDateTime.value}}">
+                        </mat-form-field>
+                        <dl-date-time-picker formControlName="EndDateTime"></dl-date-time-picker>
+                      </div>
+                      
+                      <div class="col-md-12">
+                          <ng-select class="form-control"
+                          [items]="tags"
+                          bindLabel="tags"
+                          bindValue="tags"
+                          [multiple]="true"
+                          placeholder="Select Tags"
+                          clearAllText="Clear"
+                          formControlName="Tags">
+                          </ng-select>
+                      </div>
+                    <br>
+                    <br>
+                    <br>
+
+                      <div class="col-md-12">
+                          <div class="custom-file">
+                              <input type="file" class="custom-file-input" id="Image" (change)="onFileSelected($event)" formControlName="Image" multiple>
+                              <label class="custom-file-label" for="customFile">Choose image</label>
+                            </div>
+                      </div>
+
+                      <mat-card-footer>
+                          <div class="row">
+                              <div class="col-sm-7 offset-sm-4">
+                                  <button type="submit" mat-raised-button color="accent" class="form-button">Post</button>
+                              </div>
+                          </div>
+                      </mat-card-footer>
+                      </div>
+                    </form>
+              </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 import { ProductTag } from './ProductTag';
 import { Image } from './Image';
 
-export class product
+export class Product
 {
     StartDateTime: string;
     EndDateTime: string;
