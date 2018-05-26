@@ -7,7 +7,13 @@ import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { AccountModule } from './account/account.module';
 import { ProductModule } from './product/product.module';
+
 import {MatMenuModule} from '@angular/material/menu';
+import {MatCardModule} from '@angular/material/card';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatListModule} from '@angular/material/list';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +26,11 @@ import {MatMenuModule} from '@angular/material/menu';
     AppRoutingModule,
     AccountModule,
     ProductModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
