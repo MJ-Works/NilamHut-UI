@@ -5,15 +5,16 @@ import { SignupComponent } from './signup/signup.component';
 import { AccountRoutingModule } from './/account-routing.module';
 
 
-import {MatCardModule} from '@angular/material/card';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatListModule} from '@angular/material/list';
-import {MatSelectModule} from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -34,7 +35,8 @@ import { ProfileViewComponent } from './profile-view/profile-view.component';
     MatIconModule,
     MatTabsModule,
     MatListModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule
   ],
   declarations: [SigninComponent, SignupComponent, ProfileEditComponent, ProfileViewComponent]
 })
