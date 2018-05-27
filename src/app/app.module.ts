@@ -14,6 +14,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { CountdownTimerModule } from 'ngx-countdown-timer';
 
@@ -35,7 +36,8 @@ import { CountdownTimerModule } from 'ngx-countdown-timer';
     MatFormFieldModule,
     MatListModule,
     CountdownTimerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
