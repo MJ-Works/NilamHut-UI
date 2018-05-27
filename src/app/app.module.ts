@@ -8,37 +8,40 @@ import { HomeComponent } from './home/home.component';
 import { AccountModule } from './account/account.module';
 import { ProductModule } from './product/product.module';
 
-import {MatMenuModule} from '@angular/material/menu';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatListModule} from '@angular/material/list';
+
 import {MatButtonModule} from '@angular/material/button';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { CountdownTimerModule } from 'ngx-countdown-timer';
+import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    BidDialogComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     AccountModule,
     ProductModule,
-    MatMenuModule,
-    MatFormFieldModule,
-    MatListModule,
+    MatInputModule,
     CountdownTimerModule,
     MatButtonModule,
     MatPaginatorModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[BidDialogComponent]
 })
 export class AppModule { }

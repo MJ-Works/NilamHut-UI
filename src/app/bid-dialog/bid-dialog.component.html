@@ -1,0 +1,11 @@
+<h1 mat-dialog-title> Enter your bid</h1>
+<div mat-dialog-content>
+  <p>Your bit must be grater than current bit.</p>
+  <mat-form-field>
+    <input matInput type [(ngModel)]="data.id">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button color="primary" mat-raised-button (click)="onNoClick()" cdkFocusInitial>No Thanks</button>
+  <button color="warn" mat-raised-button [mat-dialog-close]="data.id">Submit</button>
+</div>
