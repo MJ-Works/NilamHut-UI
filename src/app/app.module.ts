@@ -19,6 +19,7 @@ import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    BidDialogComponent
+    BidDialogComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
