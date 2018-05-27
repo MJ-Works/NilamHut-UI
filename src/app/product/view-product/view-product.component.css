@@ -1,0 +1,92 @@
+.product-view
+{
+    margin-top: 50px;
+}
+.gallery-wrap .img-big-wrap img {
+    height: 300px;
+    width: 100%;
+    display: inline-block;
+    cursor: zoom-in;
+    object-fit: fill;
+}
+
+
+.gallery-wrap .img-small-wrap .item-gallery {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #ddd;
+    margin: 7px 2px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.gallery-wrap .img-small-wrap {
+    text-align: center;
+}
+
+.gallery-wrap .img-small-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: zoom-in;
+}
+.card
+{
+    border: none;
+}
+.top-ten-bidder
+{
+    border-radius: 10px;
+    background: lightgray;
+    box-shadow: 5px 5px 5px darkgray;
+}
+
+.top-ten-bidder .card-title
+{
+    text-align: center;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.top-ten-bidder .card-title
+{
+    color: snow;
+    text-shadow: 0px 1px 0px snow;
+    background: darkgray;
+}
+.top-ten-bidder .card-text
+{
+    text-align: center;
+    font-weight: bold;
+    font-size: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.current-top-bidder
+{
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background: lightgray;
+    box-shadow: 5px 5px 5px darkgray;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.current-top-bidder .card-title
+{
+    text-align: center;
+    padding: 10px;
+    border-radius: 20px;
+}
+.current-top-bidder .card-text
+{
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+}
+.current-top-bidder .highest-bidder-name
+{
+    font-size: 20px;
+}
+hr
+{
+    color: darkgreen;
+}

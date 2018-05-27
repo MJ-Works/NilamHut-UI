@@ -12,6 +12,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
     NgSelectModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    DlDateTimePickerDateModule
+    DlDateTimePickerDateModule,
+    MatTabsModule,
+    MatIconModule,
+    MatListModule
   ],
   declarations: [ViewProductComponent, AddProductComponent]
 })
