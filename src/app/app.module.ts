@@ -9,12 +9,12 @@ import { AccountModule } from './account/account.module';
 import { ProductModule } from './product/product.module';
 
 import {MatMenuModule} from '@angular/material/menu';
-import {MatCardModule} from '@angular/material/card';
-import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { CountdownTimerModule } from 'ngx-countdown-timer';
 
@@ -31,13 +31,12 @@ import { CountdownTimerModule } from 'ngx-countdown-timer';
     AccountModule,
     ProductModule,
     MatMenuModule,
-    MatCardModule,
-    MatExpansionModule,
     MatFormFieldModule,
     MatListModule,
     CountdownTimerModule,
     MatButtonModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
