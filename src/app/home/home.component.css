@@ -1,0 +1,21 @@
+.basic-product-container{
+    width: 100%;
+    padding: 4px;
+    border: 1px solid gray;
+}
+.product-image-container{
+    width: 100%;
+    text-align: center;
+    height: 200px;
+    background-color: aqua;
+}
+.product-image-container img{
+    width: 100%;
+    height: 100%;
+}
+
+.product-info-container{
+    width: 100%;
+    padding: 4px;
+
+}
