@@ -6,7 +6,8 @@
 .product-image-container{
     width: 100%;
     text-align: center;
-    height: 230px;
+    height: 235px;
+    border-bottom: 1px solid gray;
 }
 .product-image-container img{
     max-width: 230px;
