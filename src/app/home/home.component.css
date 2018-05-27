@@ -52,6 +52,13 @@
 
 }
 .row{
-    margin-top: 15px;
+    margin-top: 28px;
 
+}
+
+.carousel-inner img{
+    -webkit-filter: grayscale(20%);
+    filter: grayscale(20%); /* make all photos black and white */ 
+    width: 100%; /* Set width to 100% */
+    margin: auto;
 }
