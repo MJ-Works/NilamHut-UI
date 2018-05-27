@@ -1,64 +1,80 @@
-.basic-product-container{
-    width: 100%;
-    border: 1px solid gray;
-    text-align: center;
+.basic-product-container {
+  width: 100%;
+  border: 1px solid gray;
+  text-align: center;
 }
-.product-image-container{
-    padding: 2px;
-    height: 155px;
+
+.product-image-container {
+  padding: 2px;
+  height: 155px;
 }
+
 .product-image-container img {
-    display: block;
-    max-width:175px;
-    max-height:150px;
-    width: auto;
-    height: auto;
-  }
-
-.product-info-container{
-    width: 100%;
-    padding: 4px;
-    margin: 0px;
-    background-color: #dfdfdf;
-
-}
-.clock{
-    padding: 2px;
-    margin: 0px;
-    font-size: 22px;
-    font-weight: bolder;
-    color: red;
-    font-family: 'Times New Roman', Times, serif;
-}
-.leader{
-    padding: 0;
-    margin: 0px;
-    text-transform: lowercase;
-    text-decoration: none !important;
-    font-size: 16px;
-
-}
-.price{
-    padding: 0;
-    margin: 0px;
-    color: #42b449;
-    font-size: 20px;
-    letter-spacing: 2px;
-    font-weight: bolder;
-}
-.btn-control{
-    padding: 0px;
-    margin: 0px;
-
-}
-.row{
-    margin-top: 28px;
-
+  display: block;
+  max-width: 175px;
+  max-height: 150px;
+  width: auto;
+  height: auto;
 }
 
-.carousel-inner img{
-    -webkit-filter: grayscale(20%);
-    filter: grayscale(20%); /* make all photos black and white */ 
-    width: 100%; /* Set width to 100% */
-    margin: auto;
+.product-info-container {
+  width: 100%;
+  padding: 4px;
+  margin: 0px;
+  background-color: #dfdfdf;
+}
+
+.clock {
+  padding: 2px;
+  margin: 0px;
+  font-size: 22px;
+  font-weight: bolder;
+  color: red;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.leader {
+  padding: 0;
+  margin: 0px;
+  text-transform: lowercase;
+  text-decoration: none !important;
+  font-size: 16px;
+}
+
+.price {
+  padding: 0;
+  margin: 0px;
+  color: #42b449;
+  font-size: 20px;
+  letter-spacing: 2px;
+  font-weight: bolder;
+}
+
+.btn-control {
+  padding: 0px;
+  margin: 0px;
+}
+
+.row {
+  margin-top: 18px;
+}
+
+.carousel-inner img {
+  -webkit-filter: grayscale(20%);
+  filter: grayscale(20%);
+  /* make all photos black and white */
+  width: 100%;
+  /* Set width to 100% */
+  margin: auto;
+}
+
+.search-card {
+  margin: 0px;
+  width: 100%;
+}
+
+.search-card-item {
+  padding: 0px;
+  width: 100%;
+
 }

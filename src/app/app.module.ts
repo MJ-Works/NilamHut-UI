@@ -18,6 +18,7 @@ import { CountdownTimerModule } from 'ngx-countdown-timer';
 import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -38,7 +39,9 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatPaginatorModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    NgSelectModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
