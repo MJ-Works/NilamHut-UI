@@ -13,6 +13,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatListModule} from '@angular/material/list';
+import {MatButtonModule} from '@angular/material/button';
+
+import { CountdownTimerModule } from 'ngx-countdown-timer';
 
 
 @NgModule({
@@ -30,7 +33,9 @@ import {MatListModule} from '@angular/material/list';
     MatCardModule,
     MatExpansionModule,
     MatFormFieldModule,
-    MatListModule
+    MatListModule,
+    CountdownTimerModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

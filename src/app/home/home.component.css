@@ -1,0 +1,29 @@
+.basic-product-container{
+    width: 100%;
+    padding: 4px;
+    border: 1px solid gray;
+}
+.product-image-container{
+    width: 100%;
+    text-align: center;
+    height: 230px;
+}
+.product-image-container img{
+    max-width: 230px;
+    max-height:  230px;
+}
+
+.product-info-container{
+    width: 100%;
+    padding: 4px;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+.row{
+    margin-top: 15px;
+
+}
