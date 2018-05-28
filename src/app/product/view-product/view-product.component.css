@@ -10,7 +10,6 @@
     object-fit: fill;
 }
 
-
 .gallery-wrap .img-small-wrap .item-gallery {
     width: 60px;
     height: 60px;
@@ -35,12 +34,17 @@
 {
     border: none;
 }
+.content-card
+{
+    min-height: 450px;
+}
 .top-ten-bidder
 {
     max-height: 400px;
     border-radius: 10px;
     background: lightgray;
     box-shadow: 5px 5px 5px darkgray;
+    min-width: 350px;
 }
 
 .top-ten-bidder .card-title
@@ -71,6 +75,7 @@
     background: lightgray;
     box-shadow: 5px 5px 5px darkgray;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    min-width: 350px;
 }
 .current-top-bidder .card-title
 {
@@ -91,6 +96,33 @@
 hr
 {
     color: darkgreen;
+}
+
+.zoomImage
+{
+    height: 0px;
+    width: 0px;
+    font-size: 0px;
+}
+.unZoomImage
+{
+    height: 0px;
+    width: 0px;
+}
+.zoom-image-wrap
+{
+    object-fit: cover;
+}
+
+.clock
+{
+  text-align: center;
+  padding: 2px;
+  margin: 0px;
+  font-size: 22px;
+  font-weight: bolder;
+  color: red;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 @media screen and (max-width: 1024px) {

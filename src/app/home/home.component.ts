@@ -26,9 +26,9 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The bid  closed');
-      this.bidStatus = result;
-      console.log(result);
+      // console.log('The bid  closed');
+      // this.bidStatus = result;
+      // console.log(result);
     });
   }
 

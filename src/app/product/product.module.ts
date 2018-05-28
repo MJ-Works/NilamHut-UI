@@ -15,6 +15,8 @@ import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { CountdownTimerModule } from 'ngx-countdown-timer';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { MatListModule } from '@angular/material/list';
     DlDateTimePickerDateModule,
     MatTabsModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    CountdownTimerModule,
+    MatDialogModule
   ],
   declarations: [ViewProductComponent, AddProductComponent]
 })
