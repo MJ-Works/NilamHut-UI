@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { BidDialogComponent } from '../../bid-dialog/bid-dialog.component';
 
 @Component({
   selector: 'app-view-product',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-product.component.css']
 })
 export class ViewProductComponent implements OnInit {
+
   public bigPicture = "assets/image/14358915_10207878050809041_5592658587766789579_n.jpg";
   public zoomImage:boolean=false;
   public unZoomImage:boolean=true;
-  constructor() { 
+  public selectedId: string="sdad:dasdad";
+  public bidStatus: number;
+
+  constructor(public dialog: MatDialog) { 
   }
 
   ngOnInit() {
@@ -30,5 +36,16 @@ export class ViewProductComponent implements OnInit {
     this.zoomImage=false;
     this.unZoomImage=true;
   }
+  openDialog(): void {
+    let dialogRef = this.dialog.open(BidDialogComponent, {
+      width: '250px',
+      data: { id: this.selectedId}
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The bid  closed');
+      this.bidStatus = result;
+      console.log(result);
+    });
+  }
 }

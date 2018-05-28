@@ -16,6 +16,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { CountdownTimerModule } from 'ngx-countdown-timer';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { CountdownTimerModule } from 'ngx-countdown-timer';
     MatTabsModule,
     MatIconModule,
     MatListModule,
-    CountdownTimerModule
+    CountdownTimerModule,
+    MatDialogModule
   ],
   declarations: [ViewProductComponent, AddProductComponent]
 })
