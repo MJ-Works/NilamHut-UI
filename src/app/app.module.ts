@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FooterComponent } from './footer/footer.component';
+import { AdminModule } from './admin/admin.module';
 
 
 @NgModule({
@@ -36,14 +37,14 @@ import { FooterComponent } from './footer/footer.component';
     AppRoutingModule,
     AccountModule,
     ProductModule,
+    AdminModule,
     MatInputModule,
     CountdownTimerModule,
     MatButtonModule,
     MatPaginatorModule,
     MatTooltipModule,
     MatDialogModule,
-    NgSelectModule,
-    
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent],
