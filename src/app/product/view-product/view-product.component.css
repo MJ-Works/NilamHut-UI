@@ -114,6 +114,17 @@ hr
     object-fit: cover;
 }
 
+.clock
+{
+  text-align: center;
+  padding: 2px;
+  margin: 0px;
+  font-size: 22px;
+  font-weight: bolder;
+  color: red;
+  font-family: 'Times New Roman', Times, serif;
+}
+
 @media screen and (max-width: 1024px) {
     
 }
