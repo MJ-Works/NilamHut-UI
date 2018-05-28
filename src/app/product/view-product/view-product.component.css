@@ -37,6 +37,7 @@
 }
 .top-ten-bidder
 {
+    max-height: 400px;
     border-radius: 10px;
     background: lightgray;
     box-shadow: 5px 5px 5px darkgray;
@@ -64,6 +65,7 @@
 }
 .current-top-bidder
 {
+    max-height: 400px;
     margin-bottom: 20px;
     border-radius: 10px;
     background: lightgray;
@@ -84,9 +86,13 @@
 }
 .current-top-bidder .highest-bidder-name
 {
-    font-size: 20px;
+    font-weight: bold;
 }
 hr
 {
     color: darkgreen;
+}
+
+@media screen and (max-width: 1024px) {
+    
 }
