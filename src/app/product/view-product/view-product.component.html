@@ -1,27 +1,37 @@
 <div class="product-view">
     <div class="row">
         <div class="col-lg-1"></div>
-        <div class="card col-lg-7">
+        <div class="card col-lg-7 content-card">
           <div class="row">
             <aside class="col-lg-5">
               <article class="gallery-wrap"> 
                   <div class="img-big-wrap">
-                    <div> <a href="#"><img src="{{bigPicture}}"></a></div>
+                    <div (mouseenter) = "zoom()" (mouseleave) = "resetPage()"><img src="{{bigPicture}}"></div>
                   </div> <!-- slider-product.// -->
-                  <div class="img-small-wrap" (click)="onImageClick($event)">
-                    <div class="item-gallery"> <img src="assets/image/14358915_10207878050809041_5592658587766789579_n.jpg"> </div>
-                    <div class="item-gallery"> <img src="assets/image/15875070_1036127043158726_85946596640920282_o.jpg"> </div>
-                    <div class="item-gallery"> <img src="assets/image/monmoy.jpg"> </div>
-                    <div class="item-gallery"> <img src="https://s9.postimg.org/tupxkvfj3/image.jpg"> </div>
+                  <div id="zoom"></div>
+                  <div class="img-small-wrap">
+                    <div class="item-gallery" (click)="onImageClick($event)"> <img src="assets/image/14358915_10207878050809041_5592658587766789579_n.jpg"> </div>
+                    <div class="item-gallery" (click)="onImageClick($event)"> <img src="assets/image/15875070_1036127043158726_85946596640920282_o.jpg"> </div>
+                    <div class="item-gallery" (click)="onImageClick($event)"> <img src="assets/image/monmoy.jpg"> </div>
+                    <div class="item-gallery" (click)="onImageClick($event)"> <img src="https://s9.postimg.org/tupxkvfj3/image.jpg"> </div>
                   </div> <!-- slider-nav.// -->
               </article> <!-- gallery-wrap .end// -->
             </aside>
+
+            <div class="zoom-image-wrap" [class.col-lg-7] = "zoomImage">
+                <div class="gallery-wrap" [class.unZoomImage] = "unZoomImage">
+                        <div class="img-big-wrap">
+                                <img src="{{bigPicture}}">
+                        </div>
+                </div>
+            </div>
+
             <aside class="col-lg-7">
-                <article class="card-body p-4">
-                    <h3 class="title mb-3">Original Version of Some product name</h3>
+                <article class="card-body p-4" [class.zoomImage] = "zoomImage">
+                    <h3 class="title mb-3" [class.zoomImage] = "zoomImage">Original Version of Some product name</h3>
         
                     <p class="price-detail-wrap"> 
-                      <span class="price h3 text-warning"> 
+                      <span class="price h3 text-warning" [class.zoomImage] = "zoomImage"> 
                         <span class="currency">Base price US $</span><span class="num">1299</span>
                       </span> 
                       <span>/per kg</span> 
@@ -42,6 +52,7 @@
                       </dl>  
                  </article> 
              </aside>
+
             <div class="col-lg-1"></div>
           </div>
         </div> <!-- card.// -->
