@@ -6,9 +6,9 @@
             <aside class="col-lg-5">
               <article class="gallery-wrap"> 
                   <div class="img-big-wrap">
-                    <div> <a href="#"><img src="assets/image/14358915_10207878050809041_5592658587766789579_n.jpg"></a></div>
+                    <div> <a href="#"><img src="{{bigPicture}}"></a></div>
                   </div> <!-- slider-product.// -->
-                  <div class="img-small-wrap">
+                  <div class="img-small-wrap" (click)="onImageClick($event)">
                     <div class="item-gallery"> <img src="assets/image/14358915_10207878050809041_5592658587766789579_n.jpg"> </div>
                     <div class="item-gallery"> <img src="assets/image/15875070_1036127043158726_85946596640920282_o.jpg"> </div>
                     <div class="item-gallery"> <img src="assets/image/monmoy.jpg"> </div>
