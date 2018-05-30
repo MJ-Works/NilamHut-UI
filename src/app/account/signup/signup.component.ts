@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { Register } from '../models/Register';
+import { AccountService } from '../services/account.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-signup',
@@ -15,6 +19,8 @@ export class SignupComponent implements OnInit {
   public confirmPassword: FormControl;
   public hide: boolean = true;
   public hide1: boolean = true;
+  register : Register;
+
   
   private CreateForm(): void {
     this.signupForm = new FormGroup({
@@ -45,7 +51,7 @@ export class SignupComponent implements OnInit {
     ]);
   }
 
-  constructor() { }
+  constructor(private _accountService : AccountService,private route: Router) { }
 
   ngOnInit() {
     this.CreateFormControls();
@@ -53,8 +59,22 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("Ok Boss");
+
+    //console.log("Ok Boss");
     console.log(this.signupForm);
+
+     this.register = new Register();
+     this.register.UserName = this.name.value;
+     this.register.Email = this.email.value;
+     this.register.Password = this.password.value;
+     this.register.ConfirmPassword = this.confirmPassword.value;
+    this._accountService.register(this.register).subscribe( data => {
+        console.log("suceed");
+        this.route.navigate(['/']);
+    }),error => {
+      console.log(error);
+    };
+     
   }
 
 }
