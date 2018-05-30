@@ -26,4 +26,24 @@ export class AccountService extends BaseService {
           catchError(val => this.handleError(new HttpErrorResponse(val)))
         );
   }
+
+  login(_login:Login)
+  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    }
+
+    return this.http.post(`${environment.baseUrl}/api/account/login`, _login, httpOptions)
+        .pipe(
+          catchError(val => this.handleError(new HttpErrorResponse(val)))
+        );
+  }
+
+  storeToken(auth : any)
+  {
+    localStorage.setItem('token', auth.auth_token);
+    localStorage.setItem('user_id', auth.id);
+  }
 }
