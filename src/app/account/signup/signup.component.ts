@@ -66,7 +66,7 @@ export class SignupComponent implements OnInit {
      this.register.Password = this.password.value;
      this.register.ConfirmPassword = this.confirmPassword.value;
     this._accountService.register(this.register).subscribe( data => {
-        this.route.navigate(['/']);
+        this.route.navigate(['/signin']);
     }),error => {
       console.log(error);
     };
