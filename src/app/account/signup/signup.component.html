@@ -33,6 +33,7 @@
               <mat-error *ngIf="password.hasError('required')"> password field is required</mat-error>
               <mat-error *ngIf="password.hasError('maxlength')">password atmost 100 charactes long</mat-error>
               <mat-error *ngIf="password.hasError('minlength')"> password needs minimum 6 charactes</mat-error>
+              <mat-error *ngIf="password.hasError('pattern')"> Both upper and lowercase , number and non alphanumeric(#?!@$%^&*-) character </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width">

@@ -44,7 +44,8 @@ export class SignupComponent implements OnInit {
     this.password = new FormControl('', [
       Validators.required,
       Validators.minLength(6),
-      Validators.maxLength(100)
+      Validators.maxLength(100),
+      Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')
     ]);
     this.confirmPassword = new FormControl('', [
       Validators.required
@@ -59,22 +60,17 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-
-    //console.log("Ok Boss");
-    console.log(this.signupForm);
-
      this.register = new Register();
      this.register.UserName = this.name.value;
      this.register.Email = this.email.value;
      this.register.Password = this.password.value;
      this.register.ConfirmPassword = this.confirmPassword.value;
     this._accountService.register(this.register).subscribe( data => {
-        console.log("suceed");
         this.route.navigate(['/']);
     }),error => {
       console.log(error);
     };
-     
+    this.signupForm.reset();
   }
 
 }
