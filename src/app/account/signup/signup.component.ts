@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -12,13 +12,16 @@ export class SignupComponent implements OnInit {
   public name: FormControl;
   public email: FormControl;
   public password: FormControl;
+  public confirmPassword: FormControl;
   public hide: boolean = true;
+  public hide1: boolean = true;
   
   private CreateForm(): void {
     this.signupForm = new FormGroup({
       name: this.name,
       email: this.email,
-      password: this.password
+      password: this.password,
+      confirmPassword: this.confirmPassword
     });
   }
 
@@ -37,8 +40,11 @@ export class SignupComponent implements OnInit {
       Validators.minLength(6),
       Validators.maxLength(100)
     ]);
+    this.confirmPassword = new FormControl('', [
+      Validators.required
+    ]);
   }
-  
+
   constructor() { }
 
   ngOnInit() {
@@ -48,7 +54,7 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     console.log("Ok Boss");
-    console.log(this.signupForm.value);
+    console.log(this.signupForm);
   }
 
 }
