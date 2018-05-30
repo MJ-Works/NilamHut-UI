@@ -16,7 +16,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { CountdownTimerModule } from 'ngx-countdown-timer';
 import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FooterComponent } from './footer/footer.component';
@@ -36,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     AccountModule,
     ProductModule,

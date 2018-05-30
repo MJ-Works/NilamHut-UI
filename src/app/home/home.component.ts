@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BidDialogComponent } from '../bid-dialog/bid-dialog.component';
 import { CommonService } from '../shared/services/common.service';
+import { error } from 'util';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +12,9 @@ import { CommonService } from '../shared/services/common.service';
 })
 export class HomeComponent implements OnInit {
 
+  public allCity: object = [];
+  public allCategory: object = []
+  public searchForm: FormGroup;
 
   public selectedId: string = "sdad:dasdad";
   public bidStatus: number;
@@ -18,23 +23,9 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    this._commonService.getAllCategory().subscribe(
-      data => {
-        console.log(data);
-      },
-      err => {
-        console.log(err);
-      }
-    );
-
-    this._commonService.getAllCity().subscribe(
-      data => {
-        console.log(data);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    this.createForm()
+    this.getAllCategory();
+    this.getAllCity();
   }
 
   openDialog(): void {
@@ -48,6 +39,43 @@ export class HomeComponent implements OnInit {
       // this.bidStatus = result;
       // console.log(result);
     });
+  }
+
+  private getAllCity() {
+    this._commonService.getAllCity().subscribe(
+      data => {
+        this.allCity = data;
+        console.log('City success');
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  private getAllCategory() {
+    this._commonService.getAllCategory().subscribe(
+      data => {
+        this.allCategory = data;
+        console.log('Category Success');
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  private createForm() {
+    this.searchForm = new FormGroup({
+      city: new FormControl(),
+      category: new FormControl(),
+      searchName: new FormControl()
+    });
+  }
+
+  public onSubmit()
+  {
+    console.log(this.searchForm.value);
   }
 
 }
