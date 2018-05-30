@@ -20,6 +20,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { AccountService } from './services/account.service';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { ProfileViewComponent } from './profile-view/profile-view.component';
     MatSelectModule,
     MatChipsModule
   ],
+  providers : [AccountService],
   declarations: [SigninComponent, SignupComponent, ProfileEditComponent, ProfileViewComponent]
 })
 export class AccountModule { }
