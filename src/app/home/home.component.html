@@ -34,23 +34,21 @@
 
 
       <div class="card-body" style="padding: 0px; margin: 0px;">
-        <form class="form-inline">
+        <form class="form-inline" [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidate>
           <div class="col-sm-4 search-card-item">
-            <ng-select [searchable]="false" placeholder="Select Location">
-              <ng-option [value]="true">Yes</ng-option>
-              <ng-option [value]="false">No</ng-option>
+            <ng-select [searchable]="false" placeholder="Select Location" *ngIf="allCity" formControlName="city">
+              <ng-option *ngFor="let city of allCity" [value]="city.id">{{city.cityName}}</ng-option>
             </ng-select>
           </div>
 
           <div class="col-sm-4 search-card-item">
-            <ng-select [searchable]="false" placeholder="Select category">
-              <ng-option [value]="true">Yes</ng-option>
-              <ng-option [value]="false">No</ng-option>
+            <ng-select [searchable]="false" placeholder="Select category" *ngIf="allCategory" formControlName="category">
+              <ng-option *ngFor="let category of allCategory" [value]="category.id">{{category.categoryName}}</ng-option>
             </ng-select>
           </div>
 
           <div class="col-sm-3 search-card-item" >
-            <input class="form-control" type="text" placeholder="Enter Product Name.." style="width: 100%;">
+            <input class="form-control" type="text" placeholder="Enter Product Name.." style="width: 100%;" formControlName="searchName">
           </div>
           <div class="col-sm-1 search-card-item" style="text-align: right" >
               <button type="submit" mat-raised-button color="accent" matTooltip="Search Your Choise"><i class="material-icons">
