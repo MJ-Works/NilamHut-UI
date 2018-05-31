@@ -7,3 +7,10 @@ export class Category{
     Id: String;
     categoryName: String;
 }
+
+export class Tag
+{
+    Id : string = '';
+    TagName : string = '';
+    TagDescription : string = '' ;
+}

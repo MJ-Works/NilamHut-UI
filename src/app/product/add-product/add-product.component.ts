@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/product';
-import { Tag } from '../models/Tag';
+import { Category, City, Tag } from '../../shared/Models/SharedModels';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CommonService } from '../../shared/services/common.service';
 
 @Component({
   selector: 'app-add-product',
@@ -12,11 +13,15 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AddProductComponent implements OnInit {
   
   productForm: FormGroup;
-  tags: string[];
-  constructor(private fb: FormBuilder) { }
+  tags: Tag[];
+  cities: City[];
+  categories: Category[];
+  constructor(private fb: FormBuilder, private _commonService:CommonService) { }
 
   ngOnInit() {
     this.getTags();
+    this.getCity();
+    this.getCategory();
     this.createForm();
   }
 
@@ -30,7 +35,7 @@ export class AddProductComponent implements OnInit {
         Quantity : ['', [Validators.required,Validators.min(1),Validators.max(100000)]],
         BasePrice : ['', [Validators.required,Validators.min(1),Validators.max(10000000)]],
         ContactInfo : ['', [Validators.required,Validators.maxLength(1000)]],
-        CountryId : ['', [Validators.required]],
+        CategoryId : ['', [Validators.required]],
         CityId : ['', [Validators.required]],
         Image : ['', [Validators.required]],
         Tags : ['', [Validators.required]]
@@ -38,15 +43,37 @@ export class AddProductComponent implements OnInit {
   }
   getTags()
   {
-    this.tags = new Array();
-    this.tags.push("asdf");
-    this.tags.push("asdfasdfa");
-    this.tags.push("axvcsdfgsd");
+    this._commonService.getAllTag().subscribe( data => {
+      this.tags = data;
+    }), error => {
+      console.log(error);
+    };
+  }
+  getCity()
+  {
+      this._commonService.getAllCity().subscribe( data => {
+          this.cities = data;
+      }), error => {
+        console.log(error);
+      };
+  }
+  getCategory()
+  {
+    this._commonService.getAllCategory().subscribe( data => {
+      this.categories = data;
+    }), error => {
+      console.log(error);
+    };
   }
   onFileSelected($event)
   {
     console.log("yes");
-      console.log(this.productForm.controls.StartDateTime.value);
+      console.log(this.productForm.controls.value);
+  }
+
+  onSubmit()
+  {
+    console.log(this.productForm.controls);
   }
 
 }

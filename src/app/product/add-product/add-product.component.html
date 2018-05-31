@@ -51,10 +51,8 @@
                       
                       <div class="col-md-6">
                           <mat-form-field class="example-full-width" >
-                              <mat-select placeholder="Country" formControlName="CountryId">
-                                <mat-option value="option">Option 1</mat-option>
-                                <mat-option value="option">Option 2</mat-option>
-                                <mat-option value="option">Option 3</mat-option>
+                              <mat-select placeholder="Category" formControlName="CategoryId">
+                                    <mat-option *ngFor="let category of categories" [value] ="category.id">{{category.categoryName}}</mat-option>
                               </mat-select>
                           </mat-form-field>       
                       </div>
@@ -62,9 +60,7 @@
                       <div class="col-md-6">
                           <mat-form-field  class="example-full-width">
                               <mat-select placeholder="City" formControlName="CityId">
-                                <mat-option value="option">Option 1</mat-option>
-                                <mat-option value="option">Option 2</mat-option>
-                                <mat-option value="option">Option 3</mat-option>
+                                <mat-option *ngFor="let city of cities" [value] ="city.id">{{city.cityName}}</mat-option>
                               </mat-select>
                           </mat-form-field>       
                         </div>
@@ -85,8 +81,8 @@
                       <div class="col-md-12">
                           <ng-select class="form-control"
                           [items]="tags"
-                          bindLabel="tags"
-                          bindValue="tags"
+                          bindLabel="tagName"
+                          bindValue="id"
                           [multiple]="true"
                           placeholder="Select Tags"
                           clearAllText="Clear"
