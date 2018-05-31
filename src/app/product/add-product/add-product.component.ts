@@ -13,12 +13,16 @@ import { CommonService } from '../../shared/services/common.service';
 export class AddProductComponent implements OnInit {
   
   productForm: FormGroup;
+  imageCount: number;
   tags: Tag[];
   cities: City[];
   categories: Category[];
+  selectedFile : File[];
+
   constructor(private fb: FormBuilder, private _commonService:CommonService) { }
 
   ngOnInit() {
+    this.imageCount = 0;
     this.getTags();
     this.getCity();
     this.getCategory();
@@ -67,8 +71,17 @@ export class AddProductComponent implements OnInit {
   }
   onFileSelected($event)
   {
-    console.log("yes");
-      console.log(this.productForm.controls.value);
+      if($event.target.files.length > 4)
+      {
+        this.imageCount = $event.target.files.length;
+        this.productForm.controls.Image.setErrors({'imageExceed' : true});
+      }
+      else 
+      {
+        this.selectedFile = $event.target.files;
+        this.imageCount = this.selectedFile.length;
+      }
+      console.log(this.selectedFile);
   }
 
   onSubmit()

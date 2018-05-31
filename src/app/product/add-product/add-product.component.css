@@ -29,3 +29,8 @@ textarea
     height: 30px;
     color: white;
 }
+.errorClass
+{
+    color: red;
+    font-size: 11px;
+}

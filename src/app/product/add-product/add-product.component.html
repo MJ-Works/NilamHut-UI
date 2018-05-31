@@ -54,6 +54,7 @@
                               <mat-select placeholder="Category" formControlName="CategoryId">
                                     <mat-option *ngFor="let category of categories" [value] ="category.id">{{category.categoryName}}</mat-option>
                               </mat-select>
+                              <mat-error *ngIf="productForm.controls.CategoryId.hasError('required')">Select a category</mat-error>
                           </mat-form-field>       
                       </div>
 
@@ -62,6 +63,7 @@
                               <mat-select placeholder="City" formControlName="CityId">
                                 <mat-option *ngFor="let city of cities" [value] ="city.id">{{city.cityName}}</mat-option>
                               </mat-select>
+                              <mat-error *ngIf="productForm.controls.CityId.hasError('required')">Select a city</mat-error>
                           </mat-form-field>       
                         </div>
                       
@@ -70,12 +72,14 @@
                             <input matInput disabled placeholder="Bid Start Time" value="{{this.productForm.controls.StartDateTime.value}}">
                         </mat-form-field>
                         <dl-date-time-picker formControlName="StartDateTime"></dl-date-time-picker>
+                        <mat-error *ngIf="productForm.controls.StartDateTime.hasError('required') && (productForm.controls.StartDateTime.dirty || productForm.controls.StartDateTime.touched)">Select a time</mat-error>
                       </div>
                       <div class="col-md-6">
                         <mat-form-field class="example-full-width">
                                 <input matInput disabled placeholder="Bid End Time" value="{{this.productForm.controls.EndDateTime.value}}">
                         </mat-form-field>
                         <dl-date-time-picker formControlName="EndDateTime"></dl-date-time-picker>
+                        <mat-error *ngIf="productForm.controls.EndDateTime.hasError('required') && (productForm.controls.EndDateTime.dirty || productForm.controls.EndDateTime.touched)">Select a time</mat-error>
                       </div>
                       
                       <div class="col-md-12">
@@ -88,6 +92,9 @@
                           clearAllText="Clear"
                           formControlName="Tags">
                           </ng-select>
+                          <div *ngIf = "productForm.controls.Tags.hasError('required') && (productForm.controls.Tags.dirty || productForm.controls.Tags.touched)" class="errorClass">
+                                <p>Select At Least one tag</p>
+                          </div>
                       </div>
                     <br>
                     <br>
@@ -96,14 +103,21 @@
                       <div class="col-md-12">
                           <div class="custom-file">
                               <input type="file" class="custom-file-input" id="Image" (change)="onFileSelected($event)" formControlName="Image" multiple>
-                              <label class="custom-file-label" for="customFile">Choose image</label>
+                              <label *ngIf = "!imageCount" class="custom-file-label" for="customFile">Choose image</label>
+                              <label *ngIf = "imageCount" class="custom-file-label" for="customFile">{{imageCount}} image selected</label>
                             </div>
+                            <div *ngIf = "productForm.controls.Image.hasError('required') && (productForm.controls.Image.dirty || productForm.controls.Image.touched)" class="errorClass">
+                                    <p *ngIf = "!imageCount">Select At Least one Image to At Most 4 Image</p>
+                              </div>
+                              <div *ngIf = "productForm.controls.Image.hasError('imageExceed') && (productForm.controls.Image.dirty || productForm.controls.Image.touched)" class="errorClass">
+                                    <p>At most 4 image</p>
+                              </div>
                       </div>
 
                       <mat-card-footer>
                           <div class="row">
                               <div class="col-sm-7 offset-sm-4">
-                                  <button type="submit" mat-raised-button color="accent" class="form-button">Post</button>
+                                  <button [disabled]='!productForm.valid' type="submit" mat-raised-button color="accent" class="form-button">Post</button>
                               </div>
                           </div>
                       </mat-card-footer>
