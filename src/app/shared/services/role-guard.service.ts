@@ -7,6 +7,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class RoleGuardService implements CanActivate {
 
     jwtHelper = new JwtHelperService();
+    roleMatch : boolean;
 
   constructor(public auth: AuthService, public router: Router) { }
 
@@ -17,8 +18,12 @@ export class RoleGuardService implements CanActivate {
       const token = localStorage.getItem('token');
 
       const tokenPayload = this.jwtHelper.decodeToken(token);
-
-      if(!this.auth.isAuthenticated() || tokenPayload.Rol[0] != expectedRole || tokenPayload.Rol[1] != expectedRole)
+    
+      this.roleMatch = false;
+      if(tokenPayload.Rol === expectedRole)
+            this.roleMatch = true;
+    
+      if(!this.auth.isAuthenticated() || !this.roleMatch)
       {
           this.router.navigate(['/signin']);
           return false;
