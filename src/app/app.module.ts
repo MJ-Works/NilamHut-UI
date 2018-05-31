@@ -22,6 +22,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FooterComponent } from './footer/footer.component';
 import { AdminModule } from './admin/admin.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './shared/services/auth.service';
+import { AuthGuardService } from './shared/services/auth-guard.service';
+import { RoleGuardService } from './shared/services/role-guard.service';
 
 
 @NgModule({
@@ -49,7 +52,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     NgSelectModule
   ],
-  providers: [],
+  providers: [AuthService,AuthGuardService,RoleGuardService],
   bootstrap: [AppComponent],
   entryComponents:[BidDialogComponent]
 })

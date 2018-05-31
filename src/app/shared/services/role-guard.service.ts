@@ -20,7 +20,7 @@ export class RoleGuardService implements CanActivate {
 
       if(!this.auth.isAuthenticated() && tokenPayload.Rol[0] != expectedRole && tokenPayload.Rol[1] != expectedRole)
       {
-          this.router.navigate(['login']);
+          this.router.navigate(['/signin']);
           return false;
       }
 

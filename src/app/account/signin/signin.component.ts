@@ -50,8 +50,8 @@ export class SigninComponent implements OnInit {
       this.login.password = this.password.value;
       this._accountService.login(this.login).subscribe( data => {
         this._accountService.storeToken(data);
-        console.log(data);
-        //this.route.navigate(['/']);
+        //console.log(data);
+        this.route.navigate(['/']);
       }),error => {
         console.log(error);
       };
