@@ -4,12 +4,8 @@
 
 export const environment = {
   production: false,
-<<<<<<< Updated upstream
   baseUrl: 'http://localhost:5000',
   baseUrls: 'https://localhost:5001'
-=======
-  baseUrl: 'http://localhost:5000'
->>>>>>> Stashed changes
 };
 
 /*
