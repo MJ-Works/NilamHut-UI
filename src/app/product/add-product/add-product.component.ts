@@ -3,6 +3,7 @@ import { Product } from '../models/product';
 import { Category, City, Tag } from '../../shared/Models/SharedModels';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CommonService } from '../../shared/services/common.service';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-add-product',
@@ -19,7 +20,7 @@ export class AddProductComponent implements OnInit {
   categories: Category[];
   selectedFile : File[];
 
-  constructor(private fb: FormBuilder, private _commonService:CommonService) { }
+  constructor(private fb: FormBuilder, private _commonService:CommonService, private _productService: ProductService) { }
 
   ngOnInit() {
     this.imageCount = 0;
@@ -83,10 +84,44 @@ export class AddProductComponent implements OnInit {
       }
       console.log(this.selectedFile);
   }
+  getUserId()
+  {
 
+  }
   onSubmit()
   {
-    console.log(this.productForm.controls);
+      var applicationUserId = localStorage.getItem('user_id');
+
+      var startDate = new Date(this.productForm.controls.StartDateTime.value);
+      var endDate = new Date(this.productForm.controls.EndDateTime.value);
+
+      const fd = new FormData();
+      fd.append('ApplicationUserId', applicationUserId);
+      fd.append('StartDateTime',startDate.toLocaleString());
+      fd.append('EndDateTime',endDate.toLocaleString());
+      fd.append('ProductName',this.productForm.controls.ProductName.value.toLocaleString());
+      fd.append('ProductDescription',this.productForm.controls.ProductDescription.value);
+      fd.append('Quantity',this.productForm.controls.Quantity.value);
+      fd.append('BasePrice',this.productForm.controls.BasePrice.value);
+      fd.append('ContactInfo',this.productForm.controls.ContactInfo.value);
+      fd.append('CategoryId',this.productForm.controls.CategoryId.value);
+      fd.append('CityId',this.productForm.controls.CityId.value);
+
+      for(let tag of this.productForm.controls.Tags.value)
+      {
+        fd.append('Tags', tag);
+      }
+      
+      for(var img of this.selectedFile)
+      {
+        fd.append('Image',img, img.name);
+      }
+
+      this._productService.addProduct(fd).subscribe( data=> {
+          console.log("success!!!");
+      }), error => {
+        console.log(error);
+      };
   }
 
 }

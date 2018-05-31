@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { CountdownTimerModule } from 'ngx-countdown-timer';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ProductService } from './services/product.service';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     CountdownTimerModule,
     MatDialogModule
   ],
+  providers : [ProductService],
   declarations: [ViewProductComponent, AddProductComponent]
 })
 export class ProductModule { }
