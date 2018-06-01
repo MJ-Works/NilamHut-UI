@@ -4,4 +4,6 @@ export class Bid
     bidTime : string;
     userId : string;
     userName : string;
+    userAddress: string;
+    userImage: string;
 }

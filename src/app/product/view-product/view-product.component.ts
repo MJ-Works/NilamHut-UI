@@ -24,6 +24,7 @@ export class ViewProductComponent implements OnInit {
   public productId: string;
   public product: Product;
   public baseUrl: string;
+  public currentTopBid: Bid;
 
   constructor(private dialog: MatDialog, private activeRoute: ActivatedRoute
               ,private _productService: ProductService) { 
@@ -46,18 +47,27 @@ export class ViewProductComponent implements OnInit {
 
   getProductInfo()
   {
+      this.currentTopBid = new Bid();
       this.product = new Product(); 
       this._productService.getProduct(this.productId).subscribe( data=> {
       this.product = data;
       this.bigPicture = this.baseUrl+'/'+ this.product.image[0];
+
+      this.currentTopBid = this.product.bids[0];
 
       for(var i = 0; i < this.product.image.length; i++)
         this.product.image[i] = this.baseUrl+'/'+ this.product.image[i];
 
       for(var i = 0; i < this.product.bids.length; i++)
       {
-        var dat = new Date(this.product.bids[i].bidTime);
-        this.product.bids[i].bidTime = dat.toLocaleDateString() + ' '+dat.toLocaleTimeString()
+        if(this.product.bids[i].bidTime != null)
+        {
+          var dat = new Date(this.product.bids[i].bidTime);
+          this.product.bids[i].bidTime = dat.toLocaleDateString() + ' '+dat.toLocaleTimeString()
+        }
+        
+        if(this.product.bids[i].userImage != null)
+          this.product.bids[i].userImage = this.baseUrl+'/'+ this.product.bids[i].userImage;
       }
       
       var date = new Date(this.product.startDateTime);
@@ -81,7 +91,10 @@ export class ViewProductComponent implements OnInit {
        .catch(err => console.log('Error while establishing connection :('));
  
        this._hubConnection.on('SendMessageToProductView', (bid:Bid) => {
-         console.log(bid);
+          this.product.bids[0] = bid;
+          this.currentTopBid = bid;
+          for(var i = 1; i < this.product.bids.length; i++)
+            this.product.bids[i] = this.product.bids[i-1];
        });
   }
 
