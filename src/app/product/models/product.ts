@@ -1,9 +1,12 @@
 import { ProductTag } from './ProductTag';
-import { Image } from './Image';
+import { Bid } from './Bid';
 
 export class Product
 {
-    ApplicationUserId: string;
+    posterId: string;
+    userName: string;
+    userImage: string;
+    userAddress: string;
     StartDateTime: string;
     EndDateTime: string;
     ProductName: string;
@@ -12,7 +15,9 @@ export class Product
     BasePrice: number;
     ContactInfo: string;
     CategoryId: string;
+    CategoryName: string;
     CityId: string;
-    Image: Image[];
-    Tags: ProductTag[];
+    CityName: string;
+    Image: string[];
+    Bids: Bid[];
 }

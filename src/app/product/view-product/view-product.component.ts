@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BidDialogComponent } from '../../bid-dialog/bid-dialog.component';
+import { ActivatedRoute } from '@angular/router';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-view-product',
@@ -14,12 +16,22 @@ export class ViewProductComponent implements OnInit {
   public unZoomImage:boolean=true;
   public selectedId: string="sdad:dasdad";
   public bidStatus: number;
+  public productId: string;
 
-  constructor(public dialog: MatDialog) { 
+  constructor(private dialog: MatDialog, private activeRoute: ActivatedRoute
+              ,private _productService: ProductService) { 
   }
 
   ngOnInit() {
-    
+      this.activeRoute.params.subscribe(param=>{
+        this.productId = param['id'];
+    })
+  
+    this._productService.getProduct(this.productId).subscribe( data=> {
+          console.log(data);
+      }), error => {
+        console.log(error);
+      };
   }
   onImageClick($event)
   {

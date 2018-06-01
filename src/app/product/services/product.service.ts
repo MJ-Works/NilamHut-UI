@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Product } from '../models/product';
 import { environment } from '../../../environments/environment';
 import { catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,6 @@ export class ProductService extends BaseService{
 
   addProduct(formData: FormData)
   {
-    console.log("yes");
     const httpOptions = {
       headers: new HttpHeaders({
         
@@ -25,5 +25,18 @@ export class ProductService extends BaseService{
                     .pipe(catchError(val => this.handleError(new HttpErrorResponse(val)))
                   );
 
+  }
+
+  getProduct(id : string) : Observable<Product>
+  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        
+      })
+    }
+
+    return this.http.get<Product>(`${environment.baseUrl}/api/product/GetWithData/${id}`, httpOptions)
+                    .pipe(catchError(val => this.handleError(new HttpErrorResponse(val)))
+                  );
   }
 }
