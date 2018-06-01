@@ -34,4 +34,9 @@ export class CommonService extends BaseService {
 			);
   }
 
+  public getUserId()
+  {
+      return localStorage.getItem('user_id');
+  }
+
 }
