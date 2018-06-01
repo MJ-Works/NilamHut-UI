@@ -1,7 +1,7 @@
 export class Bid
 {
-    BidPrice : number;
-    BidTime : string;
-    UserId : string;
-    UserName : string;
+    bidPrice : number;
+    bidTime : string;
+    userId : string;
+    userName : string;
 }
