@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product';
 import { environment } from '../../../environments/environment';
+import { HubConnection, HubConnectionBuilder, IHttpConnectionOptions } from '@aspnet/signalr';
+import { Bid } from '../models/Bid';
 
 @Component({
   selector: 'app-view-product',
@@ -13,6 +15,7 @@ import { environment } from '../../../environments/environment';
 })
 export class ViewProductComponent implements OnInit {
 
+  private _hubConnection: HubConnection;
   public bigPicture = "";
   public zoomImage:boolean=false;
   public unZoomImage:boolean=true;
@@ -27,9 +30,11 @@ export class ViewProductComponent implements OnInit {
   }
 
   ngOnInit() {
+   
      this.baseUrl = environment.baseUrl;
      this.getProductId();
      this.getProductInfo();
+     this.connectToHub();
   }
 
   getProductId()
@@ -65,6 +70,19 @@ export class ViewProductComponent implements OnInit {
     }), error => {
       console.log(error);
     };
+  }
+
+  connectToHub()
+  {
+    this._hubConnection = new HubConnectionBuilder().withUrl(`${this.baseUrl}/updateBidList`).build();
+     this._hubConnection
+       .start()
+       .then(() => console.log('Connection started!'))
+       .catch(err => console.log('Error while establishing connection :('));
+ 
+       this._hubConnection.on('SendMessageToProductView', (bid:Bid) => {
+         console.log(bid);
+       });
   }
 
   onImageClick($event)
