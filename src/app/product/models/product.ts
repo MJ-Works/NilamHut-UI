@@ -1,18 +1,26 @@
 import { ProductTag } from './ProductTag';
-import { Image } from './Image';
+import { Bid } from './Bid';
 
 export class Product
 {
-    ApplicationUserId: string;
-    StartDateTime: string;
-    EndDateTime: string;
-    ProductName: string;
-    ProductDescription: string;
-    Quantity: number;
-    BasePrice: number;
-    ContactInfo: string;
-    CategoryId: string;
-    CityId: string;
-    Image: Image[];
-    Tags: ProductTag[];
+    posterId: string;
+    userName: string;
+    userId: string;
+    userImage: string;
+    userAddress: string;
+    userPhone: string;
+    userCity: string;
+    startDateTime: string;
+    endDateTime: string;
+    productName: string;
+    productDescription: string;
+    quantity: number;
+    basePrice: number;
+    contactInfo: string;
+    categoryId: string;
+    categoryName: string;
+    cityId: string;
+    cityName: string;
+    image: string[];
+    bids: Bid[];
 }

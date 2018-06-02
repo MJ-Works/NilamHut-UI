@@ -10,10 +10,7 @@
                   </div> <!-- slider-product.// -->
                   <div id="zoom"></div>
                   <div class="img-small-wrap">
-                    <div class="item-gallery" (click)="onImageClick($event)"> <img src="assets/image/14358915_10207878050809041_5592658587766789579_n.jpg"> </div>
-                    <div class="item-gallery" (click)="onImageClick($event)"> <img src="assets/image/15875070_1036127043158726_85946596640920282_o.jpg"> </div>
-                    <div class="item-gallery" (click)="onImageClick($event)"> <img src="assets/image/monmoy.jpg"> </div>
-                    <div class="item-gallery" (click)="onImageClick($event)"> <img src="https://s9.postimg.org/tupxkvfj3/image.jpg"> </div>
+                    <div *ngFor = "let img of product.image" class="item-gallery" (click)="onImageClick($event)"> <img src="{{img}}"> </div>
                   </div> <!-- slider-nav.// -->
               </article> <!-- gallery-wrap .end// -->
             </aside>
@@ -28,28 +25,21 @@
 
             <aside class="col-lg-7">
                 <article class="card-body p-4" [class.zoomImage] = "zoomImage">
-                    <h3 class="title mb-3" [class.zoomImage] = "zoomImage">Original Version of Some product name</h3>
+                    <h3 class="title mb-3" [class.zoomImage] = "zoomImage">Product Name : {{product.productName}}</h3>
         
                     <p class="price-detail-wrap"> 
                       <span class="price h3 text-warning" [class.zoomImage] = "zoomImage"> 
-                        <span class="currency">Base price US $</span><span class="num">1299</span>
+                        <span class="currency">Base Price : {{product.basePrice}}</span><span class="num">1299</span>
                       </span> 
-                      <span>/per kg</span> 
                     </p> <!-- price-detail-wrap .// -->
                     <dl class="item-property">
                       <dt>Description</dt>
-                      <dd><p>Here goes description consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco </p></dd>
+                      <dd><p>{{product.productDescription}}</p></dd>
                     </dl>
                     <dl class="param param-feature">
                       <dt>Bidding Start Time</dt>
-                      <dd>Started</dd>
+                      <dd>{{product.startDateTime}}</dd>
                     </dl>  
-                    <dl class="param param-feature">
-                        <dt>Status</dt>
-                        <dd><strong>SOLD</strong></dd>
-                      </dl>  
                  </article> 
              </aside>
 
@@ -61,20 +51,20 @@
                 <div class="card-body">
                   <div class="row">
                       <p class="card-title col-6">Current Highest Bid:</p>
-                      <p class="card-title col-6"><strong>$5</strong></p>
+                      <p class="card-title col-6"><strong>{{currentTopBid.bidPrice}}</strong></p>
                       <div class="col-12"><hr></div>
                       <div class="col-6">
                           <div class="gallery-wrap">
                               <div class="img-small-wrap">
                                   <p class="card-text">Highest Bidder:</p>
-                                  <div class="item-gallery"> <img src="assets/image/14358915_10207878050809041_5592658587766789579_n.jpg"> </div>
+                                  <div class="item-gallery"> <img src="{{currentTopBid.userImage}}"> </div>
                               </div>
                           </div>
                       </div>
                       <div class="col-6">
-                        <p class="card-text highest-bidder-name">IAmMonmoy</p>
-                        <p class="card-text">Member since January 2013</p>
-                        <p class="card-text">Resident of Bogra</p>
+                        <p class="card-text highest-bidder-name">{{currentTopBid.userName}}</p>
+                        <p class="card-text">Bidding Time:</p>
+                        <p class="card-text">{{currentTopBid.bidTime}}</p>
                       </div>
                       <div class="col-12 clock">
                             <countdown-timer [end]="'2018-05-29 00:00:00'"></countdown-timer>
@@ -94,43 +84,71 @@
         <div class="col-lg-7">
             <div class="card-basic-content">
                 <mat-tab-group>
-                  <mat-tab label="Info">
+                  <mat-tab label="Product Info">
                       <table class="table table-hover">
   
                           <tbody>
                             <tr>
                               <td> <strong>Start Time</strong> </td>
-                              <td>May 12 12:30:50PM</td>
+                              <td>{{product.startDateTime}}</td>
                             </tr>
   
                             <tr>
                               <td> <strong>End Time</strong></td>
-                              <td>May 12 12:30:50PM</td>
+                              <td>{{product.endDateTime}}</td>
                             </tr>
   
                             <tr>
                               <td><strong>Contact Info</strong></td>
-                              <td>Shariakandi Bazar Bogra</td>
+                              <td>{{product.contactInfo}}</td>
                             </tr>
   
                             <tr>
-                                <td><strong>Address</strong></td>
-                                <td>Golden Shaword, Binodpur</td>
+                                <td><strong>Category</strong></td>
+                                <td>{{product.categoryName}}</td>
+                              </tr>
+
+                              <tr>
+                                <td><strong>City</strong></td>
+                                <td>{{product.cityName}}</td>
                               </tr>
   
                           </tbody>
                         </table>
                   </mat-tab>
   
-                  <mat-tab label="Bids">
-                      <mat-list>
-                          <mat-list-item>
-                            <h3 mat-line style="font-weight: bolder">asdfadf</h3>
-                            <p mat-line> asdfasdf <strong>to</strong> asdfasdf </p>
-                            <a href="#"><mat-icon color="primary" mat-list-icon>visibility</mat-icon></a>
-                          </mat-list-item>
-                        </mat-list>
-                  </mat-tab>
+                  <mat-tab label="User Info">
+                    <table class="table table-hover">
+
+                        <tbody>
+                          <tr>
+                            <td> <strong>User Name</strong> </td>
+                            <td>{{product.userName}}</td>
+                          </tr>
+
+                          <tr>
+                            <td> <strong>User Address</strong></td>
+                            <td>{{product.userAddress}}</td>
+                          </tr>
+
+                          <tr>
+                            <td> <strong>User Phone</strong></td>
+                            <td>{{product.userPhone}}</td>
+                        </tr>
+
+                            <tr>
+                                <td> <strong>From</strong></td>
+                                <td>{{product.userPhone}}</td>
+                            </tr>
+
+                          <tr>
+                            <td><strong>Check full user information</strong></td>
+                            <td>{{product.userId}}</td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                </mat-tab>
   
                 </mat-tab-group>
             </div>
@@ -140,58 +158,11 @@
                 <div class="card-body">
                   <h5 class="card-title">Top 10 highest bidder</h5>
                   <div class="bidders">
-                    <div class="row">
-                        <p class="card-text col-3">$40000</p>
-                        <p class="card-text col-4">Monmoy Mia</p>
-                        <p class="card-text col-5">May 12 8:35:36PM</p>
+                    <div *ngFor = "let bid of top10Bids" class="row">
+                        <p class="card-text col-3">{{bid?.bidPrice}}</p>
+                        <p class="card-text col-4">{{bid?.userName}}</p>
+                        <p class="card-text col-5">{{bid?.bidTime}}</p>
                     </div>
-                    <div class="row">
-                        <p class="card-text col-3">$40000</p>
-                        <p class="card-text col-4">Monmoy Mia</p>
-                        <p class="card-text col-5">May 12 8:35:36PM</p>
-                    </div>
-                    <div class="row">
-                        <p class="card-text col-3">$40000</p>
-                        <p class="card-text col-4">Monmoy Mia</p>
-                        <p class="card-text col-5">May 12 8:35:36PM</p>
-                    </div>
-                    <div class="row">
-                        <p class="card-text col-3">$40000</p>
-                        <p class="card-text col-4">Monmoy Mia</p>
-                        <p class="card-text col-5">May 12 8:35:36PM</p>
-                    </div>
-                    <div class="row">
-                        <p class="card-text col-3">$40000</p>
-                        <p class="card-text col-4">Monmoy Mia</p>
-                        <p class="card-text col-5">May 12 8:35:36PM</p>
-                    </div>
-                    <div class="row">
-                        <p class="card-text col-3">$40000</p>
-                        <p class="card-text col-4">Monmoy Mia</p>
-                        <p class="card-text col-5">May 12 8:35:36PM</p>
-                    </div>
-                    <div class="row">
-                        <p class="card-text col-3">$40000</p>
-                        <p class="card-text col-4">Monmoy Mia</p>
-                        <p class="card-text col-5">May 12 8:35:36PM</p>
-                    </div>
-                    <div class="row">
-                        <p class="card-text col-3">$40000</p>
-                        <p class="card-text col-4">Monmoy Mia</p>
-                        <p class="card-text col-5">May 12 8:35:36PM</p>
-                    </div>
-                    <div class="row">
-                        <p class="card-text col-3">$40000</p>
-                        <p class="card-text col-4">Monmoy Mia</p>
-                        <p class="card-text col-5">May 12 8:35:36PM</p>
-                    </div>
-                    <div class="row">
-                        <p class="card-text col-3">$40000</p>
-                        <p class="card-text col-4">Monmoy Mia</p>
-                        <p class="card-text col-5">May 12 8:35:36PM</p>
-                    </div>
-                    
-                    
                     <!-- <div class="row">
                         <p class="card-text col-sm-12">$4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monmoy Mia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8:35:36PM</p>
                     </div> -->
@@ -201,22 +172,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-<!--container.//-->
-
-
-<br><br><br>
-<!-- <article class="bg-secondary mb-3">  
-<div class="card-body text-center">
-    <h4 class="text-white">HTML UI KIT <br> Ready to use Bootstrap 4 components and templates </h4>
-<p class="h5 text-white"> for Ecommerce, marketplace, booking websites 
-and product landing pages</p>   <br>
-<p><a class="btn btn-warning" target="_blank" href="http://bootstrap-ecommerce.com/"> Bootstrap-ecommerce.com  
- <i class="fa fa-window-restore "></i></a></p>
-</div>
-<br><br><br>
-</article> -->

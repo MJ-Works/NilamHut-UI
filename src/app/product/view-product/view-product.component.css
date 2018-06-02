@@ -30,14 +30,17 @@
     border-radius: 4px;
     cursor: zoom-in;
 }
+
 .card
 {
     border: none;
 }
+
 .content-card
 {
     min-height: 450px;
 }
+
 .top-ten-bidder
 {
     max-height: 400px;

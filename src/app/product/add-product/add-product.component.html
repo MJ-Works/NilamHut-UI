@@ -20,6 +20,7 @@
                                 <mat-error *ngIf="productForm.controls.Quantity.hasError('required')">Quantity field is required</mat-error>
                                 <mat-error *ngIf="productForm.controls.Quantity.hasError('min')">Quantity should be minimum 1</mat-error>
                                 <mat-error *ngIf="productForm.controls.Quantity.hasError('max')">Quantity should be maximum 100000</mat-error>
+                                <mat-error *ngIf="productForm.controls.Quantity.hasError('pattern')">Quantity should only include numbers</mat-error>
                             </mat-form-field>
                         </div>
                         
@@ -37,6 +38,7 @@
                                 <mat-error *ngIf="productForm.controls.BasePrice.hasError('required')">Base Price field is required</mat-error>
                                 <mat-error *ngIf="productForm.controls.BasePrice.hasError('min')">Base Price should be minimum 1</mat-error>
                                 <mat-error *ngIf="productForm.controls.BasePrice.hasError('max')">Base Price should be maximum 10000000</mat-error>
+                                <mat-error *ngIf="productForm.controls.BasePrice.hasError('pattern')">Base Price should only include decimal numbers</mat-error>
                             </mat-form-field>
                         </div>
                      
@@ -73,6 +75,7 @@
                         </mat-form-field>
                         <dl-date-time-picker formControlName="StartDateTime"></dl-date-time-picker>
                         <mat-error *ngIf="productForm.controls.StartDateTime.hasError('required') && (productForm.controls.StartDateTime.dirty || productForm.controls.StartDateTime.touched)">Select a time</mat-error>
+                        <mat-error *ngIf="(productForm.controls.StartDateTime.dirty || productForm.controls.StartDateTime.touched) && productForm.controls.StartDateTime.hasError('startDateValid')">Please enter a valid Start ate</mat-error>
                       </div>
                       <div class="col-md-6">
                         <mat-form-field class="example-full-width">
@@ -80,6 +83,7 @@
                         </mat-form-field>
                         <dl-date-time-picker formControlName="EndDateTime"></dl-date-time-picker>
                         <mat-error *ngIf="productForm.controls.EndDateTime.hasError('required') && (productForm.controls.EndDateTime.dirty || productForm.controls.EndDateTime.touched)">Select a time</mat-error>
+                        <mat-error *ngIf="productForm.controls.EndDateTime.hasError('endDateValid')">Please enter a Date greater than Start Date</mat-error>
                       </div>
                       
                       <div class="col-md-12">
