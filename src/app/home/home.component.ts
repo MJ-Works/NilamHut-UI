@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { NewBid } from '../shared/Models/SharedModels';
 import { ThrowStmt } from '@angular/compiler';
+import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 
 @Component({
   selector: 'app-home',
@@ -30,12 +31,14 @@ export class HomeComponent implements OnInit {
   private selectedId: string = null;
   private currentPrice: number;
 
+  private _hubConnection: HubConnection;
+
   public length = 0;
   public pageSize = 16;
   public pageSizeOptions = [8, 16, 24];
   public pageEvent: PageEvent;
 
-  constructor(public dialog: MatDialog, public _commonService: CommonService ,public router: Router) { }
+  constructor(public dialog: MatDialog, public _commonService: CommonService, public router: Router) { }
 
 
   ngOnInit() {
@@ -46,6 +49,7 @@ export class HomeComponent implements OnInit {
     this.searchContent = new SearchContent();
     this.NewBid = new NewBid();
     this.getProducts(this.searchContent);
+    this.makeHubConnection();
   }
 
   openDialog(id: string, min_price: number): void {
@@ -59,11 +63,10 @@ export class HomeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
 
       if (result && result > this.currentPrice) {
-        if(this._commonService.isAuthenticated())
-        {
+        if (this._commonService.isAuthenticated()) {
           console.log(this._commonService.getUserId());
-          this.TryBid(result,this.selectedId,this._commonService.getUserId());
-        }else{
+          this.TryBid(result, this.selectedId, this._commonService.getUserId());
+        } else {
           this.router.navigate(['/signin']);
         }
       }
@@ -111,11 +114,8 @@ export class HomeComponent implements OnInit {
       this.searchContent.searchName = this.searchForm.value.searchName;
 
       console.log(this.searchContent);
-
       // this.searchForm.reset();
-
     }
-
   }
 
   private getProducts(model: SearchContent) {
@@ -141,12 +141,23 @@ export class HomeComponent implements OnInit {
     // this.NewBid.BidTime = d.getDate()+'-'+d.getMonth()+'-'+d.getFullYear()+'T'+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
     // console.log(this.NewBid);
     this._commonService.makeNewBid(this.NewBid).subscribe(
-      data=>{
+      data => {
         console.log(data);
       },
-      error=>{
-         console.log(error);
+      error => {
+        console.log(error);
       }
     );
+  }
+
+  makeHubConnection() {
+    this._hubConnection = new HubConnectionBuilder().withUrl(`${this.baseUrl}/updateBidList`).build();
+    this._hubConnection
+      .start()
+      .then(() => console.log('Connection establish!'))
+      .catch(err => {
+        console.log("Can't connect.");
+        console.log(err);
+      });
   }
 }
