@@ -8,6 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { AuthService } from './auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { SearchContent, ProductHome } from '../Models/Home';
 
 @Injectable({
   providedIn: 'root'
