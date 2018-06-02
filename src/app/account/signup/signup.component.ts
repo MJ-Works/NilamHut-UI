@@ -73,6 +73,7 @@ export class SignupComponent implements OnInit {
         this.login.username = this.register.UserName;
         this.login.password = this.register.Password;
         this._accountService.login(this.login).subscribe (val => {
+          this._accountService.storeToken(val);
             this.route.navigate(['/']);
         }),error => {
           console.log(error);
