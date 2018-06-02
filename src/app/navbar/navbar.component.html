@@ -39,14 +39,14 @@
             <a class="nav-link" *ngIf="!_commonService.isAuthenticated()" routerLink="signup" routerLinkActive = "active">Register</a>
         </li>
 
-        <li class="nav-item dropdown" *ngIf="_commonService.isAuthenticated()">
+        <li class="nav-item dropdown logout" *ngIf="_commonService.isAuthenticated()">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{_commonService.getUserName()}}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="#">Profile</a>
-            <a class="dropdown-item" routerLink="/" (click)="logOut()">logout</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" routerLink="/" (click)="logOut()">Logout</a>
+            <a class="dropdown-item" href="#">Something</a>
           </div>
         </li>
     </ul>

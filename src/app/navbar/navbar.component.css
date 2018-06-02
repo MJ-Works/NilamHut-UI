@@ -31,3 +31,8 @@
     color: #202020 !important;
     text-shadow: 0px 1px 0px #202020;
 } 
+.logout
+{
+    min-width: 150px;
+    text-align: center;
+}
