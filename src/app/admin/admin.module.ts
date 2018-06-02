@@ -9,6 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TagComponent } from './tag/tag.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatInputModule
   ],
-  declarations: [LocationComponent, CategoryComponent]
+  declarations: [LocationComponent, CategoryComponent, TagComponent]
 })
 export class AdminModule { }
