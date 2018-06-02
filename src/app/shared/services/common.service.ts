@@ -5,13 +5,15 @@ import { Observable } from 'rxjs';
 import { Category, City, Tag } from '../Models/SharedModels';
 import { environment } from '../../../environments/environment';
 import { catchError, map, tap } from 'rxjs/operators';
+import { AuthService } from './auth.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService extends BaseService {
-
-  constructor(private http: HttpClient) { super(); }
+  jwtHelper = new JwtHelperService();
+  constructor(private http: HttpClient, public auth: AuthService) { super(); }
 
   public getAllCategory(): Observable<Category[]> {
     return this.http.get<Category[]>(`${environment.baseUrl}/api/Common/AllCategory`)
@@ -37,6 +39,34 @@ export class CommonService extends BaseService {
   public getUserId()
   {
       return localStorage.getItem('user_id');
+  }
+
+  isAuthenticated()
+  {
+    if(!this.auth.isAuthenticated())
+      return false;
+    return true;
+  }
+
+  isAdmin()
+  {
+    const token = localStorage.getItem('token');
+
+      const tokenPayload = this.jwtHelper.decodeToken(token);
+
+      if(!this.auth.isAuthenticated() || tokenPayload.nonce != "Administrator")
+          return false;
+
+      return true;
+  }
+
+  getUserName()
+  {
+    const token = localStorage.getItem('token');
+
+    const tokenPayload = this.jwtHelper.decodeToken(token);
+
+    return tokenPayload.sub;
   }
 
 }

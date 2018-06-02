@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../shared/services/common.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _commonService: CommonService) { }
 
   ngOnInit() {
+  }
+
+  logOut()
+  {
+    localStorage.removeItem('token');
   }
 
 }
