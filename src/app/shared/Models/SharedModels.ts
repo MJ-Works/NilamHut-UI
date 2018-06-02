@@ -14,3 +14,10 @@ export class Tag
     TagName : string = '';
     TagDescription : string = '' ;
 }
+
+export class NewBid {
+    public BidPrice: number;
+    public BidTime: DateTimeFormat;
+    public ApplicationUserId: string;
+    public ProductId: string
+}

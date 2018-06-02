@@ -77,7 +77,7 @@
             <countdown-timer [end]="product.endDate"></countdown-timer>
           </p>
           <p class="btn-control">
-            <a color="primary" mat-button routerLink="/" matTooltip="View This Product">
+            <a color="primary" mat-button routerLink="product/{{product.productId}}" matTooltip="View This Product">
               <i class="material-icons">
                 visibility
               </i>
