@@ -1,3 +1,63 @@
-<p>
-  tag works!
-</p>
+<div class="container">
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <mat-card class="signin-card">
+        <mat-card-content>
+          <div class="card-basic-content">
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Tag Name</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>
+                    <button color="warn" mat-button>
+                      <i class="material-icons">delete</i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>
+                      <button color="warn" mat-button>
+                        <i class="material-icons">delete</i>
+                      </button>
+                    </td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>
+                      <button color="warn" mat-button>
+                        <i class="material-icons">delete</i>
+                      </button>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+            <hr>
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                  <input type="text" matInput placeholder="New Tag">
+                  <mat-hint>Errors appear instantly!</mat-hint>
+                </mat-form-field>
+                <button type="submit" color="primary" mat-raised-button>
+                    <i class="material-icons">check_circle</i>
+                  </button>
+              </form>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+  </div>
+</div>
