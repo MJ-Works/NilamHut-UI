@@ -25,7 +25,11 @@ export function EndDateValidator(name : string) : ValidatorFn
             return null;
         }
         selectedDate = new Date(c.root.get(name).value);
-        if(selectedDate > startDate) return null;
+
+        if(selectedDate > startDate) {
+            c.root.get(name).setErrors({'endDateValid' : false});
+            return null;
+        }
         else {
             c.root.get(name).setErrors({'endDateValid' : true});
             return null;
