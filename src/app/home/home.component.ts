@@ -4,6 +4,9 @@ import { BidDialogComponent } from '../bid-dialog/bid-dialog.component';
 import { CommonService } from '../shared/services/common.service';
 import { error } from 'util';
 import { FormControl, FormGroup } from '@angular/forms';
+import { SearchContent, ProductHome } from '../shared/Models/Home';
+import { PageEvent } from '@angular/material/paginator';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -15,17 +18,29 @@ export class HomeComponent implements OnInit {
   public allCity: object = [];
   public allCategory: object = []
   public searchForm: FormGroup;
+  private searchContent: SearchContent;// for search value
+  public AllProducts: ProductHome[] = [];
+  public lastBidID: string = null; //for global check
+  public baseUrl;
 
   public selectedId: string = "sdad:dasdad";
   public bidStatus: number;
+
+  public length = 0;
+  public pageSize = 16;
+  public pageSizeOptions = [8, 16, 24];
+  public pageEvent: PageEvent;
 
   constructor(public dialog: MatDialog, public _commonService: CommonService) { }
 
 
   ngOnInit() {
+    this.baseUrl = environment.baseUrl;
     this.createForm()
     this.getAllCategory();
     this.getAllCity();
+    this.searchContent = new SearchContent();
+    this.getProducts(this.searchContent);
   }
 
   openDialog(): void {
@@ -73,9 +88,33 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  public onSubmit()
-  {
-    console.log(this.searchForm.value);
+  public onSubmit() {
+    if (this.searchForm.value.city || this.searchForm.value.category || this.searchForm.value.searchName) {
+      this.searchContent = new SearchContent();
+
+      this.searchContent.Category = this.searchForm.value.category;
+      this.searchContent.City = this.searchForm.value.city;
+      this.searchContent.searchName = this.searchForm.value.searchName;
+
+      console.log(this.searchContent);
+
+      // this.searchForm.reset();
+
+    }
+
   }
 
+  private getProducts(model: SearchContent) {
+    this._commonService.getAllProducts(model).subscribe(
+      data => {
+        console.log("All Products received");
+        this.AllProducts = data;
+        this.length = this.AllProducts.length;
+        console.log(this.AllProducts);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 }
