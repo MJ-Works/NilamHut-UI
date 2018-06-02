@@ -136,8 +136,17 @@ export class HomeComponent implements OnInit {
     this.NewBid.BidPrice = Price;
     this.NewBid.ProductId = productId;
     this.NewBid.ApplicationUserId = userId;
-    var d = new Date();
-    this.NewBid.BidTime = d.getDate()+'-'+d.getMonth()+'-'+d.getFullYear()+'T'+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
-    console.log(this.NewBid);
+    this.NewBid.BidTime = "2018-05-03T04:39:45";
+    // var d = new Date();
+    // this.NewBid.BidTime = d.getDate()+'-'+d.getMonth()+'-'+d.getFullYear()+'T'+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
+    // console.log(this.NewBid);
+    this._commonService.makeNewBid(this.NewBid).subscribe(
+      data=>{
+        console.log(data);
+      },
+      error=>{
+         console.log(error);
+      }
+    );
   }
 }

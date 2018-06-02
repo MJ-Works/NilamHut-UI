@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Category, City, Tag } from '../Models/SharedModels';
+import { Category, City, Tag, NewBid } from '../Models/SharedModels';
 import { environment } from '../../../environments/environment';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -17,9 +17,8 @@ export class CommonService extends BaseService {
   jwtHelper = new JwtHelperService();
   constructor(private http: HttpClient, public auth: AuthService) { super(); }
 
-  public addCategory(data)
-  {
-    return this.http.post(`${environment.baseUrl}/api/Common/AddCategory`,data).pipe(
+  public addCategory(data) {
+    return this.http.post(`${environment.baseUrl}/api/Common/AddCategory`, data).pipe(
       catchError(val => this.handleError(new HttpErrorResponse(val)))
     );
   }
@@ -30,11 +29,10 @@ export class CommonService extends BaseService {
       );
   }
 
-  public deleteFromCategory(id)
-  {
-      return this.http.delete(`${environment.baseUrl}/api/Common/DeleteCategory/${id}`).pipe(
-        catchError(val => this.handleError(new HttpErrorResponse(val)))
-      );
+  public deleteFromCategory(id) {
+    return this.http.delete(`${environment.baseUrl}/api/Common/DeleteCategory/${id}`).pipe(
+      catchError(val => this.handleError(new HttpErrorResponse(val)))
+    );
   }
 
   public getAllCity(): Observable<City[]> {
@@ -43,18 +41,16 @@ export class CommonService extends BaseService {
         catchError(val => this.handleError(new HttpErrorResponse(val)))
       );
   }
-  public addCity(data)
-  {
-    return this.http.post(`${environment.baseUrl}/api/Common/AddCity`,data).pipe(
+  public addCity(data) {
+    return this.http.post(`${environment.baseUrl}/api/Common/AddCity`, data).pipe(
       catchError(val => this.handleError(new HttpErrorResponse(val)))
     );
   }
 
-  public deleteFromCity(id)
-  {
-      return this.http.delete(`${environment.baseUrl}/api/Common/DeleteCity/${id}`).pipe(
-        catchError(val => this.handleError(new HttpErrorResponse(val)))
-      );
+  public deleteFromCity(id) {
+    return this.http.delete(`${environment.baseUrl}/api/Common/DeleteCity/${id}`).pipe(
+      catchError(val => this.handleError(new HttpErrorResponse(val)))
+    );
   }
 
   public getAllTag(): Observable<Tag[]> {
@@ -77,37 +73,47 @@ export class CommonService extends BaseService {
       );
   }
 
-  public getUserId()
-  {
-      return localStorage.getItem('user_id');
+  public getUserId() {
+    return localStorage.getItem('user_id');
   }
 
-  isAuthenticated()
-  {
-    if(!this.auth.isAuthenticated())
+  isAuthenticated() {
+    if (!this.auth.isAuthenticated())
       return false;
     return true;
   }
 
-  isAdmin()
-  {
+  isAdmin() {
     const token = localStorage.getItem('token');
 
-      const tokenPayload = this.jwtHelper.decodeToken(token);
+    const tokenPayload = this.jwtHelper.decodeToken(token);
 
-      if(!this.auth.isAuthenticated() || tokenPayload.nonce != "Administrator")
-          return false;
+    if (!this.auth.isAuthenticated() || tokenPayload.nonce != "Administrator")
+      return false;
 
-      return true;
+    return true;
   }
 
-  getUserName()
-  {
+  getUserName() {
     const token = localStorage.getItem('token');
 
     const tokenPayload = this.jwtHelper.decodeToken(token);
 
     return tokenPayload.sub;
+  }
+
+  makeNewBid(model: NewBid): Observable<any> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    }
+
+    return this.http.post(`${environment.baseUrl}/api/Bid`, model, httpOptions)
+      .pipe(
+        catchError(val => this.handleError(new HttpErrorResponse(val)))
+      );
   }
 
 }
