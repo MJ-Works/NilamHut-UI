@@ -55,15 +55,17 @@ export class ViewProductComponent implements OnInit {
       this.product = data;
       this.bigPicture = this.baseUrl+'/'+ this.product.image[0];
 
-      this.currentTopBid = this.product.bids[0];
       this.top10Bids = this.product.bids;
-
+      
+      //sort
       this.top10Bids.sort((a:Bid,b:Bid) => {
         if(a.bidPrice >= b.bidPrice)
             return -1;
           return 1;
       });
 
+      //the first one is the highest bidder
+      this.currentTopBid = this.product.bids[0];
 
       for(var i = 0; i < this.product.image.length; i++)
         this.product.image[i] = this.convertToImageLink(this.product.image[i]);
@@ -107,14 +109,18 @@ export class ViewProductComponent implements OnInit {
        .catch(err => console.log('Error while establishing connection :('));
  
        this._hubConnection.on('SendMessageToProductView', (bid:Bid) => {
- 
+        
+        bid.bidTime = this.convertToViewAbleDate(bid.bidTime);
+        bid.userImage = this.convertToImageLink(bid.userImage);
+
           if(bid.productId != this.productId)
               return;
+          //console.log(bid.userImage);
 
-          bid.bidTime = this.convertToViewAbleDate(bid.bidTime);
-          bid.userImage = this.convertToImageLink(bid.userImage);
-    
-         
+          //update current top bid
+          console.log(this.currentTopBid);
+          
+          //if already exists in top 10 just rearrange
           for(var i = 0; i < this.top10Bids.length; i++)
           {
               if(this.top10Bids[i].userId == bid.userId)
@@ -128,10 +134,12 @@ export class ViewProductComponent implements OnInit {
                     return 1;
                 });
 
+                this.currentTopBid = this.product.bids[0];
                 return;
               }
           }
           
+          //if does not already exists add to to array and sort
           var index = 0;
           if(this.top10Bids.length >= 10) index = 10;
           else index = this.top10Bids.length+1;
@@ -139,7 +147,7 @@ export class ViewProductComponent implements OnInit {
           for(var i = 1; i < index; i++)
           this.top10Bids[i] = this.top10Bids[i-1];
           
-          this.currentTopBid = bid;
+          
           this.top10Bids[0] = bid;
 
           this.top10Bids.sort((a:Bid,b:Bid) => {
@@ -147,6 +155,8 @@ export class ViewProductComponent implements OnInit {
                 return -1;
               return 1;
           });
+
+          this.currentTopBid = this.product.bids[0];
 
        });
   }

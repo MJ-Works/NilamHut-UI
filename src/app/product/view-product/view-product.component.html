@@ -51,20 +51,20 @@
                 <div class="card-body">
                   <div class="row">
                       <p class="card-title col-6">Current Highest Bid:</p>
-                      <p class="card-title col-6"><strong>{{currentTopBid.bidPrice}}</strong></p>
+                      <p class="card-title col-6"><strong>{{currentTopBid?.bidPrice}}</strong></p>
                       <div class="col-12"><hr></div>
                       <div class="col-6">
                           <div class="gallery-wrap">
                               <div class="img-small-wrap">
                                   <p class="card-text">Highest Bidder:</p>
-                                  <div class="item-gallery"> <img src="{{currentTopBid.userImage}}"> </div>
+                                  <div class="item-gallery"> <img src="{{currentTopBid?.userImage}}"> </div>
                               </div>
                           </div>
                       </div>
                       <div class="col-6">
-                        <p class="card-text highest-bidder-name">{{currentTopBid.userName}}</p>
+                        <p class="card-text highest-bidder-name">{{currentTopBid?.userName}}</p>
                         <p class="card-text">Bidding Time:</p>
-                        <p class="card-text">{{currentTopBid.bidTime}}</p>
+                        <p class="card-text">{{currentTopBid?.bidTime}}</p>
                       </div>
                       <div class="col-12 clock">
                             <countdown-timer [end]="'2018-05-29 00:00:00'"></countdown-timer>
