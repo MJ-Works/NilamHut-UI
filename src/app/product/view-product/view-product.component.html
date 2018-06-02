@@ -158,10 +158,10 @@
                 <div class="card-body">
                   <h5 class="card-title">Top 10 highest bidder</h5>
                   <div class="bidders">
-                    <div *ngFor = "let bid of product.bids" class="row">
-                        <p class="card-text col-3">{{bid.bidPrice}}</p>
-                        <p class="card-text col-4">{{bid.userName}}</p>
-                        <p class="card-text col-5">{{bid.bidTime}}</p>
+                    <div *ngFor = "let bid of top10Bids" class="row">
+                        <p class="card-text col-3">{{bid?.bidPrice}}</p>
+                        <p class="card-text col-4">{{bid?.userName}}</p>
+                        <p class="card-text col-5">{{bid?.bidTime}}</p>
                     </div>
                     <!-- <div class="row">
                         <p class="card-text col-sm-12">$4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monmoy Mia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8:35:36PM</p>

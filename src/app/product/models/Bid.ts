@@ -6,4 +6,5 @@ export class Bid
     userName : string;
     userAddress: string;
     userImage: string;
+    productId: string;
 }

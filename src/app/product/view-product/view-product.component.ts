@@ -25,6 +25,7 @@ export class ViewProductComponent implements OnInit {
   public product: Product;
   public baseUrl: string;
   public currentTopBid: Bid;
+  public top10Bids: Bid[];
 
   constructor(private dialog: MatDialog, private activeRoute: ActivatedRoute
               ,private _productService: ProductService) { 
@@ -33,6 +34,9 @@ export class ViewProductComponent implements OnInit {
   ngOnInit() {
    
      this.baseUrl = environment.baseUrl;
+     this.currentTopBid = new Bid();
+      this.top10Bids = new Array<Bid>(10);
+      this.product = new Product(); 
      this.getProductId();
      this.getProductInfo();
      this.connectToHub();
@@ -47,39 +51,51 @@ export class ViewProductComponent implements OnInit {
 
   getProductInfo()
   {
-      this.currentTopBid = new Bid();
-      this.product = new Product(); 
       this._productService.getProduct(this.productId).subscribe( data=> {
       this.product = data;
       this.bigPicture = this.baseUrl+'/'+ this.product.image[0];
 
       this.currentTopBid = this.product.bids[0];
+      this.top10Bids = this.product.bids;
+
+      this.top10Bids.sort((a:Bid,b:Bid) => {
+        if(a.bidPrice >= b.bidPrice)
+            return -1;
+          return 1;
+      });
+
 
       for(var i = 0; i < this.product.image.length; i++)
-        this.product.image[i] = this.baseUrl+'/'+ this.product.image[i];
+        this.product.image[i] = this.convertToImageLink(this.product.image[i]);
 
-      for(var i = 0; i < this.product.bids.length; i++)
+      for(var i = 0; i < this.top10Bids.length; i++)
       {
-        if(this.product.bids[i].bidTime != null)
-        {
-          var dat = new Date(this.product.bids[i].bidTime);
-          this.product.bids[i].bidTime = dat.toLocaleDateString() + ' '+dat.toLocaleTimeString()
-        }
+        if(this.top10Bids[i].bidTime != null)
+          this.top10Bids[i].bidTime = this.convertToViewAbleDate(this.top10Bids[i].bidTime);
         
-        if(this.product.bids[i].userImage != null)
-          this.product.bids[i].userImage = this.baseUrl+'/'+ this.product.bids[i].userImage;
+        if(this.top10Bids[i].userImage != null)
+          this.top10Bids[i].userImage = this.convertToImageLink(this.top10Bids[i].userImage);
       }
       
-      var date = new Date(this.product.startDateTime);
-      this.product.startDateTime = date.toLocaleDateString() + ' '+date.toLocaleTimeString();
+      this.product.startDateTime = this.convertToViewAbleDate(this.product.startDateTime);
 
-      date = new Date(this.product.endDateTime);
-      this.product.endDateTime = date.toLocaleDateString() + ' '+date.toLocaleTimeString();
+      this.product.endDateTime = this.convertToViewAbleDate(this.product.endDateTime);
 
-      console.log(data);
+      //console.log(data);
     }), error => {
       console.log(error);
     };
+  }
+
+  convertToViewAbleDate(dateTime : string)
+  {
+      var dat = new Date(dateTime);
+      return  dat.toLocaleDateString() + ' '+dat.toLocaleTimeString();
+  }
+
+  convertToImageLink(imageName:string)
+  {
+    return this.baseUrl+'/'+ imageName;
   }
 
   connectToHub()
@@ -91,10 +107,47 @@ export class ViewProductComponent implements OnInit {
        .catch(err => console.log('Error while establishing connection :('));
  
        this._hubConnection.on('SendMessageToProductView', (bid:Bid) => {
-          this.product.bids[0] = bid;
+ 
+          if(bid.productId != this.productId)
+              return;
+
+          bid.bidTime = this.convertToViewAbleDate(bid.bidTime);
+          bid.userImage = this.convertToImageLink(bid.userImage);
+    
+         
+          for(var i = 0; i < this.top10Bids.length; i++)
+          {
+              if(this.top10Bids[i].userId == bid.userId)
+              {
+                this.top10Bids[i].bidPrice = bid.bidPrice;
+                this.top10Bids[i].bidTime = bid.bidTime;
+
+                this.top10Bids.sort((a:Bid,b:Bid) => {
+                    if(a.bidPrice >= b.bidPrice)
+                      return -1;
+                    return 1;
+                });
+
+                return;
+              }
+          }
+          
+          var index = 0;
+          if(this.top10Bids.length >= 10) index = 10;
+          else index = this.top10Bids.length+1;
+
+          for(var i = 1; i < index; i++)
+          this.top10Bids[i] = this.top10Bids[i-1];
+          
           this.currentTopBid = bid;
-          for(var i = 1; i < this.product.bids.length; i++)
-            this.product.bids[i] = this.product.bids[i-1];
+          this.top10Bids[0] = bid;
+
+          this.top10Bids.sort((a:Bid,b:Bid) => {
+              if(a.bidPrice >= b.bidPrice)
+                return -1;
+              return 1;
+          });
+
        });
   }
 
