@@ -7,6 +7,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { SearchContent, ProductHome } from '../shared/Models/Home';
 import { PageEvent } from '@angular/material/paginator';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
+import { NewBid } from '../shared/Models/SharedModels';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-home',
@@ -20,18 +23,19 @@ export class HomeComponent implements OnInit {
   public searchForm: FormGroup;
   private searchContent: SearchContent;// for search value
   public AllProducts: ProductHome[] = [];
-  public lastBidID: string = null; //for global check
+  public NewBid: NewBid;
   public baseUrl;
 
-  public selectedId: string = "sdad:dasdad";
-  public bidStatus: number;
+  public lastBidID: string = null; //for global check
+  private selectedId: string = null;
+  private currentPrice: number;
 
   public length = 0;
   public pageSize = 16;
   public pageSizeOptions = [8, 16, 24];
   public pageEvent: PageEvent;
 
-  constructor(public dialog: MatDialog, public _commonService: CommonService) { }
+  constructor(public dialog: MatDialog, public _commonService: CommonService ,public router: Router) { }
 
 
   ngOnInit() {
@@ -40,19 +44,29 @@ export class HomeComponent implements OnInit {
     this.getAllCategory();
     this.getAllCity();
     this.searchContent = new SearchContent();
+    this.NewBid = new NewBid();
     this.getProducts(this.searchContent);
   }
 
-  openDialog(): void {
+  openDialog(id: string, min_price: number): void {
+    this.selectedId = id;
+    this.currentPrice = min_price;
     let dialogRef = this.dialog.open(BidDialogComponent, {
       width: '250px',
-      data: { id: this.selectedId }
+      data: { price: min_price }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log('The bid  closed');
-      // this.bidStatus = result;
-      // console.log(result);
+
+      if (result && result > this.currentPrice) {
+        if(this._commonService.isAuthenticated())
+        {
+          console.log(this._commonService.getUserId());
+          this.TryBid(result,this.selectedId,this._commonService.getUserId());
+        }else{
+          this.router.navigate(['/signin']);
+        }
+      }
     });
   }
 
@@ -116,5 +130,14 @@ export class HomeComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  private TryBid(Price: number, productId: string, userId: string) {
+    this.NewBid.BidPrice = Price;
+    this.NewBid.ProductId = productId;
+    this.NewBid.ApplicationUserId = userId;
+    var d = new Date();
+    this.NewBid.BidTime = d.getDate()+'-'+d.getMonth()+'-'+d.getFullYear()+'T'+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
+    console.log(this.NewBid);
   }
 }

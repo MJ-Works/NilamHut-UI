@@ -17,7 +17,7 @@ export class Tag
 
 export class NewBid {
     public BidPrice: number;
-    public BidTime: DateTimeFormat;
+    public BidTime: string;
     public ApplicationUserId: string;
     public ProductId: string
 }

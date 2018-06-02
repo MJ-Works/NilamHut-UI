@@ -1,11 +1,11 @@
-<h1 mat-dialog-title> Enter your bid</h1>
+<h3 mat-dialog-title > <strong>ENTER YOUR BID</strong> </h3>
 <div mat-dialog-content>
-  <p>Your bit must be grater than current bit.</p>
+  <p> <strong>Mininam Bid: </strong> <span style="color: red"> {{givenValue}}+</span> </p>
   <mat-form-field>
-    <input matInput type [(ngModel)]="data.id">
+    <input matInput type="number" [(ngModel)]="data.price" min="{{givenValue}}">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button color="primary" mat-raised-button (click)="onNoClick()" cdkFocusInitial>No Thanks</button>
-  <button color="warn" mat-raised-button [mat-dialog-close]="data.id">Submit</button>
+  <button color="primary"  mat-raised-button (click)="onNoClick()" cdkFocusInitial>No Thanks</button>
+  <button color="warn" mat-raised-button [mat-dialog-close]="data.price">Submit</button>
 </div>

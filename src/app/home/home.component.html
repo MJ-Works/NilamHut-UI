@@ -82,7 +82,7 @@
                 visibility
               </i>
             </a>
-            <a color="accent" mat-button (click)="openDialog()" matTooltip="Bid This Product">
+            <a color="accent" mat-button (click)="openDialog(product.productId, product.bidPrice == 0 ? product.basePrice:product.bidPrice )" matTooltip="Bid This Product">
               <i class="material-icons">
                 gavel
               </i>
@@ -91,7 +91,7 @@
         </div>
       </div>
     </div>
-    
+  
   </div>
 
   <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
