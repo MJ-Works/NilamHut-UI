@@ -44,7 +44,7 @@
               <mat-error *ngIf="confirmPassword.hasError('compare')">Password and confirm password do not match</mat-error>
             </mat-form-field>
 
-            <button type="submit" mat-raised-button color="primary" class="form-button">SignUp</button>
+            <button [disabled]='!signupForm.valid' type="submit" mat-raised-button color="primary" class="form-button">SignUp</button>
 
           </form>
         </mat-card-content>

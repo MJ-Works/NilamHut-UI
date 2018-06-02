@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from
 import { Register } from '../models/Register';
 import { AccountService } from '../services/account.service';
 import { Router } from '@angular/router';
+import { Login } from '../models/Login';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class SignupComponent implements OnInit {
   public hide: boolean = true;
   public hide1: boolean = true;
   register : Register;
+  login : Login;
 
   
   private CreateForm(): void {
@@ -66,11 +68,19 @@ export class SignupComponent implements OnInit {
      this.register.Password = this.password.value;
      this.register.ConfirmPassword = this.confirmPassword.value;
     this._accountService.register(this.register).subscribe( data => {
-        this.route.navigate(['/signin']);
+        //if successfully registered login user
+        this.login = new Login();
+        this.login.username = this.register.UserName;
+        this.login.password = this.register.Password;
+        this._accountService.login(this.login).subscribe (val => {
+            this.route.navigate(['/']);
+        }),error => {
+          console.log(error);
+        };
     }),error => {
       console.log(error);
     };
-    this.signupForm.reset();
+    //this.signupForm.reset();
   }
 
 }

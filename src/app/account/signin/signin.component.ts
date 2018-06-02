@@ -55,7 +55,7 @@ export class SigninComponent implements OnInit {
       }),error => {
         console.log(error);
       };
-      this.signinForm.reset();
+      //this.signinForm.reset();
     }
 }
 
