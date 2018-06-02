@@ -4,6 +4,7 @@ import { Register } from '../models/Register';
 import { AccountService } from '../services/account.service';
 import { Router } from '@angular/router';
 import { Login } from '../models/Login';
+import { ComparePassword } from '../../shared/Directives/ComparePassword.directive';
 
 
 @Component({
@@ -50,7 +51,8 @@ export class SignupComponent implements OnInit {
       Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')
     ]);
     this.confirmPassword = new FormControl('', [
-      Validators.required
+      Validators.required,
+      ComparePassword('password')
     ]);
   }
 
