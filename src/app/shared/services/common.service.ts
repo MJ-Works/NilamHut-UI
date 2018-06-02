@@ -17,6 +17,12 @@ export class CommonService extends BaseService {
   jwtHelper = new JwtHelperService();
   constructor(private http: HttpClient, public auth: AuthService) { super(); }
 
+  public addCategory(data)
+  {
+    return this.http.post(`${environment.baseUrl}/api/Common/AddCategory`,data).pipe(
+      catchError(val => this.handleError(new HttpErrorResponse(val)))
+    );
+  }
   public getAllCategory(): Observable<Category[]> {
     return this.http.get<Category[]>(`${environment.baseUrl}/api/Common/AllCategory`)
       .pipe(
@@ -24,9 +30,29 @@ export class CommonService extends BaseService {
       );
   }
 
+  public deleteFromCategory(id)
+  {
+      return this.http.delete(`${environment.baseUrl}/api/Common/DeleteCategory/${id}`).pipe(
+        catchError(val => this.handleError(new HttpErrorResponse(val)))
+      );
+  }
+
   public getAllCity(): Observable<City[]> {
     return this.http.get<City[]>(`${environment.baseUrl}/api/Common/AllCity`)
       .pipe(
+        catchError(val => this.handleError(new HttpErrorResponse(val)))
+      );
+  }
+  public addCity(data)
+  {
+    return this.http.post(`${environment.baseUrl}/api/Common/AddCity`,data).pipe(
+      catchError(val => this.handleError(new HttpErrorResponse(val)))
+    );
+  }
+
+  public deleteFromCity(id)
+  {
+      return this.http.delete(`${environment.baseUrl}/api/Common/DeleteCity/${id}`).pipe(
         catchError(val => this.handleError(new HttpErrorResponse(val)))
       );
   }

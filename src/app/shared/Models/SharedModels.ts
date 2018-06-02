@@ -4,7 +4,7 @@ export class City{
 }
 
 export class Category{
-    Id: String;
+    id: String;
     categoryName: String;
 }
 

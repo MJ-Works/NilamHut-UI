@@ -15,42 +15,26 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
+                <tr *ngFor="let city of  cities; let i = index">
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{city.cityName}}</td>
                   <td>
-                    <button color="warn" mat-button>
+                    <button (click)="deleteButton(city.id)" color="warn" mat-button>
                       <i class="material-icons">delete</i>
                     </button>
                   </td>
                 </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>
-                      <button color="warn" mat-button>
-                        <i class="material-icons">delete</i>
-                      </button>
-                    </td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>
-                      <button color="warn" mat-button>
-                        <i class="material-icons">delete</i>
-                      </button>
-                    </td>
-                </tr>
               </tbody>
             </table>
             <hr>
-            <form class="example-form">
+            <form [formGroup]="cityForm" class="example-form" (ngSubmit)="submitCity()">
                 <mat-form-field class="example-full-width">
-                  <input type="text" matInput placeholder="New Location">
-                  <mat-hint>Errors appear instantly!</mat-hint>
+                  <input type="text" matInput placeholder="New Location" formControlName="CityName">
+                  <mat-error *ngIf="cityForm.controls.CityName.hasError('required')">Location field is required</mat-error>
+                  <mat-error *ngIf="cityForm.controls.CityName.hasError('minlength')">city should be minimum 3 length</mat-error>
+                  <mat-error *ngIf="cityForm.controls.CityName.hasError('maxlength')">city should be maximum 20 length</mat-error>
                 </mat-form-field>
-                <button type="submit" color="primary" mat-raised-button>
+                <button [disabled]='!cityForm.valid' type="submit" color="primary" mat-raised-button>
                     <i class="material-icons">check_circle</i>
                   </button>
               </form>
