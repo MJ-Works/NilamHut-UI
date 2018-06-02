@@ -2,6 +2,7 @@
   width: 100%;
   border: 1px solid gray;
   text-align: center;
+  margin-top: 18px;
 }
 
 .product-image-container {
@@ -53,10 +54,6 @@
 .btn-control {
   padding: 0px;
   margin: 0px;
-}
-
-.row {
-  margin-top: 18px;
 }
 
 .carousel-inner img {
