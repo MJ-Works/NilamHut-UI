@@ -47,13 +47,15 @@
             </ng-select>
           </div>
 
-          <div class="col-sm-3 search-card-item" >
+          <div class="col-sm-3 search-card-item">
             <input class="form-control" type="text" placeholder="Enter Product Name.." style="width: 100%;" formControlName="searchName">
           </div>
-          <div class="col-sm-1 search-card-item" style="text-align: right" >
-              <button type="submit" mat-raised-button color="accent" matTooltip="Search Your Choise"><i class="material-icons">
-                  search
-                  </i></button>
+          <div class="col-sm-1 search-card-item" style="text-align: right">
+            <button type="submit" mat-raised-button color="accent" matTooltip="Search Your Choise">
+              <i class="material-icons">
+                search
+              </i>
+            </button>
           </div>
 
         </form>
@@ -70,11 +72,18 @@
         </div>
         <div class="product-info-container">
           <p *ngIf="product.bidderName ; else elseBlock " class="price">${{product.bidPrice}}</p>
-          <ng-template #elseBlock><p class="price">${{product.basePrice}}</p></ng-template>
+          <ng-template #elseBlock>
+            <p class="price">${{product.basePrice}}</p>
+          </ng-template>
           <a *ngIf="product.bidderName ; else thenBlock " class="leader" href="#">{{product.bidderName}}</a>
-          <ng-template #thenBlock><a>N/A</a></ng-template>
+          <ng-template #thenBlock>
+            <a>N/A</a>
+          </ng-template>
           <p class="clock">
-            <countdown-timer [end]="product.endDate"></countdown-timer>
+            <a *ngIf="IsAuctionRunning(product.startDate) ; else timeBlock" class="alert-primary"  matTooltip="wait till starting time"> {{product.startDate | date}}</a>
+            <ng-template #timeBlock>
+              <countdown-timer [end]="product.endDate"></countdown-timer>
+            </ng-template>
           </p>
           <p class="btn-control">
             <a color="primary" mat-button routerLink="product/{{product.productId}}" matTooltip="View This Product">
@@ -82,16 +91,17 @@
                 visibility
               </i>
             </a>
-            <a color="accent" mat-button (click)="openDialog(product.productId, product.bidPrice == 0 ? product.basePrice:product.bidPrice )" matTooltip="Bid This Product">
+            <button color="accent"  mat-button (click)="openDialog(product.productId, product.bidPrice == 0 ? product.basePrice:product.bidPrice )"
+              matTooltip="Bid This Product" [disabled]='IsAuctionRunning(product.startDate)'>
               <i class="material-icons">
                 gavel
               </i>
-            </a>
+            </button>
           </p>
         </div>
       </div>
     </div>
-  
+
   </div>
 
   <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
