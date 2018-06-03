@@ -28,6 +28,7 @@ export class ViewProductComponent implements OnInit {
   public currentTopBid: Bid;
   public top10Bids: Bid[];
   public NewBid: NewBid;
+  public IsRequesting: boolean = false;
 
   constructor(private dialog: MatDialog, private activeRoute: ActivatedRoute
     , private _productService: ProductService, private _commonService: CommonService, public router: Router) {
@@ -52,6 +53,7 @@ export class ViewProductComponent implements OnInit {
   }
 
   getProductInfo() {
+    this.IsRequesting = true;
     this._productService.getProduct(this.productId).subscribe(data => {
       this.product = data;
       this.bigPicture = this.baseUrl + '/' + this.product.image[0];
@@ -84,8 +86,10 @@ export class ViewProductComponent implements OnInit {
       this.product.endDateTime = this.convertToViewAbleDate(this.product.endDateTime);
 
       //console.log(data);
+      this.IsRequesting = false;
     }), error => {
       console.log(error);
+      this.IsRequesting = false;
     };
   }
 
@@ -190,6 +194,7 @@ export class ViewProductComponent implements OnInit {
   }
 
   private TryBid(Price: number, productId: string, userId: string) {
+    this.IsRequesting = true;
     this.NewBid.BidPrice = Price;
     this.NewBid.ProductId = productId;
     this.NewBid.ApplicationUserId = userId;
@@ -199,9 +204,11 @@ export class ViewProductComponent implements OnInit {
     this._commonService.makeNewBid(this.NewBid).subscribe(
       data => {
         console.log('Bid Success');
+        this.IsRequesting = false;
       },
       error => {
         console.log(error);
+        this.IsRequesting = false;
       }
     );
   }

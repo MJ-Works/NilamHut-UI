@@ -22,6 +22,7 @@ export class AddProductComponent implements OnInit {
   cities: City[];
   categories: Category[];
   selectedFile : File[];
+  public IsRequesting: boolean = false;
 
   constructor(private fb: FormBuilder, private _commonService:CommonService,
      private _productService: ProductService,private route: Router) { }
@@ -53,28 +54,37 @@ export class AddProductComponent implements OnInit {
 
   getTags()
   {
+    this.IsRequesting = true;
     this._commonService.getAllTag().subscribe( data => {
       this.tags = data;
+      this.IsRequesting = false;
     }), error => {
       console.log(error);
+      this.IsRequesting = false;
     };
   }
 
   getCity()
   {
+    this.IsRequesting = true;
       this._commonService.getAllCity().subscribe( data => {
           this.cities = data;
+          this.IsRequesting = false;
       }), error => {
         console.log(error);
+        this.IsRequesting = false;
       };
   }
 
   getCategory()
   {
+    this.IsRequesting = true;
     this._commonService.getAllCategory().subscribe( data => {
       this.categories = data;
+      this.IsRequesting = false;
     }), error => {
       console.log(error);
+      this.IsRequesting = false;
     };
   }
 
@@ -95,6 +105,7 @@ export class AddProductComponent implements OnInit {
   
   onSubmit()
   { 
+      this.IsRequesting = true;
       var applicationUserId = this._commonService.getUserId();
 
       var startDate = new Date(this.productForm.controls.StartDateTime.value);
@@ -124,9 +135,12 @@ export class AddProductComponent implements OnInit {
 
       this._productService.addProduct(fd).subscribe( data=> {
           console.log("success!!!");
+          this.IsRequesting = false;
           this.route.navigate(['/']);
+
       }), error => {
         console.log(error);
+        this.IsRequesting = false;
       };
   }
 

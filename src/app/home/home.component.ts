@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   public AllProducts: ProductHome[] = [];
   public NewBid: NewBid;
   public baseUrl;
+  public IsRequesting: boolean = false;
 
   public lastBidID: string = null; //for global check
   private selectedId: string = null;
@@ -66,10 +67,13 @@ export class HomeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
 
       if (result && result > this.currentPrice) {
+        this.IsRequesting = true;
         if (this._commonService.isAuthenticated()) {
           console.log(this._commonService.getUserId());
           this.TryBid(result, this.selectedId, this._commonService.getUserId());
+          this.IsRequesting = false;
         } else {
+          this.IsRequesting = false;
           this.router.navigate(['/signin']);
         }
       }
@@ -77,24 +81,30 @@ export class HomeComponent implements OnInit {
   }
 
   private getAllCity() {
+    this.IsRequesting = true;
     this._commonService.getAllCity().subscribe(
       data => {
         this.allCity = data;
+        this.IsRequesting = false;
         // console.log('City success');
       },
       error => {
+        this.IsRequesting = false;
         console.log(error);
       }
     );
   }
 
   private getAllCategory() {
+    this.IsRequesting = true;
     this._commonService.getAllCategory().subscribe(
       data => {
         this.allCategory = data;
         // console.log('Category Success');
+        this.IsRequesting = false;
       },
       error => {
+        this.IsRequesting = false;
         console.log(error);
       }
     );
@@ -122,15 +132,18 @@ export class HomeComponent implements OnInit {
   }
 
   private getProducts(model: SearchContent) {
+    this.IsRequesting = true;
     this._commonService.getAllProducts(model).subscribe(
       data => {
         console.log("All Products received");
         this.AllProducts = data;
         this.length = this.AllProducts.length;
+        this.IsRequesting = false;
         // console.log(this.AllProducts);
       },
       error => {
         console.log(error);
+        this.IsRequesting = false;
       }
     );
   }
@@ -143,14 +156,16 @@ export class HomeComponent implements OnInit {
     this.NewBid.BidTime = d.toISOString();
 
     console.log(this.NewBid);
-
+    this.IsRequesting = true;
     this._commonService.makeNewBid(this.NewBid).subscribe(
       data => {
         console.log('Bid Success');
         // console.log(data);
+        this.IsRequesting = false;
       },
       error => {
         console.log(error);
+        this.IsRequesting = false;
       }
     );
   }

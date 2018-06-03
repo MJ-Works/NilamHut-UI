@@ -13,6 +13,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { CountdownTimerModule } from 'ngx-countdown-timer';
 import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
@@ -50,7 +51,9 @@ import { RoleGuardService } from './shared/services/role-guard.service';
     MatPaginatorModule,
     MatTooltipModule,
     MatDialogModule,
-    NgSelectModule
+    NgSelectModule,
+    MatProgressBarModule
+    
   ],
   providers: [AuthService,AuthGuardService,RoleGuardService],
   bootstrap: [AppComponent],

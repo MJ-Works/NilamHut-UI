@@ -18,6 +18,7 @@ import { MatListModule } from '@angular/material/list';
 import { CountdownTimerModule } from 'ngx-countdown-timer';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductService } from './services/product.service';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { ProductService } from './services/product.service';
     MatIconModule,
     MatListModule,
     CountdownTimerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressBarModule
   ],
   providers : [ProductService],
   declarations: [ViewProductComponent, AddProductComponent]
