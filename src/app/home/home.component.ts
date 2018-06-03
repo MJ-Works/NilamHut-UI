@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   public pageSize = 16;
   public pageSizeOptions = [8, 16, 24];
   public pageEvent: PageEvent;
-  
+
   constructor(public dialog: MatDialog, public _commonService: CommonService, public router: Router) { }
 
 
@@ -116,7 +116,7 @@ export class HomeComponent implements OnInit {
       this.searchContent.searchName = this.searchForm.value.searchName;
 
       console.log(this.searchContent);
-      // this.searchForm.reset();
+      this.getProducts(this.searchContent);
     }
   }
 
@@ -140,7 +140,7 @@ export class HomeComponent implements OnInit {
     this.NewBid.ApplicationUserId = userId;
     var d = new Date();
     this.NewBid.BidTime = d.toISOString();
-    
+
     console.log(this.NewBid);
 
     this._commonService.makeNewBid(this.NewBid).subscribe(
@@ -165,10 +165,11 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  public IsAuctionRunning(date: string): boolean{
-    var date1 = new Date(date);
-    var date2 = new Date();
-    if(date1> date2) return true
+  public IsAuctionRunning(start: string, end: string): boolean {
+    var date1 = new Date(start);
+    var date2 = new Date(end);
+    var date3 = new Date();
+    if (date1 > date3 || date2 < date3) return true;
     return false;
   }
 }
