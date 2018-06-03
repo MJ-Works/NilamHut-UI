@@ -67,11 +67,11 @@
                         <p class="card-text">{{currentTopBid?.bidTime}}</p>
                       </div>
                       <div class="col-12 clock">
-                            <countdown-timer [end]="'2018-05-29 00:00:00'"></countdown-timer>
+                            <countdown-timer [end]="product.endDateTime"></countdown-timer>
                       </div>
                       <div class="col-3"></div>
                       <div class="col-6 text-center">
-                            <button color="primary" mat-raised-button (click)="openDialog()">Bid Now</button>
+                            <button color="primary" [disabled]="isAuctionLive(product.startDateTime,product.endDateTime)" mat-raised-button (click)="openDialog(currentTopBid != null ? currentTopBid.bidPrice : product.basePrice)">Bid Now</button>
                       </div>
                   </div>
                 </div>
