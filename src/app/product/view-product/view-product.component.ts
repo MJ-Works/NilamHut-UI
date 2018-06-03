@@ -87,10 +87,10 @@ export class ViewProductComponent implements OnInit {
 
       //console.log(data);
       this.IsRequesting = false;
-    }), error => {
+    }, error => {
       console.log(error);
       this.IsRequesting = false;
-    };
+    });
   }
 
   convertToViewAbleDate(dateTime: string) {

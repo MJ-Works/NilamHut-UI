@@ -22,10 +22,10 @@ export class SignupComponent implements OnInit {
   public hide: boolean = true;
   public hide1: boolean = true;
   public IsRequesting: boolean = false;
-  register : Register;
-  login : Login;
+  register: Register;
+  login: Login;
 
-  
+
   private CreateForm(): void {
     this.signupForm = new FormGroup({
       name: this.name,
@@ -41,7 +41,7 @@ export class SignupComponent implements OnInit {
       Validators.minLength(3),
       Validators.maxLength(100)
     ]);
-    this.email = new FormControl('',[
+    this.email = new FormControl('', [
       Validators.required,
       Validators.email
     ]);
@@ -57,7 +57,7 @@ export class SignupComponent implements OnInit {
     ]);
   }
 
-  constructor(private _accountService : AccountService,private route: Router) { }
+  constructor(private _accountService: AccountService, private route: Router) { }
 
   ngOnInit() {
     this.CreateFormControls();
@@ -66,29 +66,29 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     this.IsRequesting = true;
-     this.register = new Register();
-     this.register.UserName = this.name.value;
-     this.register.Email = this.email.value;
-     this.register.Password = this.password.value;
-     this.register.ConfirmPassword = this.confirmPassword.value;
-    this._accountService.register(this.register).subscribe( data => {
-        //if successfully registered login user
-        this.login = new Login();
-        this.login.username = this.register.UserName;
-        this.login.password = this.register.Password;
-        this._accountService.login(this.login).subscribe (val => {
-          this._accountService.storeToken(val);
-          this.IsRequesting = false;
-            this.route.navigate(['/']);
-        }),error => {
-          
-          console.log(error);
-          this.IsRequesting = false;
-        };
-    }),error => {
+    this.register = new Register();
+    this.register.UserName = this.name.value;
+    this.register.Email = this.email.value;
+    this.register.Password = this.password.value;
+    this.register.ConfirmPassword = this.confirmPassword.value;
+    this._accountService.register(this.register).subscribe(data => {
+      //if successfully registered login user
+      this.login = new Login();
+      this.login.username = this.register.UserName;
+      this.login.password = this.register.Password;
+      this._accountService.login(this.login).subscribe(val => {
+        this._accountService.storeToken(val);
+        this.IsRequesting = false;
+        this.route.navigate(['/']);
+      }, error => {
+
+        console.log(error);
+        this.IsRequesting = false;
+      });
+    }, error => {
       console.log(error);
       this.IsRequesting = false;
-    };
+    });
     //this.signupForm.reset();
   }
 

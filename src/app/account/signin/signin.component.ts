@@ -16,7 +16,7 @@ export class SigninComponent implements OnInit {
   public password: FormControl;
   public hide: boolean = true;
   public IsRequesting: boolean = false;
-  login : Login;
+  login: Login;
 
   private CreateForm(): void {
     this.signinForm = new FormGroup({
@@ -39,27 +39,27 @@ export class SigninComponent implements OnInit {
     ]);
   }
 
-  constructor(private _accountService : AccountService,private route: Router) { }
+  constructor(private _accountService: AccountService, private route: Router) { }
 
   ngOnInit() {
     this.CreateFormControls();
     this.CreateForm();
   }
   onSubmit() {
-      this.IsRequesting = true;
-      this.login = new Login();
-      this.login.username = this.name.value;
-      this.login.password = this.password.value;
-      this._accountService.login(this.login).subscribe( data => {
-        this._accountService.storeToken(data);
-        //console.log(data);
-        this.IsRequesting = false;
-        this.route.navigate(['/']);
-      }),error => {
-        console.log(error);
-        this.IsRequesting = false;
-      };
-      //this.signinForm.reset();
-    }
+    this.IsRequesting = true;
+    this.login = new Login();
+    this.login.username = this.name.value;
+    this.login.password = this.password.value;
+    this._accountService.login(this.login).subscribe(data => {
+      this._accountService.storeToken(data);
+      //console.log(data);
+      this.IsRequesting = false;
+      this.route.navigate(['/']);
+    }, error => {
+      console.log(error);
+      this.IsRequesting = false;
+    });
+    //this.signinForm.reset();
+  }
 }
 
