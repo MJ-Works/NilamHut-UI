@@ -21,6 +21,7 @@ export class SignupComponent implements OnInit {
   public confirmPassword: FormControl;
   public hide: boolean = true;
   public hide1: boolean = true;
+  public IsRequesting: boolean = false;
   register : Register;
   login : Login;
 
@@ -64,6 +65,7 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
+    this.IsRequesting = true;
      this.register = new Register();
      this.register.UserName = this.name.value;
      this.register.Email = this.email.value;
@@ -76,12 +78,16 @@ export class SignupComponent implements OnInit {
         this.login.password = this.register.Password;
         this._accountService.login(this.login).subscribe (val => {
           this._accountService.storeToken(val);
+          this.IsRequesting = false;
             this.route.navigate(['/']);
         }),error => {
+          
           console.log(error);
+          this.IsRequesting = false;
         };
     }),error => {
       console.log(error);
+      this.IsRequesting = false;
     };
     //this.signupForm.reset();
   }

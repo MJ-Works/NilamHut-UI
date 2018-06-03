@@ -15,6 +15,7 @@ export class SigninComponent implements OnInit {
   public name: FormControl;
   public password: FormControl;
   public hide: boolean = true;
+  public IsRequesting: boolean = false;
   login : Login;
 
   private CreateForm(): void {
@@ -45,15 +46,18 @@ export class SigninComponent implements OnInit {
     this.CreateForm();
   }
   onSubmit() {
+      this.IsRequesting = true;
       this.login = new Login();
       this.login.username = this.name.value;
       this.login.password = this.password.value;
       this._accountService.login(this.login).subscribe( data => {
         this._accountService.storeToken(data);
         //console.log(data);
+        this.IsRequesting = false;
         this.route.navigate(['/']);
       }),error => {
         console.log(error);
+        this.IsRequesting = false;
       };
       //this.signinForm.reset();
     }

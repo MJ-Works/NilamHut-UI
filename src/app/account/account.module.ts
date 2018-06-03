@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { AccountService } from './services/account.service';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { AccountService } from './services/account.service';
     MatTabsModule,
     MatListModule,
     MatSelectModule,
-    MatChipsModule
+    MatChipsModule,
+    MatProgressBarModule
   ],
   providers : [AccountService],
   declarations: [SigninComponent, SignupComponent, ProfileEditComponent, ProfileViewComponent]
