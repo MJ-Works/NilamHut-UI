@@ -102,9 +102,9 @@ export class AddProductComponent implements OnInit {
 
       const fd = new FormData();
       fd.append('ApplicationUserId', applicationUserId);
-      fd.append('StartDateTime',startDate.toLocaleString());
-      fd.append('EndDateTime',endDate.toLocaleString());
-      fd.append('ProductName',this.productForm.controls.ProductName.value.toLocaleString());
+      fd.append('StartDateTime',startDate.toISOString());
+      fd.append('EndDateTime',endDate.toISOString());
+      fd.append('ProductName',this.productForm.controls.ProductName.value);
       fd.append('ProductDescription',this.productForm.controls.ProductDescription.value);
       fd.append('Quantity',this.productForm.controls.Quantity.value);
       fd.append('BasePrice',this.productForm.controls.BasePrice.value);
