@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { NewBid } from '../shared/Models/SharedModels';
 import { ThrowStmt } from '@angular/compiler';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import { Bid } from '../product/models/Bid';
 
 @Component({
   selector: 'app-home',
@@ -79,7 +80,7 @@ export class HomeComponent implements OnInit {
     this._commonService.getAllCity().subscribe(
       data => {
         this.allCity = data;
-        console.log('City success');
+        // console.log('City success');
       },
       error => {
         console.log(error);
@@ -91,7 +92,7 @@ export class HomeComponent implements OnInit {
     this._commonService.getAllCategory().subscribe(
       data => {
         this.allCategory = data;
-        console.log('Category Success');
+        // console.log('Category Success');
       },
       error => {
         console.log(error);
@@ -126,7 +127,7 @@ export class HomeComponent implements OnInit {
         console.log("All Products received");
         this.AllProducts = data;
         this.length = this.AllProducts.length;
-        console.log(this.AllProducts);
+        // console.log(this.AllProducts);
       },
       error => {
         console.log(error);
@@ -146,7 +147,7 @@ export class HomeComponent implements OnInit {
     this._commonService.makeNewBid(this.NewBid).subscribe(
       data => {
         console.log('Bid Success');
-        console.log(data);
+        // console.log(data);
       },
       error => {
         console.log(error);
@@ -162,6 +163,16 @@ export class HomeComponent implements OnInit {
       .catch(err => {
         console.log("Can't connect.");
         console.log(err);
+      });
+
+      this._hubConnection.on('SendMessageToProductView',(bid: Bid) =>{
+
+        var i = this.AllProducts.findIndex(x=> x.productId == bid.productId)
+        if(i>=0) {
+          this.AllProducts[i].bidPrice = bid.bidPrice;
+          this.AllProducts[i].bidderName = bid.userName;
+        }
+
       });
   }
 
