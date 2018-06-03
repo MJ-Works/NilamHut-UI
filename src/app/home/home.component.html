@@ -76,7 +76,7 @@
           <ng-template #elseBlock>
             <p class="price">${{product.basePrice}}</p>
           </ng-template>
-          <a *ngIf="product.bidderName ; else thenBlock " class="leader" href="#">{{product.bidderName}}</a>
+          <a *ngIf="product.bidderName ; else thenBlock " class="leader" routerLink="profile/{{product.bidderId}}">{{product.bidderName}}</a>
           <ng-template #thenBlock>
             <a>N/A</a>
           </ng-template>

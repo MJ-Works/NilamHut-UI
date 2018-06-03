@@ -5,6 +5,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { BaseService } from '../../shared/services/base.service';
 import { environment } from '../../../environments/environment';
 import { catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { UserInfo, UserBid, UserPost } from '../models/UserModels';
 
 @Injectable({
   providedIn: 'root'
@@ -46,4 +48,26 @@ export class AccountService extends BaseService {
     localStorage.setItem('token', auth.auth_token);
     localStorage.setItem('user_id', auth.id);
   }
+
+  getUserInfo(userId: string): Observable<UserInfo>{
+    return this.http.get<UserInfo>(`${environment.baseUrl}/api/Users/${userId}`)
+      .pipe(
+        catchError(val => this.handleError(new HttpErrorResponse(val)))
+      );
+  }
+
+  getUserBids(userId: string): Observable<UserBid[]>{
+    return this.http.get<UserBid[]>(`${environment.baseUrl}/api/Users/UserBids/${userId}`)
+      .pipe(
+        catchError(val => this.handleError(new HttpErrorResponse(val)))
+      );
+  }
+
+  getUserPosts(userId: string): Observable<UserPost[]>{
+    return this.http.get<UserPost[]>(`${environment.baseUrl}/api/Users/UserPosts/${userId}`)
+      .pipe(
+        catchError(val => this.handleError(new HttpErrorResponse(val)))
+      );
+  }
+  
 }

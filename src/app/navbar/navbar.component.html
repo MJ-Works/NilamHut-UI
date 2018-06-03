@@ -11,10 +11,6 @@
       <li class="nav-item" *ngIf="_commonService.isAuthenticated()">
         <a class="nav-link" routerLink="product" routerLinkActive = "active" [routerLinkActiveOptions]="{exact:true}">Product</a>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link" routerLink="profile/id" routerLinkActive = "active">Profile</a>
-      </li>
     </ul>
 
     <ul class="navbar-nav">
@@ -42,7 +38,7 @@
             {{_commonService.getUserName()}}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Profile</a>
+            <a class="dropdown-item" routerLink="profile/{{_commonService.getUserId()}}">Profile</a>
             <a class="dropdown-item" routerLink="/" (click)="logOut()">Logout</a>
             <a class="dropdown-item" href="#">Something</a>
           </div>
