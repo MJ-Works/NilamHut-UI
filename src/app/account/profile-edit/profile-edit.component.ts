@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserInfo } from '../models/UserModels';
+import { UserInfo, UserData } from '../models/UserModels';
 import { CommonService } from '../../shared/services/common.service';
 import { AccountService } from '../services/account.service';
 import { City } from '../../shared/Models/SharedModels';
@@ -15,7 +15,8 @@ export class ProfileEditComponent implements OnInit {
   public UserInfo: UserInfo;
   public AllCity: City[];
   private UserId: string;
-  public cityId: string= "";
+  private UserData: UserData;
+  public cityId: string = "";
 
   public FullName: FormControl;
   public City: FormControl;
@@ -23,6 +24,7 @@ export class ProfileEditComponent implements OnInit {
   public Phone: FormControl;
   public PostCode: FormControl;
   public ProfileForm: FormGroup;
+
 
   constructor(private _commonService: CommonService, private _accountService: AccountService) { }
 
@@ -95,7 +97,27 @@ export class ProfileEditComponent implements OnInit {
     });
   }
 
-  onSubmit(){
-    console.log(this.ProfileForm.value);
+  onSubmit() {
+    if (this.ProfileForm.valid) {
+      this.IsRequesting = true;
+
+      this.UserData = new UserData();
+      this.UserData.ApplicationUserId = this.UserId;
+      this.UserData.FullName = this.FullName.value;
+      this.UserData.CityId = this.City.value;
+      this.UserData.Phone = this.Phone.value;
+      this.UserData.Address = this.Address.value;
+      this.UserData.PostCode = this.PostCode.value;
+
+      this._accountService.updateProfileInfo(this.UserData).subscribe(data => {
+        console.log(data);
+        this.IsRequesting = false;
+        this.getUserInfo(this.UserId);
+      }, error => {
+        console.log(error);
+        this.IsRequesting = false;
+      });
+    }
+
   }
 }

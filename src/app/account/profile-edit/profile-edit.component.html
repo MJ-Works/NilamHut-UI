@@ -44,7 +44,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
-                  <textarea matInput placeholder="Enter address" [formControl]="Address">{{UserInfo?.address}}</textarea>
+                  <textarea matInput placeholder="Enter address" [formControl]="Address" value="{{UserInfo?.address}}"></textarea>
                   <mat-hint>Enter Address!</mat-hint>
                   <mat-error *ngIf="Address.hasError('required')">Address fileld is required</mat-error>
                   <mat-error *ngIf="Address.hasError('maxlength')">Address atmost 499 charactes long.</mat-error>
