@@ -121,7 +121,7 @@ export class ViewProductComponent implements OnInit {
       //console.log(bid.userImage);
 
       //update current top bid
-      console.log(this.currentTopBid);
+      //console.log(this.currentTopBid);
 
       //if already exists in top 10 just rearrange
       for (var i = 0; i < this.top10Bids.length; i++) {
@@ -186,7 +186,7 @@ export class ViewProductComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result && result > this.currentPrice) {
         if (this._commonService.isAuthenticated()) {
-          console.log(this._commonService.getUserId());
+          //console.log(this._commonService.getUserId());
           this.TryBid(result, this.productId, this._commonService.getUserId());
         } else {
           this.router.navigate(['/signin']);
@@ -205,7 +205,7 @@ export class ViewProductComponent implements OnInit {
 
     this._commonService.makeNewBid(this.NewBid).subscribe(
       data => {
-        console.log('Bid Success');
+        //console.log('Bid Success');
         this.IsRequesting = false;
       },
       error => {

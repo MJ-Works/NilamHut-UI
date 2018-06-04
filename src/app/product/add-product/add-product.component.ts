@@ -94,7 +94,7 @@ export class AddProductComponent implements OnInit {
       this.selectedFile = $event.target.files;
       this.imageCount = this.selectedFile.length;
     }
-    console.log(this.selectedFile);
+    //console.log(this.selectedFile);
   }
 
   onSubmit() {
@@ -125,7 +125,7 @@ export class AddProductComponent implements OnInit {
     }
 
     this._productService.addProduct(fd).subscribe(data => {
-      console.log("success!!!");
+      //console.log("success!!!");
       this.IsRequesting = false;
       this.route.navigate(['/']);
 
