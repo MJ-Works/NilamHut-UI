@@ -4,6 +4,7 @@ import { UserPost, UserBid, UserInfo } from '../models/UserModels';
 import { AccountService } from '../services/account.service';
 import { error } from 'util';
 import { environment } from '../../../environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile-view',
@@ -12,7 +13,7 @@ import { environment } from '../../../environments/environment';
 })
 export class ProfileViewComponent implements OnInit {
 
-  constructor(private activeRoute: ActivatedRoute, private _accountService: AccountService) { }
+  constructor(private activeRoute: ActivatedRoute, private _accountService: AccountService,private toastr: ToastrService) { }
   public UserId: string;
   public Posts: UserPost[];
   public Bids: UserBid[];
@@ -43,7 +44,7 @@ export class ProfileViewComponent implements OnInit {
       this.IsRequesting = false;
       // console.log(data);
     }, error => {
-      console.log(error);
+      this.toastr.error(error);
       this.IsRequesting = false;
     });
   }
@@ -55,7 +56,7 @@ export class ProfileViewComponent implements OnInit {
       this.IsRequesting = false;
       // console.log(data);
     }, error => {
-      console.log(error);
+      this.toastr.error(error);
       this.IsRequesting = false;
     });
   }
@@ -67,7 +68,7 @@ export class ProfileViewComponent implements OnInit {
       this.IsRequesting = false;
       // console.log(data)
     }, error => {
-      console.log(error);
+      this.toastr.error(error);
       this.IsRequesting = false;
     })
   }

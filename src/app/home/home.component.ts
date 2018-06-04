@@ -12,6 +12,7 @@ import { NewBid } from '../shared/Models/SharedModels';
 import { ThrowStmt } from '@angular/compiler';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { Bid } from '../product/models/Bid';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -40,7 +41,7 @@ export class HomeComponent implements OnInit {
   public pageSizeOptions = [8, 16, 24];
   public pageEvent: PageEvent;
 
-  constructor(public dialog: MatDialog, public _commonService: CommonService, public router: Router) { }
+  constructor(public dialog: MatDialog, public _commonService: CommonService, public router: Router, private toastr: ToastrService) { }
 
 
   ngOnInit() {
@@ -90,7 +91,7 @@ export class HomeComponent implements OnInit {
       },
       error => {
         this.IsRequesting = false;
-        console.log(error);
+        this.toastr.error(error);
       }
     );
   }
@@ -105,7 +106,7 @@ export class HomeComponent implements OnInit {
       },
       error => {
         this.IsRequesting = false;
-        console.log(error);
+        this.toastr.error(error);
       }
     );
   }
@@ -142,7 +143,7 @@ export class HomeComponent implements OnInit {
         // console.log(this.AllProducts);
       },
       error => {
-        console.log(error);
+        this.toastr.error(error);
         this.IsRequesting = false;
       }
     );
@@ -164,7 +165,7 @@ export class HomeComponent implements OnInit {
         this.IsRequesting = false;
       },
       error => {
-        console.log(error);
+        this.toastr.error(error);
         this.IsRequesting = false;
       }
     );
@@ -176,19 +177,19 @@ export class HomeComponent implements OnInit {
       .start()
       .then(() => console.log('Connection establish!'))
       .catch(err => {
-        console.log("Can't connect.");
+        this.toastr.error('canont connect to server.');
         console.log(err);
       });
 
-      this._hubConnection.on('SendMessageToProductView',(bid: Bid) =>{
+    this._hubConnection.on('SendMessageToProductView', (bid: Bid) => {
 
-        var i = this.AllProducts.findIndex(x=> x.productId == bid.productId)
-        if(i>=0) {
-          this.AllProducts[i].bidPrice = bid.bidPrice;
-          this.AllProducts[i].bidderName = bid.userName;
-        }
+      var i = this.AllProducts.findIndex(x => x.productId == bid.productId)
+      if (i >= 0) {
+        this.AllProducts[i].bidPrice = bid.bidPrice;
+        this.AllProducts[i].bidderName = bid.userName;
+      }
 
-      });
+    });
   }
 
   public IsAuctionRunning(start: string, end: string): boolean {
