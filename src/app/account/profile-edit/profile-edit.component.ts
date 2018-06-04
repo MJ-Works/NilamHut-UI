@@ -5,6 +5,7 @@ import { AccountService } from '../services/account.service';
 import { City } from '../../shared/Models/SharedModels';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile-edit',
@@ -31,7 +32,7 @@ export class ProfileEditComponent implements OnInit {
   public ProfileForm: FormGroup;
 
 
-  constructor(private _commonService: CommonService, private _accountService: AccountService) { }
+  constructor(private _commonService: CommonService, private _accountService: AccountService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.baseUrl = environment.baseUrl;
@@ -45,17 +46,18 @@ export class ProfileEditComponent implements OnInit {
   onFileSelected(event) {
     this.customFile = event.target.files[0];
     this.isFileValid = true;
-    console.log(this.customFile);
+    // console.log(this.customFile);
   }
 
   setAvatar() {
     this.isFileValid = false;
     this.IsRequesting = true;
     this._accountService.updateProfileImage(this.customFile, this.UserId).subscribe(data => {
-      console.log(data);
+      // console.log(data["message"]);
+      this.toastr.success('Image Saved.');
       this.IsRequesting = false;
     }, error => {
-      console.log(error);
+      this.toastr.error(error);
       this.IsRequesting = false;
     });
   }
@@ -69,11 +71,11 @@ export class ProfileEditComponent implements OnInit {
     this._accountService.getUserInfo(id).subscribe(data => {
       this.UserInfo = data;
       this.cityId = data.cityId;
-      console.log("UserInfo Success");
+      // this.toastr.success("UserInfo Success");
       this.setFormControlvalue();
       this.IsRequesting = false;
     }, error => {
-      console.log(error);
+      this.toastr.error(error);
       this.IsRequesting = false;
     });
   }
@@ -82,21 +84,20 @@ export class ProfileEditComponent implements OnInit {
     this.IsRequesting = true;
     this._commonService.getAllCity().subscribe(data => {
       this.AllCity = data;
-      console.log("city Success");
+      // console.log("city Success");
       this.IsRequesting = false;
     }, error => {
-      console.log(error);
+      this.toastr.error(error);
       this.IsRequesting = false;
     });
   }
 
-  private setFormControlvalue()
-  {
-    if(this.UserInfo.fullName) this.FullName.setValue(this.UserInfo.fullName); 
-    if(this.UserInfo.address) this.Address.setValue(this.UserInfo.address); 
-    if(this.UserInfo.cityId) this.City.setValue(this.UserInfo.cityId); 
-    if(this.UserInfo.postCode) this.PostCode.setValue(this.UserInfo.postCode); 
-    if(this.UserInfo.phone) this.Phone.setValue(this.UserInfo.phone);
+  private setFormControlvalue() {
+    if (this.UserInfo.fullName) this.FullName.setValue(this.UserInfo.fullName);
+    if (this.UserInfo.address) this.Address.setValue(this.UserInfo.address);
+    if (this.UserInfo.cityId) this.City.setValue(this.UserInfo.cityId);
+    if (this.UserInfo.postCode) this.PostCode.setValue(this.UserInfo.postCode);
+    if (this.UserInfo.phone) this.Phone.setValue(this.UserInfo.phone);
   }
 
   private cresteFormControl() {
@@ -144,11 +145,13 @@ export class ProfileEditComponent implements OnInit {
       this.UserData.PostCode = this.PostCode.value;
 
       this._accountService.updateProfileInfo(this.UserData).subscribe(data => {
-        console.log(data);
+        // console.log(data);
+        this.toastr.success('Profile updated');
+        this.ProfileForm.reset();
         this.IsRequesting = false;
         this.getUserInfo(this.UserId);
       }, error => {
-        console.log(error);
+        this.toastr.error(error);
         this.IsRequesting = false;
       });
     }
