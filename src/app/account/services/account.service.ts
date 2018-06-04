@@ -79,4 +79,18 @@ export class AccountService extends BaseService {
       );
   }
 
+  updateProfileImage(image: File, userId: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+      })
+    }
+    const fd = new FormData();
+    fd.append('image', image, image.name);
+    fd.append('userId', userId);
+    return this.http.put(`${environment.baseUrl}/api/Users/UploadImage`, fd, httpOptions)
+      .pipe(
+        catchError(val => this.handleError(new HttpErrorResponse(val)))
+      );
+  }
+
 }

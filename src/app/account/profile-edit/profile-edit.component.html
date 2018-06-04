@@ -11,13 +11,13 @@
         <br>
         <div class="row">
           <div class="col-sm-4 text-center">
-            <img class="rounded-circle" src="assets/RakulPreet.jpg" alt="image">
+            <img *ngIf="UserInfo" class="rounded-circle" src="{{baseUrl+'/'}}{{UserInfo.image?UserInfo.image:'default.png'}}" alt="image">
             <hr>
             <div class="custom-file">
-              <input type="file" class="custom-file-input" id="customFile">
+              <input (change)="onFileSelected($event)" type="file" class="custom-file-input" id="customFile">
               <label class="custom-file-label" for="customFile">Choose file</label>
             </div>
-            <button mat-raised-button color="primary" class="form-button">Save it As Avatar </button>
+            <button [disabled]='!isFileValid' mat-raised-button color="primary" class="form-button" (click)="setAvatar()">Save it As Avatar </button>
           </div>
           <div class="col-sm-8">
             <form class="example-form" [formGroup]="ProfileForm" (ngSubmit)="onSubmit()" novalidate>

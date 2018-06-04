@@ -4,6 +4,7 @@ import { CommonService } from '../../shared/services/common.service';
 import { AccountService } from '../services/account.service';
 import { City } from '../../shared/Models/SharedModels';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-profile-edit',
@@ -17,6 +18,10 @@ export class ProfileEditComponent implements OnInit {
   private UserId: string;
   private UserData: UserData;
   public cityId: string = "";
+  public baseUrl: string
+
+  public customFile: File = null;
+  public isFileValid: boolean = false;
 
   public FullName: FormControl;
   public City: FormControl;
@@ -29,11 +34,29 @@ export class ProfileEditComponent implements OnInit {
   constructor(private _commonService: CommonService, private _accountService: AccountService) { }
 
   ngOnInit() {
+    this.baseUrl = environment.baseUrl;
     this.getUserId()
     this.cresteFormControl();
     this.CreateForm();
     this.getUserInfo(this.UserId);
     this.getAllCity();
+  }
+
+  onFileSelected(event) {
+    this.customFile = event.target.files[0];
+    this.isFileValid = true;
+    console.log(this.customFile);
+  }
+
+  setAvatar() {
+    this.IsRequesting = true;
+    this._accountService.updateProfileImage(this.customFile, this.UserId).subscribe(data => {
+      console.log(data);
+      this.IsRequesting = false;
+    }, error => {
+      console.log(error);
+      this.IsRequesting = false;
+    });
   }
 
   private getUserId() {
