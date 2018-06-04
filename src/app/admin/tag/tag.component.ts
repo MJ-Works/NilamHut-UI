@@ -13,6 +13,7 @@ export class TagComponent implements OnInit {
   
   tagForm : FormGroup;
   tags : Tag[];
+  public IsRequesting: boolean = false;
 
   constructor(private fb: FormBuilder, private _commonService : CommonService,
               private toastr: ToastrService) { }
@@ -31,31 +32,40 @@ export class TagComponent implements OnInit {
 
   getAllTag()
   {
+    this.IsRequesting = true;
       this._commonService.getAllTag().subscribe( data => {
           this.tags = data;
+          this.IsRequesting = false;
       },error => {
         this.toastr.error(error);
+        this.IsRequesting = false;
       });
   }
 
   deleteButton(value)
   {
+    this.IsRequesting = true;
     this._commonService.deleteFromTag(value).subscribe( data => {
         this.getAllTag();
+        this.IsRequesting = false;
     },error => {
       this.toastr.error(error);
+      this.IsRequesting = false;
     });
   }
 
   submitTag()
   {
+    this.IsRequesting = true;
     var tag = new Tag();
     tag.tagName = this.tagForm.controls.TagName.value;
     tag.tagDescription = "none";
     this._commonService.addTag(tag).subscribe( data => {
       this.getAllTag();
+      this.IsRequesting = false;
     },error => {
       this.toastr.error(error);
+      this.IsRequesting = false;
     });
     this.tagForm.reset();
   }

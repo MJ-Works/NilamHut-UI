@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class LocationComponent implements OnInit {
   cityForm : FormGroup;
   cities : City[];
+  public IsRequesting: boolean = false;
 
   constructor(private fb: FormBuilder, private _commonService : CommonService,
               private toastr: ToastrService) { }
@@ -31,10 +32,13 @@ export class LocationComponent implements OnInit {
 
   getAllCity()
   {
+    this.IsRequesting = true;
       this._commonService.getAllCity().subscribe( data => {
           this.cities = data;
+          this.IsRequesting = false;
       },error => {
           this.toastr.error(error);
+          this.IsRequesting = false;
       });
   }
 
@@ -42,21 +46,27 @@ export class LocationComponent implements OnInit {
 
   deleteButton(value)
   {
+    this.IsRequesting = true;
     this._commonService.deleteFromCity(value).subscribe( data => {
         this.getAllCity();
+        this.IsRequesting = false;
     },error => {
       this.toastr.error(error);
+      this.IsRequesting = false;
     });
   }
 
   submitCity()
   {
+    this.IsRequesting = true;
     var city = new City();
     city.cityName = this.cityForm.controls.CityName.value;
     this._commonService.addCity(city).subscribe( data => {
       this.getAllCity();
+      this.IsRequesting = false;
     },error => {
       this.toastr.error(error);
+      this.IsRequesting = false;
     });
   }
 }
