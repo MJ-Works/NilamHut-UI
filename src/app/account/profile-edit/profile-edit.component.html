@@ -22,7 +22,7 @@
           <div class="col-sm-8">
             <form class="example-form" [formGroup]="ProfileForm" (ngSubmit)="onSubmit()" novalidate>
                 <mat-form-field class="example-full-width">
-                  <input matInput type="text" placeholder="Full Name" [formControl]="FullName" value="{{UserInfo?.fullName}}">
+                  <input matInput type="text" placeholder="Full Name" [formControl]="FullName" >
                   <mat-hint>Enter Full name!</mat-hint>
                   <mat-error *ngIf="FullName.hasError('required')">Full Name fileld is required</mat-error>
                   <mat-error *ngIf="FullName.hasError('maxlength')">Full Name atmost 49 charactes long.</mat-error>
@@ -37,27 +37,27 @@
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
-                    <input matInput type="text" placeholder="Post-Code" [formControl]="PostCode" value="{{UserInfo?.postCode}}">
+                    <input matInput type="text" placeholder="Post-Code" [formControl]="PostCode" >
                     <mat-hint>Enter Post-Code!</mat-hint>
                     <mat-error *ngIf="PostCode.hasError('required')">Post-Code fileld is required</mat-error>
                     <mat-error *ngIf="PostCode.hasError('maxlength')">Post-Code atmost 19 charactes long.</mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
-                  <textarea matInput placeholder="Enter address" [formControl]="Address" value="{{UserInfo?.address}}"></textarea>
+                  <textarea matInput placeholder="Enter address" [formControl]="Address"></textarea>
                   <mat-hint>Enter Address!</mat-hint>
                   <mat-error *ngIf="Address.hasError('required')">Address fileld is required</mat-error>
                   <mat-error *ngIf="Address.hasError('maxlength')">Address atmost 499 charactes long.</mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
-                    <input matInput type="tel" placeholder="Phone" value="{{UserInfo?.phone}}" [formControl]="Phone">
+                    <input matInput type="tel" placeholder="Phone" [formControl]="Phone">
                     <mat-hint>Enter Phone!</mat-hint>
                     <mat-error *ngIf="Phone.hasError('required')">Phone fileld is required</mat-error>
                     <mat-error *ngIf="Phone.hasError('maxlength')">Phone atmost 49 charactes long.</mat-error>
                 </mat-form-field>
                 <br>
-                <button [disabled]='!ProfileForm.valid' type="submit" mat-raised-button color="warn">Save</button>
+                <button [disabled]='!ProfileForm.valid || !ProfileForm.dirty' type="submit" mat-raised-button color="warn">Save</button>
               </form>
           </div>
         </div>

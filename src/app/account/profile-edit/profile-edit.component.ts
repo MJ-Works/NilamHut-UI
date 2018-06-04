@@ -49,6 +49,7 @@ export class ProfileEditComponent implements OnInit {
   }
 
   setAvatar() {
+    this.isFileValid = false;
     this.IsRequesting = true;
     this._accountService.updateProfileImage(this.customFile, this.UserId).subscribe(data => {
       console.log(data);
@@ -69,6 +70,7 @@ export class ProfileEditComponent implements OnInit {
       this.UserInfo = data;
       this.cityId = data.cityId;
       console.log("UserInfo Success");
+      this.setFormControlvalue();
       this.IsRequesting = false;
     }, error => {
       console.log(error);
@@ -86,6 +88,15 @@ export class ProfileEditComponent implements OnInit {
       console.log(error);
       this.IsRequesting = false;
     });
+  }
+
+  private setFormControlvalue()
+  {
+    if(this.UserInfo.fullName) this.FullName.setValue(this.UserInfo.fullName); 
+    if(this.UserInfo.address) this.Address.setValue(this.UserInfo.address); 
+    if(this.UserInfo.cityId) this.City.setValue(this.UserInfo.cityId); 
+    if(this.UserInfo.postCode) this.PostCode.setValue(this.UserInfo.postCode); 
+    if(this.UserInfo.phone) this.Phone.setValue(this.UserInfo.phone);
   }
 
   private cresteFormControl() {
