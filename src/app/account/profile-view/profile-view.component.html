@@ -18,11 +18,11 @@
                 <mat-chip color="accent" selected="true">
                   <strong style="font-weight:bolder;">{{Posts?.length || '0'}}</strong> Posts</mat-chip>
               </mat-chip-list>
-              <h5>Jaggesher14@gmail.com</h5>
+              <h5>{{ UserInfo.email ? UserInfo.email : 'Not Available'}}</h5>
               <h5>{{ UserInfo.phone ? UserInfo.phone : 'Not Available'}}</h5>
             </div>
             <div class="col-sm-4" style="text-align: right">
-              <img class="rounded-circle" src="assets/RakulPreet.jpg" alt="image">
+              <img class="rounded-circle" src="{{baseUrl+'/'}}{{UserInfo.image?UserInfo.image:'default.png'}}" alt="image">
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@
                   <td>
                     <strong>City</strong>
                   </td>
-                  <td>Rajshahi</td>
+                  <td>{{ UserInfo.cityName ? UserInfo.cityName : 'Not Available'}}</td>
                 </tr>
 
                 <tr>

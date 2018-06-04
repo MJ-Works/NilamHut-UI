@@ -15,16 +15,14 @@ export class UserPost {
 }
 
 export class UserInfo {
-    id: String;
-    applicationUser: object;
+    userId: string;
     applicationUserId: string;
     fullName: string;
     cityId: string;
-    postCode: string;
-    address: string;
+    cityName: string;
     phone: string;
+    address: string;
+    postCode: string;
+    email: string;
     image: string;
-    isVip: boolean;
-    rating: object;
-    credit: object;
 }

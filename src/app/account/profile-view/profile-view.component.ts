@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserPost, UserBid, UserInfo } from '../models/UserModels';
 import { AccountService } from '../services/account.service';
 import { error } from 'util';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-profile-view',
@@ -16,10 +17,13 @@ export class ProfileViewComponent implements OnInit {
   public Posts: UserPost[];
   public Bids: UserBid[];
   public UserInfo: UserInfo;
+  public baseUrl: string
 
   public IsRequesting: boolean = false;
 
   ngOnInit() {
+    this.baseUrl = environment.baseUrl;
+    console.log(this.baseUrl);
     this.getuserId();
     this.GetUserInfo(this.UserId);
     this.GetUserBids(this.UserId);
