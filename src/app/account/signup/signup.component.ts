@@ -5,7 +5,7 @@ import { AccountService } from '../services/account.service';
 import { Router } from '@angular/router';
 import { Login } from '../models/Login';
 import { ComparePassword } from '../../shared/Directives/ComparePassword.directive';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -57,7 +57,8 @@ export class SignupComponent implements OnInit {
     ]);
   }
 
-  constructor(private _accountService: AccountService, private route: Router) { }
+  constructor(private _accountService: AccountService, private route: Router,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.CreateFormControls();
@@ -81,12 +82,11 @@ export class SignupComponent implements OnInit {
         this.IsRequesting = false;
         this.route.navigate(['/']);
       }, error => {
-
-        console.log(error);
+        this.toastr.error(error);
         this.IsRequesting = false;
       });
     }, error => {
-      console.log(error);
+      this.toastr.error(error);
       this.IsRequesting = false;
     });
     //this.signupForm.reset();

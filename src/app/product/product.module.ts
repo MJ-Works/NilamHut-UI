@@ -19,6 +19,8 @@ import { CountdownTimerModule } from 'ngx-countdown-timer';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductService } from './services/product.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatListModule,
     CountdownTimerModule,
     MatDialogModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers : [ProductService],
   declarations: [ViewProductComponent, AddProductComponent]

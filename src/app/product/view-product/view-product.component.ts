@@ -9,6 +9,7 @@ import { HubConnection, HubConnectionBuilder, IHttpConnectionOptions } from '@as
 import { Bid } from '../models/Bid';
 import { NewBid } from '../../shared/Models/SharedModels';
 import { CommonService } from '../../shared/services/common.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-view-product',
@@ -31,7 +32,8 @@ export class ViewProductComponent implements OnInit {
   public IsRequesting: boolean = false;
 
   constructor(private dialog: MatDialog, private activeRoute: ActivatedRoute
-    , private _productService: ProductService, private _commonService: CommonService, public router: Router) {
+            , private _productService: ProductService, private _commonService: CommonService, public router: Router,
+            private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -88,7 +90,7 @@ export class ViewProductComponent implements OnInit {
       //console.log(data);
       this.IsRequesting = false;
     }, error => {
-      console.log(error);
+      this.toastr.error(error);
       this.IsRequesting = false;
     });
   }
@@ -207,7 +209,7 @@ export class ViewProductComponent implements OnInit {
         this.IsRequesting = false;
       },
       error => {
-        console.log(error);
+        this.toastr.error(error);
         this.IsRequesting = false;
       }
     );
