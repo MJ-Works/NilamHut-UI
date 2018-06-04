@@ -15,42 +15,26 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
+                <tr *ngFor="let tag of  tags; let i = index">
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{tag.tagName}}</td>
                   <td>
-                    <button color="warn" mat-button>
+                    <button (click)="deleteButton(tag.id)" color="warn" mat-button>
                       <i class="material-icons">delete</i>
                     </button>
                   </td>
                 </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>
-                      <button color="warn" mat-button>
-                        <i class="material-icons">delete</i>
-                      </button>
-                    </td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>
-                      <button color="warn" mat-button>
-                        <i class="material-icons">delete</i>
-                      </button>
-                    </td>
-                </tr>
               </tbody>
             </table>
             <hr>
-            <form class="example-form">
+            <form [formGroup]="tagForm" class="example-form" (ngSubmit)= "submitTag()" >
                 <mat-form-field class="example-full-width">
-                  <input type="text" matInput placeholder="New Tag">
-                  <mat-hint>Errors appear instantly!</mat-hint>
+                  <input formControlName="TagName" type="text" matInput placeholder="New Tag">
+                  <mat-error *ngIf="tagForm.controls.TagName.hasError('required')">Tag field is required</mat-error>
+                  <mat-error *ngIf="tagForm.controls.TagName.hasError('minlength')">Tag should be minimum 3 length</mat-error>
+                  <mat-error *ngIf="tagForm.controls.TagName.hasError('maxlength')">Tag should be maximum 20 length</mat-error>
                 </mat-form-field>
-                <button type="submit" color="primary" mat-raised-button>
+                <button [disabled]='!tagForm.valid' type="submit" color="primary" mat-raised-button>
                     <i class="material-icons">check_circle</i>
                   </button>
               </form>

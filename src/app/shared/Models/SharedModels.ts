@@ -10,9 +10,9 @@ export class Category{
 
 export class Tag
 {
-    Id : string = '';
-    TagName : string = '';
-    TagDescription : string = '' ;
+    id : string = '';
+    tagName : string = '';
+    tagDescription : string = '' ;
 }
 
 export class NewBid {
