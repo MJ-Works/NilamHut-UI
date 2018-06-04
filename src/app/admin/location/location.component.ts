@@ -3,6 +3,7 @@ import { CommonService } from '../../shared/services/common.service';
 import { Category, City } from '../../shared/Models/SharedModels';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-location',
@@ -12,8 +13,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LocationComponent implements OnInit {
   cityForm : FormGroup;
   cities : City[];
+  public IsRequesting: boolean = false;
 
-  constructor(private fb: FormBuilder, private _commonService : CommonService) { }
+  constructor(private fb: FormBuilder, private _commonService : CommonService,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
       this.getAllCity();
@@ -29,32 +32,41 @@ export class LocationComponent implements OnInit {
 
   getAllCity()
   {
+    this.IsRequesting = true;
       this._commonService.getAllCity().subscribe( data => {
           this.cities = data;
-      }),error => {
-          console.log(error);
-      };
+          this.IsRequesting = false;
+      },error => {
+          this.toastr.error(error);
+          this.IsRequesting = false;
+      });
   }
 
 
 
   deleteButton(value)
   {
+    this.IsRequesting = true;
     this._commonService.deleteFromCity(value).subscribe( data => {
         this.getAllCity();
-    }),error => {
-        console.log(error);
-    };
+        this.IsRequesting = false;
+    },error => {
+      this.toastr.error(error);
+      this.IsRequesting = false;
+    });
   }
 
   submitCity()
   {
+    this.IsRequesting = true;
     var city = new City();
     city.cityName = this.cityForm.controls.CityName.value;
     this._commonService.addCity(city).subscribe( data => {
       this.getAllCity();
-    }),error => {
-        console.log(error);
-    };
+      this.IsRequesting = false;
+    },error => {
+      this.toastr.error(error);
+      this.IsRequesting = false;
+    });
   }
 }

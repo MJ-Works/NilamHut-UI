@@ -60,6 +60,18 @@ export class CommonService extends BaseService {
       );
   }
 
+  public addTag(data) {
+    return this.http.post(`${environment.baseUrl}/api/Common/AddTag`, data).pipe(
+      catchError(val => this.handleError(new HttpErrorResponse(val)))
+    );
+  }
+
+  public deleteFromTag(id) {
+    return this.http.delete(`${environment.baseUrl}/api/Common/DeleteTag/${id}`).pipe(
+      catchError(val => this.handleError(new HttpErrorResponse(val)))
+    );
+  }
+
   public getAllProducts(model: SearchContent): Observable<ProductHome[]> {
     const httpOptions = {
       headers: new HttpHeaders({

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Login } from '../models/Login';
 import { AccountService } from '../services/account.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signin',
@@ -39,7 +40,7 @@ export class SigninComponent implements OnInit {
     ]);
   }
 
-  constructor(private _accountService: AccountService, private route: Router) { }
+  constructor(private _accountService: AccountService, private route: Router,private toastr: ToastrService) { }
 
   ngOnInit() {
     this.CreateFormControls();
@@ -56,7 +57,7 @@ export class SigninComponent implements OnInit {
       this.IsRequesting = false;
       this.route.navigate(['/']);
     }, error => {
-      console.log(error);
+      this.toastr.error(error);
       this.IsRequesting = false;
     });
     //this.signinForm.reset();

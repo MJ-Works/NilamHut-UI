@@ -10,6 +10,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TagComponent } from './tag/tag.component';
+import { ToastrModule } from 'ngx-toastr';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [
@@ -20,7 +22,9 @@ import { TagComponent } from './tag/tag.component';
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressBarModule,
+    ToastrModule.forRoot()
   ],
   declarations: [LocationComponent, CategoryComponent, TagComponent]
 })

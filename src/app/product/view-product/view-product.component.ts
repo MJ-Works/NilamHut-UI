@@ -9,6 +9,7 @@ import { HubConnection, HubConnectionBuilder, IHttpConnectionOptions } from '@as
 import { Bid } from '../models/Bid';
 import { NewBid } from '../../shared/Models/SharedModels';
 import { CommonService } from '../../shared/services/common.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-view-product',
@@ -31,7 +32,8 @@ export class ViewProductComponent implements OnInit {
   public IsRequesting: boolean = false;
 
   constructor(private dialog: MatDialog, private activeRoute: ActivatedRoute
-    , private _productService: ProductService, private _commonService: CommonService, public router: Router) {
+            , private _productService: ProductService, private _commonService: CommonService, public router: Router,
+            private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -88,7 +90,7 @@ export class ViewProductComponent implements OnInit {
       //console.log(data);
       this.IsRequesting = false;
     }, error => {
-      console.log(error);
+      this.toastr.error(error);
       this.IsRequesting = false;
     });
   }
@@ -119,7 +121,7 @@ export class ViewProductComponent implements OnInit {
       //console.log(bid.userImage);
 
       //update current top bid
-      console.log(this.currentTopBid);
+      //console.log(this.currentTopBid);
 
       //if already exists in top 10 just rearrange
       for (var i = 0; i < this.top10Bids.length; i++) {
@@ -184,7 +186,7 @@ export class ViewProductComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result && result > this.currentPrice) {
         if (this._commonService.isAuthenticated()) {
-          console.log(this._commonService.getUserId());
+          //console.log(this._commonService.getUserId());
           this.TryBid(result, this.productId, this._commonService.getUserId());
         } else {
           this.router.navigate(['/signin']);
@@ -203,11 +205,11 @@ export class ViewProductComponent implements OnInit {
 
     this._commonService.makeNewBid(this.NewBid).subscribe(
       data => {
-        console.log('Bid Success');
+        //console.log('Bid Success');
         this.IsRequesting = false;
       },
       error => {
-        console.log(error);
+        this.toastr.error(error);
         this.IsRequesting = false;
       }
     );

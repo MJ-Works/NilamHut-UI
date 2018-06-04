@@ -7,6 +7,7 @@ import { ProductService } from '../services/product.service';
 import { StartDateValidator } from '../../shared/Directives/StartDateValidator.directive';
 import { EndDateValidator } from '../../shared/Directives/EndDateValidator.directive';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-product',
@@ -25,7 +26,7 @@ export class AddProductComponent implements OnInit {
   public IsRequesting: boolean = false;
 
   constructor(private fb: FormBuilder, private _commonService: CommonService,
-    private _productService: ProductService, private route: Router) { }
+    private _productService: ProductService, private route: Router,private toastr: ToastrService) { }
 
   ngOnInit() {
     this.imageCount = 0;
@@ -57,7 +58,7 @@ export class AddProductComponent implements OnInit {
       this.tags = data;
       this.IsRequesting = false;
     }, error => {
-      console.log(error);
+      this.toastr.error(error);
       this.IsRequesting = false;
     });
   }
@@ -68,7 +69,7 @@ export class AddProductComponent implements OnInit {
       this.cities = data;
       this.IsRequesting = false;
     }, error => {
-      console.log(error);
+      this.toastr.error(error);
       this.IsRequesting = false;
     });
   }
@@ -79,7 +80,7 @@ export class AddProductComponent implements OnInit {
       this.categories = data;
       this.IsRequesting = false;
     }, error => {
-      console.log(error);
+      this.toastr.error(error);
       this.IsRequesting = false;
     });
   }
@@ -93,7 +94,7 @@ export class AddProductComponent implements OnInit {
       this.selectedFile = $event.target.files;
       this.imageCount = this.selectedFile.length;
     }
-    console.log(this.selectedFile);
+    //console.log(this.selectedFile);
   }
 
   onSubmit() {
@@ -124,12 +125,12 @@ export class AddProductComponent implements OnInit {
     }
 
     this._productService.addProduct(fd).subscribe(data => {
-      console.log("success!!!");
+      //console.log("success!!!");
       this.IsRequesting = false;
       this.route.navigate(['/']);
 
     }, error => {
-      console.log(error);
+      this.toastr.error(error);
       this.IsRequesting = false;
     });
   }
