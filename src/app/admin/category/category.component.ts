@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class CategoryComponent implements OnInit {
   categoryForm : FormGroup;
   category : Category[];
+  public IsRequesting: boolean = false;
   
   constructor(private fb: FormBuilder, private _commonService : CommonService,
               private toastr: ToastrService) { }
@@ -30,11 +31,13 @@ export class CategoryComponent implements OnInit {
 
   getAllCategory()
   {
+      this.IsRequesting = true;
       this._commonService.getAllCategory().subscribe( data => {
-          console.log(data);
           this.category = data;
+          this.IsRequesting = false;
       },error => {
         this.toastr.error(error);
+        this.IsRequesting = false;
       });
   }
 
@@ -42,21 +45,27 @@ export class CategoryComponent implements OnInit {
 
   deleteButton(value)
   {
+    this.IsRequesting = true;
     this._commonService.deleteFromCategory(value).subscribe( data => {
         this.getAllCategory();
+        this.IsRequesting = false;
     },error => {
       this.toastr.error(error);
+      this.IsRequesting = false;
     });
   }
 
   submitCategory()
   {
+    this.IsRequesting = true;
     var category = new Category();
     category.categoryName = this.categoryForm.controls.CategoryName.value;
     this._commonService.addCategory(category).subscribe( data => {
       this.getAllCategory();
+      this.IsRequesting = false;
     },error => {
       this.toastr.error(error);
+      this.IsRequesting = false;
     });
     this.categoryForm.reset();
   }
