@@ -20,40 +20,44 @@
             <button mat-raised-button color="primary" class="form-button">Save it As Avatar </button>
           </div>
           <div class="col-sm-8">
-            <form class="example-form" novalidate>
+            <form class="example-form" [formGroup]="ProfileForm" (ngSubmit)="onSubmit()" novalidate>
                 <mat-form-field class="example-full-width">
-                  <input matInput type="text" placeholder="Full Name" value="">
+                  <input matInput type="text" placeholder="Full Name" [formControl]="FullName" value="{{UserInfo?.fullName}}">
+                  <mat-hint>Enter Full name!</mat-hint>
+                  <mat-error *ngIf="FullName.hasError('required')">Full Name fileld is required</mat-error>
+                  <mat-error *ngIf="FullName.hasError('maxlength')">Full Name atmost 49 charactes long.</mat-error>
                 </mat-form-field>
 
-                <mat-form-field class="example-full-width">
-                    <mat-select placeholder="Country">
-                      <mat-option value="BD">Bangladesh</mat-option>
-                      <mat-option value="IND">India</mat-option>
-                      <mat-option value="NEPAL">Nepal</mat-option>
+                <mat-form-field class="example-full-width" *ngIf="AllCity">
+                    <mat-select placeholder="City" [formControl]="City" [(value)]="cityId" >
+                      <mat-option *ngFor="let city of AllCity" [value]="city.id" >{{city.cityName}}</mat-option>
                     </mat-select>
+                    <mat-hint>Select City!</mat-hint>
+                    <mat-error *ngIf="City.hasError('required')">City fileld is required</mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
-                    <mat-select placeholder="City">
-                      <mat-option value="BD">Khunla</mat-option>
-                      <mat-option value="IND">Rajshai</mat-option>
-                      <mat-option value="NEPAL">Dhaka</mat-option>
-                    </mat-select>
+                    <input matInput type="text" placeholder="Post-Code" [formControl]="PostCode" value="{{UserInfo?.postCode}}">
+                    <mat-hint>Enter Post-Code!</mat-hint>
+                    <mat-error *ngIf="PostCode.hasError('required')">Post-Code fileld is required</mat-error>
+                    <mat-error *ngIf="PostCode.hasError('maxlength')">Post-Code atmost 19 charactes long.</mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
-                    <input matInput type="text" placeholder="Post-Code" value="">
+                  <textarea matInput placeholder="Enter address" [formControl]="Address">{{UserInfo?.address}}</textarea>
+                  <mat-hint>Enter Address!</mat-hint>
+                  <mat-error *ngIf="Address.hasError('required')">Address fileld is required</mat-error>
+                  <mat-error *ngIf="Address.hasError('maxlength')">Address atmost 499 charactes long.</mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
-                  <textarea matInput placeholder="Enter address"></textarea>
+                    <input matInput type="tel" placeholder="Phone" value="{{UserInfo?.phone}}" [formControl]="Phone">
+                    <mat-hint>Enter Phone!</mat-hint>
+                    <mat-error *ngIf="Phone.hasError('required')">Phone fileld is required</mat-error>
+                    <mat-error *ngIf="Phone.hasError('maxlength')">Phone atmost 49 charactes long.</mat-error>
                 </mat-form-field>
-
-                <mat-form-field class="example-full-width">
-                    <input matInput type="tel" placeholder="Phone" value="">
-                </mat-form-field>
-
-                <button type="submit" mat-raised-button color="warn">Save</button>
+                <br>
+                <button [disabled]='!ProfileForm.valid' type="submit" mat-raised-button color="warn">Save</button>
               </form>
           </div>
         </div>

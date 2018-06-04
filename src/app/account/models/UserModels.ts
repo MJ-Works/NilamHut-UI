@@ -26,3 +26,12 @@ export class UserInfo {
     email: string;
     image: string;
 }
+
+export class UserData{
+    ApplicationUserId: string;
+    FullName: string;
+    CityId: string;
+    PostCode: string;
+    Address: string;
+    Phone: string;
+}
