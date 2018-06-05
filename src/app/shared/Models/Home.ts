@@ -1,5 +1,6 @@
 export class ProductHome {
     productId: string;
+    productName: string;
     basePrice: number;
     bidderId: string;
     bidderName: string;
