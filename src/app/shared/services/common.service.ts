@@ -100,7 +100,7 @@ export class CommonService extends BaseService {
 
     const tokenPayload = this.jwtHelper.decodeToken(token);
 
-    if (!this.auth.isAuthenticated() || tokenPayload.nonce != "Administrator")
+    if (!this.auth.isAuthenticated() || tokenPayload.Rol != "Administrator")
       return false;
 
     return true;
