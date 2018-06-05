@@ -36,3 +36,8 @@
     min-width: 150px;
     text-align: center;
 }
+
+.navbar-brand{
+    font-size: 25px; 
+    color: #1a3bdd;
+}

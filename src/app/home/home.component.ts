@@ -198,14 +198,19 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  public IsAuctionRunning(start: string, end: string): boolean {
-    var date1 = new Date(start);
-    var date2 = new Date(end);
-    var date3 = new Date();
-    if (date1 > date3 || date2 < date3) return true;
+  public IsAuctionEnd(end: string): boolean {
+    var date1 = new Date(end);
+    var date2 = new Date();
+    if (date1 < date2) return true;
     return false;
   }
 
+  public IsAuctionStart(start: string) {
+    var date1 = new Date(start);
+    var date2 = new Date();
+    if (date1 > date2) return true;
+    return false;
+  }
   public pageChangeEvent(pageEvent: PageEvent) {
     this.makeSlice(pageEvent.pageIndex, pageEvent.pageSize, pageEvent.length);
   }

@@ -96,10 +96,14 @@
             <a>N/A</a>
           </ng-template>
           <p class="clock">
-            <a *ngIf="IsAuctionRunning(product.startDate,product.endDate) ; else timeBlock" class="alert-primary" matTooltip="Currently not Available">
-            Not Available</a>
+            <a *ngIf="IsAuctionEnd(product.endDate) ; else startBlock" class="alert-warning" matTooltip="Auction Ended">
+              ENDED</a>
+              <ng-template #startBlock>
+                <a *ngIf="IsAuctionStart(product.startDate) ; else timeBlock" class="alert-success" matTooltip="{{product.startDate}}">
+                    WAIT..</a>
+              </ng-template>
             <ng-template #timeBlock>
-              <countdown-timer [end]="product.endDate"></countdown-timer>
+              <countdown-timer [end]="product.endDate" matTooltip="Running.."></countdown-timer>
             </ng-template>
           </p>
           <div class="row">
@@ -114,7 +118,7 @@
             </div>
             <div class="col-6">
               <button color="accent" mat-button (click)="openDialog(product.productId, product.bidPrice == 0 ? product.basePrice:product.bidPrice )"
-                matTooltip="Bid This Product" [disabled]='IsAuctionRunning(product.startDate,product.endDate)'>
+                matTooltip="Bid This Product" [disabled]='IsAuctionEnd(product.endDate) || IsAuctionStart(product.startDate)'>
                 <i class="material-icons">
                   gavel
                 </i>

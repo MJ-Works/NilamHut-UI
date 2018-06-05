@@ -1,48 +1,53 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">NilamHut |</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <a class="navbar-brand" href="#">
+    <b>NilamHut</b>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/" routerLinkActive = "active" [routerLinkActiveOptions]="{exact:true}">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home
+          <span class="sr-only">(current)</span>
+        </a>
       </li>
       <li class="nav-item" *ngIf="_commonService.isAuthenticated() || _commonService.isAdmin()">
-        <a class="nav-link" routerLink="product" routerLinkActive = "active" [routerLinkActiveOptions]="{exact:true}">Product</a>
+        <a class="nav-link" routerLink="product" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Product</a>
       </li>
     </ul>
 
     <ul class="navbar-nav">
 
-        <li class="nav-item dropdown" *ngIf="_commonService.isAdmin()">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Admin Panel
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" routerLink="/location">Add City</a>
-            <a class="dropdown-item" routerLink="/category">Add Category</a>
-            <a class="dropdown-item" routerLink="/tag">Add Tag</a>
-          </div>
-        </li>
-      
-        <li class="nav-item">
-            <a class="nav-link" *ngIf="!_commonService.isAuthenticated()" routerLink="signin" routerLinkActive = "active">Login</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" *ngIf="!_commonService.isAuthenticated()" routerLink="signup" routerLinkActive = "active">Register</a>
-        </li>
+      <li class="nav-item dropdown" *ngIf="_commonService.isAdmin()">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Admin Panel
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" routerLink="/location">Add City</a>
+          <a class="dropdown-item" routerLink="/category">Add Category</a>
+          <a class="dropdown-item" routerLink="/tag">Add Tag</a>
+        </div>
+      </li>
 
-        <li class="nav-item dropdown logout" *ngIf="_commonService.isAuthenticated()">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{_commonService.getUserName()}}
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" routerLink="profile/{{_commonService.getUserId()}}">Profile</a>
-            <a class="dropdown-item" routerLink="profile/edit">EditProfile</a>
-            <a class="dropdown-item" routerLink="/" (click)="logOut()">Logout</a>
-          </div>
-        </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="!_commonService.isAuthenticated()" routerLink="signin" routerLinkActive="active">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="!_commonService.isAuthenticated()" routerLink="signup" routerLinkActive="active">Register</a>
+      </li>
+
+      <li class="nav-item dropdown logout" *ngIf="_commonService.isAuthenticated()">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{_commonService.getUserName()}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" routerLink="profile/{{_commonService.getUserId()}}">Profile</a>
+          <a class="dropdown-item" routerLink="profile/edit">EditProfile</a>
+          <a class="dropdown-item" routerLink="/" (click)="logOut()">Logout</a>
+        </div>
+      </li>
     </ul>
   </div>
 </nav>
