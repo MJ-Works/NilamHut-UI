@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
   public searchForm: FormGroup;
   private searchContent: SearchContent;// for search value
   public AllProducts: ProductHome[] = [];
+  public PageProducts: ProductHome[] = [];
   public NewBid: NewBid;
   public baseUrl;
   public IsRequesting: boolean = false;
@@ -39,7 +40,6 @@ export class HomeComponent implements OnInit {
   public length = 0;
   public pageSize = 16;
   public pageSizeOptions = [8, 16, 24];
-  public pageEvent: PageEvent;
 
   constructor(public dialog: MatDialog, public _commonService: CommonService, public router: Router, private toastr: ToastrService) { }
 
@@ -140,7 +140,7 @@ export class HomeComponent implements OnInit {
         this.AllProducts = data;
         this.length = this.AllProducts.length;
         this.IsRequesting = false;
-        // console.log(this.AllProducts);
+        this.makeSlice(0, this.pageSize, this.length);
       },
       error => {
         this.toastr.error(error);
@@ -189,6 +189,12 @@ export class HomeComponent implements OnInit {
         this.AllProducts[i].bidderName = bid.userName;
       }
 
+      var i = this.PageProducts.findIndex(x => x.productId == bid.productId)
+      if (i >= 0) {
+        this.PageProducts[i].bidPrice = bid.bidPrice;
+        this.PageProducts[i].bidderName = bid.userName;
+      }
+
     });
   }
 
@@ -198,5 +204,18 @@ export class HomeComponent implements OnInit {
     var date3 = new Date();
     if (date1 > date3 || date2 < date3) return true;
     return false;
+  }
+
+  public pageChangeEvent(pageEvent: PageEvent) {
+    this.makeSlice(pageEvent.pageIndex, pageEvent.pageSize, pageEvent.length);
+  }
+
+  private makeSlice(index: number, pageSize: number, length: number) {
+    this.IsRequesting = true;
+    var start = index * pageSize;
+    var end = start + pageSize;
+    this.PageProducts = this.AllProducts.slice(start, end);
+    this.IsRequesting = false;
+    // console.log(this.PageProducts);
   }
 }
