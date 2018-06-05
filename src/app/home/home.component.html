@@ -66,11 +66,18 @@
 
   <div *ngIf="AllProducts" class="row">
 
-    <div class="col-sm-3" *ngFor="let product of AllProducts">
+    <div class="col-md-3 col-6" *ngFor="let product of AllProducts">
       <div class="basic-product-container">
-        <div class="product-image-container text-center">
-          <img class="rounded mx-auto d-block" src="{{baseUrl+'/'+product.image}}" alt="product">
-        </div>
+          <div class="row">
+            <div class="col-md-12">Nokia 1700C(1 month used)</div>
+          </div>
+          <div class="row">
+              <div class="gallery-wrap col-md-12">
+                  <div class="img-small-wrap">
+                      <div class="item-gallery"> <img src="{{baseUrl+'/'+product.image}}"> </div>
+                  </div>
+              </div>
+          </div>
         <div class="product-info-container">
           <p *ngIf="product.bidderName ; else elseBlock " class="price">${{product.bidPrice}}</p>
           <ng-template #elseBlock>
@@ -86,19 +93,25 @@
               <countdown-timer [end]="product.endDate"></countdown-timer>
             </ng-template>
           </p>
-          <p class="btn-control">
-            <a color="primary" mat-button routerLink="product/{{product.productId}}" matTooltip="View This Product">
-              <i class="material-icons">
-                visibility
-              </i>
-            </a>
-            <button color="accent"  mat-button (click)="openDialog(product.productId, product.bidPrice == 0 ? product.basePrice:product.bidPrice )"
-              matTooltip="Bid This Product" [disabled]='IsAuctionRunning(product.startDate,product.endDate)'>
-              <i class="material-icons">
-                gavel
-              </i>
-            </button>
-          </p>
+          <div class="row">
+              <div class="col-6">
+                  <p class="btn-control">
+                      <a color="primary" mat-button routerLink="product/{{product.productId}}" matTooltip="View This Product">
+                        <i class="material-icons">
+                          visibility
+                        </i>
+                      </a>
+                    </p>
+              </div>
+              <div class="col-6">
+                  <button color="accent"  mat-button (click)="openDialog(product.productId, product.bidPrice == 0 ? product.basePrice:product.bidPrice )"
+                  matTooltip="Bid This Product" [disabled]='IsAuctionRunning(product.startDate,product.endDate)'>
+                  <i class="material-icons">
+                    gavel
+                  </i>
+                </button>
+              </div>
+          </div>
         </div>
       </div>
     </div>

@@ -118,10 +118,6 @@ export class ViewProductComponent implements OnInit {
 
       if (bid.productId != this.productId)
         return;
-      //console.log(bid.userImage);
-
-      //update current top bid
-      //console.log(this.currentTopBid);
 
       //if already exists in top 10 just rearrange
       for (var i = 0; i < this.top10Bids.length; i++) {
