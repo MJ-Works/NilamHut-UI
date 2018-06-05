@@ -7,7 +7,7 @@ import { RoleGuardService as RoleGuard } from '../shared/services/role-guard.ser
 
 const routes: Routes =[
   { path:'product/:id', component: ViewProductComponent},
-  { path:'product', component: AddProductComponent, canActivate : [RoleGuard], data : {expectedRole : "SimpleUser"} }
+  { path:'product', component: AddProductComponent, canActivate : [AuthGuard] }
 ];
 
 @NgModule({
