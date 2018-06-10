@@ -70,7 +70,7 @@
     </div>
   </div>
 
-  <div *ngIf="PageProducts" class="row">
+  <div *ngIf="PageProducts ; else noContent" class="row">
 
 
     <div class="col-md-3 col-6" *ngFor="let product of PageProducts">
@@ -128,9 +128,15 @@
         </div>
       </div>
     </div>
-
+    
   </div>
 
+  <ng-template #noContent>
+    <div class="no-content text-center">
+    <h1 class="alert alert-info"> No Product Available</h1>
+  </div>
+  </ng-template>
+  
   <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageChangeEvent($event)">
   </mat-paginator>
 

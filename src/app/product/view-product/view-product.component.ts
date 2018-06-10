@@ -187,6 +187,8 @@ export class ViewProductComponent implements OnInit {
         } else {
           this.router.navigate(['/signin']);
         }
+      }else if(result){
+        this.toastr.warning('Your bid must be grater than current bid.');
       }
     });
   }

@@ -104,3 +104,8 @@
   width: 100%;
 
 }
+
+.no-content{
+  padding-top: 20vh;
+  padding-bottom: 20vh;
+}
