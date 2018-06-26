@@ -109,3 +109,10 @@
   padding-top: 20vh;
   padding-bottom: 20vh;
 }
+.hide-name{
+  width: 90%;
+  overflow:hidden;
+  display:inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
