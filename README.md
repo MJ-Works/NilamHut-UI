@@ -1,27 +1,27 @@
 # NilamHutUI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
+A Real-Time Virtual Auction Platform Using Angular, SignalR & .NET Core. This project implements the only user interface part of  `NilamHut`. There is a separate project which implements the supporting backend [API](https://github.com/MJ-Works/NilamHutAPI.git) part.   Our aim is to build a fast and fluid user experience for online live virtual auction.  
 
-## Development server
+* ## *Technical Info*
+  * This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
+  * We use [Angular Material](https://material.angular.io/) as major UI component.
+  * [Bootstrap-4](https://getbootstrap.com/docs/4.0/getting-started/introduction/) also use for some parts.
+  
+* ## *Installation* 
+  * `git clone  https://github.com/MJ-Works/NilamHut-UI.git`
+  * `Open CMD & navigate to 'NilamHut-UI' folder`
+  * `First command 'npm install'`
+  * `Second command 'ng serve'`
+  
+  ```
+  If every thing goes fine your server is running by default it is `http://localhost:4200/`.
+  This project expects backend server running at **http://localhost:5000**.
+  ```
+* ## *Screens*
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Further query
+  * Mail: jaggesher14@gmail.com
+  * LinkedIn: [Jaggesher Mondal](https://www.linkedin.com/in/jaggesher-mondal-348239102/)
+  
+  * Mail: iammonmoy@gmail.com 
+  * LinkedIn: [Rajob Raihan Monmoy](https://www.linkedin.com/in/iammonmoy/)
