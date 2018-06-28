@@ -18,6 +18,40 @@ A Real-Time Virtual Auction Platform Using Angular, SignalR & .NET Core. This pr
   This project expects backend server running at **http://localhost:5000**.
   ```
 * ## *Screens*
+  * **LogIn**
+   ![login](/Screen/Login.png)
+   
+   * **Register**
+   ![register](/Screen/Register.png)
+   
+   * **Home**
+   ![home](/Screen/Home.png)
+   
+   * **Bid**
+   ![bid](/Screen/Bid.png)
+   
+   * **Product View**
+   ![product view](/Screen/ProductView.png)
+   
+   * **Product Add**
+   ![product add](/Screen/Add-Product.png)
+   
+   * **Profile View**
+   ![profile view](/Screen/Profile.png)
+   
+   * **Profile Edit**
+   ![profile edit](/Screen/ProfileEdit.png)
+   
+   * **Location(Admin)**
+   ![location](/Screen/Location.png)
+   
+   * **Category(Admin)**
+   ![category](/Screen/Category.png)
+   
+   * **Tag(Admin)**
+   ![tag](/Screen/Tag.png)
+   
+   These are some major screns.
 
 ## Further query
   * Mail: jaggesher14@gmail.com
