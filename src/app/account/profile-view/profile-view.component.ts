@@ -5,6 +5,7 @@ import { AccountService } from '../services/account.service';
 import { error } from 'util';
 import { environment } from '../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { Wins } from '../models/Wins';
 
 @Component({
   selector: 'app-profile-view',
@@ -19,16 +20,21 @@ export class ProfileViewComponent implements OnInit {
   public Bids: UserBid[];
   public UserInfo: UserInfo;
   public baseUrl: string
+  public won: Wins[];
+  public sold: Wins[];
 
   public IsRequesting: boolean = false;
 
   ngOnInit() {
     this.baseUrl = environment.baseUrl;
-    console.log(this.baseUrl);
+    
     this.getuserId();
+    console.log(this.UserId);
     this.GetUserInfo(this.UserId);
     this.GetUserBids(this.UserId);
     this.GetUserPosts(this.UserId);
+    this.GetUserWins(this.UserId);
+    this.GetUserSold(this.UserId);
   }
 
   private getuserId() {
@@ -65,6 +71,30 @@ export class ProfileViewComponent implements OnInit {
     this.IsRequesting = true;
     this._accountService.getUserInfo(id).subscribe(data => {
       this.UserInfo = data;
+      this.IsRequesting = false;
+      // console.log(data)
+    }, error => {
+      this.toastr.error(error);
+      this.IsRequesting = false;
+    })
+  }
+
+  private GetUserWins(id: string) {
+    this.IsRequesting = true;
+    this._accountService.GetUserWins(id).subscribe(data => {
+      this.won = data;
+      this.IsRequesting = false;
+      // console.log(data)
+    }, error => {
+      this.toastr.error(error);
+      this.IsRequesting = false;
+    })
+  }
+
+  private GetUserSold(id: string) {
+    this.IsRequesting = true;
+    this._accountService.GetUserSold(id).subscribe(data => {
+      this.sold = data;
       this.IsRequesting = false;
       // console.log(data)
     }, error => {

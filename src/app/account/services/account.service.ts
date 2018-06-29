@@ -7,6 +7,7 @@ import { environment } from '../../../environments/environment';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { UserInfo, UserBid, UserPost, UserData } from '../models/UserModels';
+import { Wins } from '../models/Wins';
 
 @Injectable({
   providedIn: 'root'
@@ -88,6 +89,20 @@ export class AccountService extends BaseService {
     fd.append('image', image, image.name);
     fd.append('userId', userId);
     return this.http.put(`${environment.baseUrl}/api/Users/UploadImage`, fd, httpOptions)
+      .pipe(
+        catchError(val => this.handleError(new HttpErrorResponse(val)))
+      );
+  }
+
+  GetUserWins(userId: string): Observable<Wins[]> {
+    return this.http.get<Wins[]>(`${environment.baseUrl}/api/common/GetWinHistory/${userId}`)
+      .pipe(
+        catchError(val => this.handleError(new HttpErrorResponse(val)))
+      );
+  }
+
+  GetUserSold(userId: string): Observable<Wins[]> {
+    return this.http.get<Wins[]>(`${environment.baseUrl}/api/common/GetSoldHistory/${userId}`)
       .pipe(
         catchError(val => this.handleError(new HttpErrorResponse(val)))
       );

@@ -206,6 +206,7 @@ export class HomeComponent implements OnInit {
     if (date1 < date2) return true;
     return false;
   }
+  
 
   public IsAuctionStart(start: string) {
     var date1 = new Date(start);

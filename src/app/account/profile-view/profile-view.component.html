@@ -88,6 +88,28 @@
             </mat-list>
           </mat-tab>
 
+          <mat-tab label="Wins">
+            <mat-list *ngIf="won">
+              <mat-list-item *ngFor="let win of won">
+                <h3 mat-line style="font-weight: bolder">{{win.productName}}</h3>
+                <p mat-line> <strong>Amount:</strong>{{win.soldPrice}} <strong>Description</strong>{{win.productDescription}}</p>
+                <p>
+                  <strong>Time</strong> {{win.dateTime | date}} </p>
+              </mat-list-item>
+            </mat-list>
+          </mat-tab>
+
+          <mat-tab label="Sold History">
+            <mat-list *ngIf="sold">
+              <mat-list-item *ngFor="let sale of sold">
+                <h3 mat-line style="font-weight: bolder">{{sale.productName}}</h3>
+                <p mat-line> <strong>Amount:</strong>{{sale.soldPrice}} <strong>Description</strong>{{sale.productDescription}}</p>
+                <p>
+                  <strong>Time</strong> {{sale.dateTime | date}} </p>
+              </mat-list-item>
+            </mat-list>
+          </mat-tab>
+
         </mat-tab-group>
       </div>
     </div>
