@@ -1,5 +1,5 @@
 export class Rating{
-    UserId: string;
-    TargetUser: string;
-    Rating: number;
+    GivenUserId: string;
+    ApplicationUserId: string;
+    UserRating: number;
 }

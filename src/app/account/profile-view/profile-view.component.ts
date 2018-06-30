@@ -76,19 +76,18 @@ export class ProfileViewComponent implements OnInit {
       this.toastr.warning("You Can't rate yourself");
     } else if (this.formRating > 0) {
       this.rating = new Rating();
-      this.rating.UserId = this.loggedInUser;
-      this.rating.TargetUser = this.UserId;
-      this.rating.Rating = this.formRating;
+      this.rating.GivenUserId = this.loggedInUser;
+      this.rating.ApplicationUserId = this.UserId;
+      this.rating.UserRating = this.formRating;
       this.IsRequesting = true;
       this._accountService.updateRating(this.rating).subscribe(data => {
         this.toastr.success("Rating Updated");
+        this.rate = this.formRating;
         this.IsRequesting = false;
       }, error => {
         this.toastr.error(error);
         this.IsRequesting = true;
       });
-
-      this.toastr.success("Implemet" + this.formRating);
     } else {
       this.toastr.warning("Enter a Non Zero Rating");
     }
@@ -109,6 +108,7 @@ export class ProfileViewComponent implements OnInit {
     this.IsRequesting = true;
     this._accountService.getUserInfo(id).subscribe(data => {
       this.UserInfo = data;
+      this.rate = data.rating;
       this.IsRequesting = false;
       // console.log(data)
     }, error => {

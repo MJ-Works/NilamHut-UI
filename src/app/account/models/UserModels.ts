@@ -24,6 +24,7 @@ export class UserInfo {
     address: string;
     postCode: string;
     email: string;
+    rating: number;
     image: string;
 }
 

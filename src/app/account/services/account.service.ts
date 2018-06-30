@@ -117,7 +117,7 @@ export class AccountService extends BaseService {
       })
     }
 
-    return this.http.post(`${environment.baseUrl}/api/account/rating`, _rating, httpOptions)
+    return this.http.post(`${environment.baseUrl}/api/Users/Updaterating`, _rating, httpOptions)
       .pipe(
         catchError(val => this.handleError(new HttpErrorResponse(val)))
       );
