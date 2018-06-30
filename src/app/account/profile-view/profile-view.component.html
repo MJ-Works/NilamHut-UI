@@ -23,9 +23,9 @@
 
               <bar-rating [rate]="rate" [max]="5" [readOnly]="true" [hidden]="rateToggle"></bar-rating>
 
-              <form #form="ngForm" [hidden]="!rateToggle">
+              <form [hidden]="!rateToggle" (ngSubmit)="onSubmit()">
                 <bar-rating name="rating" [(ngModel)]="formRating" [max]="5" required></bar-rating>
-                <button mat-icon-button color="warn" type="submit">
+                <button mat-icon-button color="primary" type="submit">
                   <mat-icon aria-label="Example icon-button with a done_all icon">done_all</mat-icon>
                 </button>
               </form>

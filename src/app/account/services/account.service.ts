@@ -8,6 +8,7 @@ import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { UserInfo, UserBid, UserPost, UserData } from '../models/UserModels';
 import { Wins } from '../models/Wins';
+import { Rating } from '../models/Rating';
 
 @Injectable({
   providedIn: 'root'
@@ -103,6 +104,20 @@ export class AccountService extends BaseService {
 
   GetUserSold(userId: string): Observable<Wins[]> {
     return this.http.get<Wins[]>(`${environment.baseUrl}/api/common/GetSoldHistory/${userId}`)
+      .pipe(
+        catchError(val => this.handleError(new HttpErrorResponse(val)))
+      );
+  }
+
+  updateRating(_rating: Rating): Observable<any> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    }
+
+    return this.http.post(`${environment.baseUrl}/api/account/rating`, _rating, httpOptions)
       .pipe(
         catchError(val => this.handleError(new HttpErrorResponse(val)))
       );
