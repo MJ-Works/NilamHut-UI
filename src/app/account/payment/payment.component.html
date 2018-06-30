@@ -1,3 +1,65 @@
-<p>
-  payment works!
-</p>
+
+<div class="container">
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <h3 style="color: #3f51b5;"><b>Payment</b></h3>
+      <hr>
+
+      <mat-tab-group>
+          <mat-tab label="Card">
+              <form class="example-form">
+
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Card Number" value="">
+                  </mat-form-field>
+        
+                  <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Phone Number" value="">
+                  </mat-form-field>
+        
+                  <button type="submit" color="primary" mat-raised-button>
+                      <i class="material-icons">check_circle</i>
+                  </button>
+        
+                </form>
+          </mat-tab>
+          <mat-tab label="Bikash">
+             <form class="example-form">
+
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Your AC Number" value="">
+              </mat-form-field>
+    
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Transiction No" value="">
+              </mat-form-field>
+    
+              <button type="submit" color="primary" mat-raised-button>
+                  <i class="material-icons">check_circle</i>
+              </button>
+    
+            </form> 
+          </mat-tab>
+          <mat-tab label="DBBL">
+              <form class="example-form">
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Your AC Number" value="">
+                </mat-form-field>
+      
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Transiction No" value="">
+                </mat-form-field>
+      
+                <button type="submit" color="primary" mat-raised-button>
+                    <i class="material-icons">check_circle</i>
+                </button>
+      
+              </form>
+          </mat-tab>
+        </mat-tab-group>
+
+    </div>
+  </div>
+</div>
