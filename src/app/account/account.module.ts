@@ -26,6 +26,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 import { BarRatingModule } from "ngx-bar-rating";
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   imports: [
@@ -48,6 +49,6 @@ import { BarRatingModule } from "ngx-bar-rating";
     BarRatingModule
   ],
   providers : [AccountService],
-  declarations: [SigninComponent, SignupComponent, ProfileEditComponent, ProfileViewComponent]
+  declarations: [SigninComponent, SignupComponent, ProfileEditComponent, ProfileViewComponent, ReportComponent]
 })
 export class AccountModule { }

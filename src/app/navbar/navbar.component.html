@@ -16,6 +16,12 @@
       <li class="nav-item" *ngIf="_commonService.isAuthenticated() || _commonService.isAdmin()">
         <a class="nav-link" routerLink="product" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Product</a>
       </li>
+      <li class="nav-item" *ngIf="_commonService.isAdmin()">
+        <a class="nav-link" routerLink="showReport" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Show Reports</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="_commonService.isAuthenticated() && !_commonService.isAdmin()" routerLink="report" routerLinkActive="active">Report</a>
+      </li>
     </ul>
 
     <ul class="navbar-nav">

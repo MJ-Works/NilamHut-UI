@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TagComponent } from './tag/tag.component';
 import { ToastrModule } from 'ngx-toastr';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ShowReportsComponent } from './show-reports/show-reports.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatProgressBarModule,
     ToastrModule.forRoot()
   ],
-  declarations: [LocationComponent, CategoryComponent, TagComponent]
+  declarations: [LocationComponent, CategoryComponent, TagComponent, ShowReportsComponent]
 })
 export class AdminModule { }

@@ -9,6 +9,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { SearchContent, ProductHome } from '../Models/Home';
+import { Report } from '../../account/models/Report';
 
 @Injectable({
   providedIn: 'root'
@@ -126,6 +127,25 @@ export class CommonService extends BaseService {
       .pipe(
         catchError(val => this.handleError(new HttpErrorResponse(val)))
       );
+  }
+
+  public addReport(data) {
+    return this.http.post(`${environment.baseUrl}/api/Common/AddReport`, data).pipe(
+      catchError(val => this.handleError(new HttpErrorResponse(val)))
+    );
+  }
+
+  public getAllReport(): Observable<Report[]> {
+    return this.http.get<Report[]>(`${environment.baseUrl}/api/Common/AllReport`)
+      .pipe(
+        catchError(val => this.handleError(new HttpErrorResponse(val)))
+      );
+  }
+
+  public deleteFromReport(id) {
+    return this.http.delete(`${environment.baseUrl}/api/Common/DeleteReport/${id}`).pipe(
+      catchError(val => this.handleError(new HttpErrorResponse(val)))
+    );
   }
 
 }
