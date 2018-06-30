@@ -27,6 +27,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 import { BarRatingModule } from "ngx-bar-rating";
 import { ReportComponent } from './report/report.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   imports: [
@@ -49,6 +50,6 @@ import { ReportComponent } from './report/report.component';
     BarRatingModule
   ],
   providers : [AccountService],
-  declarations: [SigninComponent, SignupComponent, ProfileEditComponent, ProfileViewComponent, ReportComponent]
+  declarations: [SigninComponent, SignupComponent, ProfileEditComponent, ProfileViewComponent, ReportComponent, PaymentComponent]
 })
 export class AccountModule { }
