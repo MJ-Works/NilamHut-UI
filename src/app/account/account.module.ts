@@ -15,6 +15,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,6 +25,7 @@ import { AccountService } from './services/account.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 
+import { BarRatingModule } from "ngx-bar-rating";
 
 @NgModule({
   imports: [
@@ -41,7 +43,9 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
     MatSelectModule,
     MatChipsModule,
     MatProgressBarModule,
-    ToastrModule.forRoot()
+    MatSlideToggleModule,
+    ToastrModule.forRoot(),
+    BarRatingModule
   ],
   providers : [AccountService],
   declarations: [SigninComponent, SignupComponent, ProfileEditComponent, ProfileViewComponent]

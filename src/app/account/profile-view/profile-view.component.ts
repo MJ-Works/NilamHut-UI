@@ -22,6 +22,8 @@ export class ProfileViewComponent implements OnInit {
   public baseUrl: string
   public won: Wins[];
   public sold: Wins[];
+  public rate:number = 3;
+  public rateToggle: boolean = true;
 
   public IsRequesting: boolean = false;
 
@@ -55,6 +57,9 @@ export class ProfileViewComponent implements OnInit {
     });
   }
 
+  public rateChange(){
+    this.rateToggle = !this.rateToggle;
+  }
   private GetUserBids(id: string) {
     this.IsRequesting = true;
     this._accountService.getUserBids(id).subscribe(data => {
